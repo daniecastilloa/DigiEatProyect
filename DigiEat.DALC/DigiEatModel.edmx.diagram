@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f1c91ac1aa584a46a741ba31cbf42480" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.BEBIDA_BAR" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BODEGA" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CAJA_FACTURA" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="8.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EMPLEADO" Width="1.5" PointX="6.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ESTADO_ORDEN" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INGREDIENTES" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LOCAL" Width="1.5" PointX="1.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MESA" Width="1.5" PointX="1.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ORDEN" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PLATO_COCINA" Width="1.5" PointX="3.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PROVEEDOR" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RECETA" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RECETA_INGREDIENTE" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RESERVA" Width="1.5" PointX="6.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPO_EMPLEADO" Width="1.5" PointX="4.5" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ORDEN_DETALLES" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.ORDEN_DETALLES_BEBIDA_BAR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RECETA_BEBIDA_BAR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RECETA_BODEGA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CAJA_FACTURA_ORDEN_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CLIENTE_MESA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CLIENTE_RESERVA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.EMPLEADO_LOCAL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.EMPLEADO_TIPO_EMPLEADO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDEN_ESTADO_ORDEN_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.INGREDIENTES_PROVEEDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RECETA_INGREDIENTES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.MESA_LOCAL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDEN_MESA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDEN_DETALLES_ORDEN_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDEN_DETALLES_PLATO_COCINA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RECETA_PLATO_COCINA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RECETA_INGREDIENTE_RECETA_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
