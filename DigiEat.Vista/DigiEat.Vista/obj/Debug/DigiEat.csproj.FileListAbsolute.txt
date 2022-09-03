@@ -98,3 +98,8 @@ C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\System.Text.Encodings.Web.xml
 C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\System.Text.Json.xml
 C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\System.Threading.Tasks.Extensions.xml
 C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\System.ValueTuple.xml
+C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\DigiEat.DALC.dll
+C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\EntityFramework.dll
+C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\DigiEat.DALC.pdb
+C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\DigiEat.DALC.dll.config
+C:\DigiEatRepo\DigiEat.Vista\DigiEat.Vista\bin\EntityFramework.xml

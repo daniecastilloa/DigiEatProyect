@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.Mvc;
 
+
 namespace DigiEat.Vista.Controllers
 {
     public class AuthController : Controller
@@ -15,13 +16,13 @@ namespace DigiEat.Vista.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult Login(Cliente cliente, string ReturnUrl)
         {
             if(isValid(cliente))
             {
-                FormsAuthentication.SetAuthCookie(cliente.CORREO, false);
+                FormsAuthentication.SetAuthCookie(cliente.correo, false);
                 if(ReturnUrl != null)
                 {
                     return Redirect(ReturnUrl);
@@ -29,18 +30,20 @@ namespace DigiEat.Vista.Controllers
                 return RedirectToAction("Index", "Home");
 
             }
-            
+            TempData["mensaje"] = "Credenciales incorrectas";
             return View(cliente);
         }
 
-        private bool isValid( Cliente cliente)
+        private bool isValid(Cliente cliente)
         {
-            if(cliente.CORREO == "admin@admin.cl" && cliente.CONTRASEÑA == "admin" )
-            {
-                return true;
-            }
-
-            return false;
+            return cliente.Autenticar();
         }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+            
     }
 }

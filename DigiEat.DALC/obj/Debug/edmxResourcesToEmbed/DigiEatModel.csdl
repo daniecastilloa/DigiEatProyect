@@ -40,12 +40,12 @@
     </Key>
     <Property Name="RUT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="APELLIDO_PAT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDO_PAT" Type="String" />
     <Property Name="APELLIDO_MAT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="TELEFONO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="Int32" />
     <Property Name="CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="CONTRASEÑA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="CUENTA_USER" Type="Binary" MaxLength="2000" FixedLength="false" />
+    <Property Name="CONTRASENA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CUENTA_USER" Type="Int32" />
     <Property Name="MESA_NUM_MESA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="RESERVA_NUM_RESERVA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <NavigationProperty Name="MESA" Relationship="Self.CLIENTE_MESA_FK" FromRole="CLIENTE" ToRole="MESA" />
@@ -123,6 +123,18 @@
     <NavigationProperty Name="MESA" Relationship="Self.ORDEN_MESA_FK" FromRole="ORDEN" ToRole="MESA" />
     <NavigationProperty Name="ORDEN_DETALLES" Relationship="Self.ORDEN_DETALLES_ORDEN_FK" FromRole="ORDEN" ToRole="ORDEN_DETALLES" />
   </EntityType>
+  <EntityType Name="ORDEN_DETALLES">
+    <Key>
+      <PropertyRef Name="ID_DETALLES" />
+    </Key>
+    <Property Name="ID_DETALLES" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ORDEN_NUM_ORDEN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PLATO_COCINA_ID_PLATO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="BEBIDA_BAR" Relationship="Self.ORDEN_DETALLES_BEBIDA_BAR_FK" FromRole="ORDEN_DETALLES" ToRole="BEBIDA_BAR" />
+    <NavigationProperty Name="ORDEN" Relationship="Self.ORDEN_DETALLES_ORDEN_FK" FromRole="ORDEN_DETALLES" ToRole="ORDEN" />
+    <NavigationProperty Name="PLATO_COCINA" Relationship="Self.ORDEN_DETALLES_PLATO_COCINA_FK" FromRole="ORDEN_DETALLES" ToRole="PLATO_COCINA" />
+  </EntityType>
   <EntityType Name="PLATO_COCINA">
     <Key>
       <PropertyRef Name="ID_PLATO" />
@@ -187,20 +199,6 @@
     <Property Name="ID_CARGO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="NOM_CARGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="EMPLEADO" Relationship="Self.EMPLEADO_TIPO_EMPLEADO_FK" FromRole="TIPO_EMPLEADO" ToRole="EMPLEADO" />
-  </EntityType>
-  <EntityType Name="ORDEN_DETALLES">
-    <Key>
-      <PropertyRef Name="ORDEN_NUM_ORDEN" />
-      <PropertyRef Name="BEBIDA_BAR_ID_BEBIDA" />
-      <PropertyRef Name="PLATO_COCINA_ID_PLATO" />
-    </Key>
-    <Property Name="ID_DETALLES" Type="Decimal" Precision="38" Scale="0" />
-    <Property Name="ORDEN_NUM_ORDEN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="PLATO_COCINA_ID_PLATO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <NavigationProperty Name="BEBIDA_BAR" Relationship="Self.ORDEN_DETALLES_BEBIDA_BAR_FK" FromRole="ORDEN_DETALLES" ToRole="BEBIDA_BAR" />
-    <NavigationProperty Name="ORDEN" Relationship="Self.ORDEN_DETALLES_ORDEN_FK" FromRole="ORDEN_DETALLES" ToRole="ORDEN" />
-    <NavigationProperty Name="PLATO_COCINA" Relationship="Self.ORDEN_DETALLES_PLATO_COCINA_FK" FromRole="ORDEN_DETALLES" ToRole="PLATO_COCINA" />
   </EntityType>
   <Association Name="ORDEN_DETALLES_BEBIDA_BAR_FK">
     <End Role="BEBIDA_BAR" Type="Self.BEBIDA_BAR" Multiplicity="1" />
@@ -417,13 +415,13 @@
     <EntitySet Name="LOCAL" EntityType="Self.LOCAL" />
     <EntitySet Name="MESA" EntityType="Self.MESA" />
     <EntitySet Name="ORDEN" EntityType="Self.ORDEN" />
+    <EntitySet Name="ORDEN_DETALLES" EntityType="Self.ORDEN_DETALLES" />
     <EntitySet Name="PLATO_COCINA" EntityType="Self.PLATO_COCINA" />
     <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
     <EntitySet Name="RECETA" EntityType="Self.RECETA" />
     <EntitySet Name="RECETA_INGREDIENTE" EntityType="Self.RECETA_INGREDIENTE" />
     <EntitySet Name="RESERVA" EntityType="Self.RESERVA" />
     <EntitySet Name="TIPO_EMPLEADO" EntityType="Self.TIPO_EMPLEADO" />
-    <EntitySet Name="ORDEN_DETALLES" EntityType="Self.ORDEN_DETALLES" />
     <AssociationSet Name="ORDEN_DETALLES_BEBIDA_BAR_FK" Association="Self.ORDEN_DETALLES_BEBIDA_BAR_FK">
       <End Role="BEBIDA_BAR" EntitySet="BEBIDA_BAR" />
       <End Role="ORDEN_DETALLES" EntitySet="ORDEN_DETALLES" />

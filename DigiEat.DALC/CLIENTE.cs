@@ -18,10 +18,10 @@ namespace DigiEat.DALC
         public string NOMBRE { get; set; }
         public string APELLIDO_PAT { get; set; }
         public string APELLIDO_MAT { get; set; }
-        public string TELEFONO { get; set; }
+        public int TELEFONO { get; set; }
         public string CORREO { get; set; }
-        public string CONTRASEÑA { get; set; }
-        public byte[] CUENTA_USER { get; set; }
+        public string CONTRASENA { get; set; }
+        public int CUENTA_USER { get; set; }
         public decimal MESA_NUM_MESA { get; set; }
         public decimal RESERVA_NUM_RESERVA { get; set; }
     

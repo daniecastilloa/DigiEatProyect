@@ -35,12 +35,12 @@ namespace DigiEat.DALC
         public DbSet<LOCAL> LOCAL { get; set; }
         public DbSet<MESA> MESA { get; set; }
         public DbSet<ORDEN> ORDEN { get; set; }
+        public DbSet<ORDEN_DETALLES> ORDEN_DETALLES { get; set; }
         public DbSet<PLATO_COCINA> PLATO_COCINA { get; set; }
         public DbSet<PROVEEDOR> PROVEEDOR { get; set; }
         public DbSet<RECETA> RECETA { get; set; }
         public DbSet<RECETA_INGREDIENTE> RECETA_INGREDIENTE { get; set; }
         public DbSet<RESERVA> RESERVA { get; set; }
         public DbSet<TIPO_EMPLEADO> TIPO_EMPLEADO { get; set; }
-        public DbSet<ORDEN_DETALLES> ORDEN_DETALLES { get; set; }
     }
 }

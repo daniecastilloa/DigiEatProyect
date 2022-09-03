@@ -42,7 +42,7 @@
           <ScalarProperty Name="APELLIDO_MAT" ColumnName="APELLIDO_MAT" />
           <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
           <ScalarProperty Name="CORREO" ColumnName="CORREO" />
-          <ScalarProperty Name="CONTRASEÑA" ColumnName="CONTRASEÑA" />
+          <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
           <ScalarProperty Name="CUENTA_USER" ColumnName="CUENTA_USER" />
           <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
           <ScalarProperty Name="RESERVA_NUM_RESERVA" ColumnName="RESERVA_NUM_RESERVA" />
@@ -113,6 +113,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ORDEN_DETALLES">
+      <EntityTypeMapping TypeName="Model.ORDEN_DETALLES">
+        <MappingFragment StoreEntitySet="ORDEN_DETALLES">
+          <ScalarProperty Name="ID_DETALLES" ColumnName="ID_DETALLES" />
+          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
+          <ScalarProperty Name="BEBIDA_BAR_ID_BEBIDA" ColumnName="BEBIDA_BAR_ID_BEBIDA" />
+          <ScalarProperty Name="PLATO_COCINA_ID_PLATO" ColumnName="PLATO_COCINA_ID_PLATO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PLATO_COCINA">
       <EntityTypeMapping TypeName="Model.PLATO_COCINA">
         <MappingFragment StoreEntitySet="PLATO_COCINA">
@@ -170,16 +180,6 @@
         <MappingFragment StoreEntitySet="TIPO_EMPLEADO">
           <ScalarProperty Name="ID_CARGO" ColumnName="ID_CARGO" />
           <ScalarProperty Name="NOM_CARGO" ColumnName="NOM_CARGO" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORDEN_DETALLES">
-      <EntityTypeMapping TypeName="Model.ORDEN_DETALLES">
-        <MappingFragment StoreEntitySet="ORDEN_DETALLES">
-          <ScalarProperty Name="ID_DETALLES" ColumnName="ID_DETALLES" />
-          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
-          <ScalarProperty Name="BEBIDA_BAR_ID_BEBIDA" ColumnName="BEBIDA_BAR_ID_BEBIDA" />
-          <ScalarProperty Name="PLATO_COCINA_ID_PLATO" ColumnName="PLATO_COCINA_ID_PLATO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

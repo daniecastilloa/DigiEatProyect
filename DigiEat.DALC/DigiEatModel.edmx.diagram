@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f1c91ac1aa584a46a741ba31cbf42480" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.BEBIDA_BAR" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.BODEGA" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CAJA_FACTURA" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="8.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.EMPLEADO" Width="1.5" PointX="6.75" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ESTADO_ORDEN" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.INGREDIENTES" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.LOCAL" Width="1.5" PointX="1.5" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MESA" Width="1.5" PointX="1.5" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ORDEN" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PLATO_COCINA" Width="1.5" PointX="3.75" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PROVEEDOR" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RECETA" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RECETA_INGREDIENTE" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVA" Width="1.5" PointX="6.5" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.TIPO_EMPLEADO" Width="1.5" PointX="4.5" PointY="21.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ORDEN_DETALLES" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+      <Diagram DiagramId="3193d4c6b1b34c4187a7597fb0ed9db2" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.BEBIDA_BAR" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BODEGA" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CAJA_FACTURA" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EMPLEADO" Width="1.5" PointX="3.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ESTADO_ORDEN" Width="1.5" PointX="1.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INGREDIENTES" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LOCAL" Width="1.5" PointX="1.5" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MESA" Width="1.5" PointX="1.5" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ORDEN" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ORDEN_DETALLES" Width="3.125" PointX="3.625" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PLATO_COCINA" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PROVEEDOR" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RECETA" Width="1.5" PointX="7.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RECETA_INGREDIENTE" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RESERVA" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPO_EMPLEADO" Width="1.5" PointX="1.5" PointY="26.875" IsExpanded="true" />
         <AssociationConnector Association="Model.ORDEN_DETALLES_BEBIDA_BAR_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RECETA_BEBIDA_BAR_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RECETA_BODEGA_FK" ManuallyRouted="false" />

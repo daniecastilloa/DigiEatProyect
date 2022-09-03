@@ -38,10 +38,10 @@
     <Property Name="NOMBRE" Type="varchar2" MaxLength="30" />
     <Property Name="APELLIDO_PAT" Type="varchar2" MaxLength="30" />
     <Property Name="APELLIDO_MAT" Type="varchar2" MaxLength="30" />
-    <Property Name="TELEFONO" Type="varchar2" MaxLength="30" />
+    <Property Name="TELEFONO" Type="number" Precision="38" Scale="0" />
     <Property Name="CORREO" Type="varchar2" MaxLength="30" />
-    <Property Name="CONTRASEÑA" Type="varchar2" MaxLength="30" />
-    <Property Name="CUENTA_USER" Type="raw" MaxLength="2000" />
+    <Property Name="CONTRASENA" Type="varchar2" MaxLength="30" />
+    <Property Name="CUENTA_USER" Type="number" Precision="38" Scale="1" />
     <Property Name="MESA_NUM_MESA" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="RESERVA_NUM_RESERVA" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
@@ -103,15 +103,11 @@
     <Property Name="FECHA_ORDEN" Type="date" />
     <Property Name="ESTADO_ORDEN_ID_ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DIGIEATDB.ORDEN_DETALLES' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="ORDEN_DETALLES">
     <Key>
-      <PropertyRef Name="ORDEN_NUM_ORDEN" />
-      <PropertyRef Name="BEBIDA_BAR_ID_BEBIDA" />
-      <PropertyRef Name="PLATO_COCINA_ID_PLATO" />
+      <PropertyRef Name="ID_DETALLES" />
     </Key>
-    <Property Name="ID_DETALLES" Type="number" Precision="38" Scale="0" />
+    <Property Name="ID_DETALLES" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ORDEN_NUM_ORDEN" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="PLATO_COCINA_ID_PLATO" Type="number" Precision="38" Scale="0" Nullable="false" />
@@ -385,20 +381,13 @@ advertencia 6002: La tabla o vista 'DIGIEATDB.ORDEN_DETALLES' no tiene definida 
     <EntitySet Name="LOCAL" EntityType="Self.LOCAL" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="MESA" EntityType="Self.MESA" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="ORDEN" EntityType="Self.ORDEN" Schema="DIGIEATDB" store:Type="Tables" />
+    <EntitySet Name="ORDEN_DETALLES" EntityType="Self.ORDEN_DETALLES" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="PLATO_COCINA" EntityType="Self.PLATO_COCINA" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="RECETA" EntityType="Self.RECETA" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="RECETA_INGREDIENTE" EntityType="Self.RECETA_INGREDIENTE" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="RESERVA" EntityType="Self.RESERVA" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="TIPO_EMPLEADO" EntityType="Self.TIPO_EMPLEADO" Schema="DIGIEATDB" store:Type="Tables" />
-    <EntitySet Name="ORDEN_DETALLES" EntityType="Self.ORDEN_DETALLES" store:Type="Tables" store:Schema="DIGIEATDB">
-      <DefiningQuery>SELECT 
-"ORDEN_DETALLES"."ID_DETALLES" AS "ID_DETALLES", 
-"ORDEN_DETALLES"."ORDEN_NUM_ORDEN" AS "ORDEN_NUM_ORDEN", 
-"ORDEN_DETALLES"."BEBIDA_BAR_ID_BEBIDA" AS "BEBIDA_BAR_ID_BEBIDA", 
-"ORDEN_DETALLES"."PLATO_COCINA_ID_PLATO" AS "PLATO_COCINA_ID_PLATO"
-FROM "DIGIEATDB"."ORDEN_DETALLES" "ORDEN_DETALLES"</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="CAJA_FACTURA_ORDEN_FK" Association="Self.CAJA_FACTURA_ORDEN_FK">
       <End Role="ORDEN" EntitySet="ORDEN" />
       <End Role="CAJA_FACTURA" EntitySet="CAJA_FACTURA" />

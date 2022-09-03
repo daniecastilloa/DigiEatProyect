@@ -7,11 +7,11 @@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(c=>c.CORREO, "Correo Electrónico")
-    @Html.TextBoxFor(c=>c.CORREO, new { type = "email" })
+    @Html.LabelFor(c=>c.correo, "Correo Electrónico")
+    @Html.TextBoxFor(c=>c.correo, new { type = "email" })
     <br />
-    @Html.LabelFor(c=>c.CONTRASEÑA, "Contraseña")
-    @Html.PasswordFor(c=>c.CONTRASEÑA)
+    @Html.LabelFor(c=>c.contrasena, "Contraseña")
+    @Html.PasswordFor(c=>c.contrasena)
     <br />
 
     <button>Ingresar </button>

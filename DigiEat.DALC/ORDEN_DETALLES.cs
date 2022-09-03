@@ -14,7 +14,7 @@ namespace DigiEat.DALC
     
     public partial class ORDEN_DETALLES
     {
-        public Nullable<decimal> ID_DETALLES { get; set; }
+        public decimal ID_DETALLES { get; set; }
         public decimal ORDEN_NUM_ORDEN { get; set; }
         public decimal BEBIDA_BAR_ID_BEBIDA { get; set; }
         public decimal PLATO_COCINA_ID_PLATO { get; set; }

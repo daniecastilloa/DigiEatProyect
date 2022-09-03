@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Home Restaurante Siglo XXI</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
@@ -19,10 +20,43 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+          
+            @* Menu Bootstrap *@
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" @Html.ActionLink("Inicio", "Index", "Home")</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menú</a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Cerrar Sesion Cliente", "Logout", "Auth", null, new { @class = "nav-link" })
+                        </li>
+                      
+                    }
+                    else
+                    {
+                        
+                        <li class="nav-item">
+                             @Html.ActionLink("Iniciar Sesión Cliente", "Index", "Cliente", null, new { @class = "nav-link" })
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ingreso Sesión Administrador</a>
+                    </li>
                 </ul>
             </div>
+            </nav>
+            @* Menu Bootstrap *@
         </div>
     </div>
 
@@ -30,7 +64,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Portafolio de titulo</p>
         </footer>
     </div>
 

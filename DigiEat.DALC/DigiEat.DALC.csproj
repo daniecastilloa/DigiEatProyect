@@ -117,32 +117,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DigiEatModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DigiEatModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="DigiEatModel.edmx.diagram">
       <DependentUpon>DigiEatModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DigiEatModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DigiEatModel.Context.cs</LastGenOutput>
       <DependentUpon>DigiEatModel.edmx</DependentUpon>
+      <LastGenOutput>DigiEatModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DigiEatModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DigiEatModel.edmx</DependentUpon>
       <LastGenOutput>DigiEatModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
