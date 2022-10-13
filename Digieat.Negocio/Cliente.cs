@@ -18,7 +18,7 @@ namespace Digieat.Negocio
         public string contrasena { get; set; }
         public int cuenta_user { get; set; }
         public int mesa_num_mesa { get; set; }
-        public int reserva_num_reserva { get; set; }
+        public int? reserva_num_reserva { get; set; }
 
         //public virtual MESA MESA { get; set; }
         //public virtual RESERVA RESERVA { get; set; }
@@ -28,15 +28,14 @@ namespace Digieat.Negocio
         public List<Cliente> ReadAll()
         {
             return this.db.CLIENTE.Select(c => new Cliente() {
-             rut = c.RUT,
-             nombre = c.NOMBRE,
-             apellido_mat = c.APELLIDO_MAT,
-             apellido_pat = c.APELLIDO_PAT,
-             telefono = c.TELEFONO,
-             correo = c.CORREO,
-             contrasena = c.CONTRASENA,
-             cuenta_user = c.CUENTA_USER,
-
+                rut = c.RUT,
+                nombre = c.NOMBRE,
+                apellido_mat = c.APELLIDO_MAT,
+                apellido_pat = c.APELLIDO_PAT,
+                telefono = c.TELEFONO,
+                correo = c.CORREO,
+                contrasena = c.CONTRASENA,
+                cuenta_user = c.CUENTA_USER,
             }).ToList();
         }
 
