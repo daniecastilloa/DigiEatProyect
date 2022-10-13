@@ -8,6 +8,8 @@
     <Property Name="NOM_BEBIDA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ORDEN_DETALLES" Relationship="Self.ORDEN_DETALLES_BEBIDA_BAR_FK" FromRole="BEBIDA_BAR" ToRole="ORDEN_DETALLES" />
     <NavigationProperty Name="RECETA" Relationship="Self.RECETA_BEBIDA_BAR_FK" FromRole="BEBIDA_BAR" ToRole="RECETA" />
+    <Property Name="VALOR" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="BODEGA">
     <Key>
@@ -42,32 +44,31 @@
     <Property Name="NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="APELLIDO_PAT" Type="String" />
     <Property Name="APELLIDO_MAT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="TELEFONO" Type="Int32" />
+    <Property Name="TELEFONO" Type="Decimal" />
     <Property Name="CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="CONTRASENA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="CUENTA_USER" Type="Int32" />
     <Property Name="MESA_NUM_MESA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="RESERVA_NUM_RESERVA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <NavigationProperty Name="MESA" Relationship="Self.CLIENTE_MESA_FK" FromRole="CLIENTE" ToRole="MESA" />
-    <NavigationProperty Name="RESERVA" Relationship="Self.CLIENTE_RESERVA_FK" FromRole="CLIENTE" ToRole="RESERVA" />
+    <NavigationProperty Name="RESERVA" Relationship="Model.RESERVA_CLIENTE_FK" FromRole="CLIENTE" ToRole="RESERVA" />
   </EntityType>
   <EntityType Name="EMPLEADO">
     <Key>
       <PropertyRef Name="RUT_EMPLEADO" />
     </Key>
-    <Property Name="RUT_EMPLEADO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RUT_EMPLEADO" Type="Decimal" Nullable="false" />
     <Property Name="NOMBRE_EMPLEADO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="APELLIDO_PAT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="APELLIDO_MAT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="TELEFONO" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="CONTRASEÑA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="FECHA_CONTRATO" Type="DateTime" />
     <Property Name="TURNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="LOCAL_NUMERO_LOCAL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="TIPO_EMPLEADO_ID_CARGO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <NavigationProperty Name="LOCAL" Relationship="Self.EMPLEADO_LOCAL_FK" FromRole="EMPLEADO" ToRole="LOCAL" />
     <NavigationProperty Name="TIPO_EMPLEADO" Relationship="Self.EMPLEADO_TIPO_EMPLEADO_FK" FromRole="EMPLEADO" ToRole="TIPO_EMPLEADO" />
+    <Property Name="CONTRASENA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ESTADO_ORDEN">
     <Key>
@@ -83,7 +84,7 @@
     </Key>
     <Property Name="ID_INGREDIENTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
-    <Property Name="PROVEEDOR_RUT_EMPRESA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROVEEDOR_RUT_EMPRESA" Type="Decimal" Nullable="false" />
     <NavigationProperty Name="PROVEEDOR" Relationship="Self.INGREDIENTES_PROVEEDOR_FK" FromRole="INGREDIENTES" ToRole="PROVEEDOR" />
     <NavigationProperty Name="RECETA_INGREDIENTE" Relationship="Self.RECETA_INGREDIENTES_FK" FromRole="INGREDIENTES" ToRole="RECETA_INGREDIENTE" />
   </EntityType>
@@ -143,12 +144,14 @@
     <Property Name="NOM_PLATO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ORDEN_DETALLES" Relationship="Self.ORDEN_DETALLES_PLATO_COCINA_FK" FromRole="PLATO_COCINA" ToRole="ORDEN_DETALLES" />
     <NavigationProperty Name="RECETA" Relationship="Self.RECETA_PLATO_COCINA_FK" FromRole="PLATO_COCINA" ToRole="RECETA" />
+    <Property Name="VALOR" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="PROVEEDOR">
     <Key>
       <PropertyRef Name="RUT_EMPRESA" />
     </Key>
-    <Property Name="RUT_EMPRESA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RUT_EMPRESA" Type="Decimal" Nullable="false" />
     <Property Name="NOM_EMPRESA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="TELEFONO" Type="Decimal" Precision="38" Scale="0" />
@@ -190,7 +193,8 @@
     <Property Name="NUM_RESERVA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="FECHA" Type="DateTime" />
     <Property Name="HORA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="CLIENTE" Relationship="Self.CLIENTE_RESERVA_FK" FromRole="RESERVA" ToRole="CLIENTE" />
+    <Property Name="CLIENTE_RUT" Type="Decimal" Precision="38" Scale="0" />
+    <NavigationProperty Name="CLIENTE" Relationship="Model.RESERVA_CLIENTE_FK" FromRole="RESERVA" ToRole="CLIENTE" />
   </EntityType>
   <EntityType Name="TIPO_EMPLEADO">
     <Key>
@@ -257,18 +261,6 @@
       </Principal>
       <Dependent Role="CLIENTE">
         <PropertyRef Name="MESA_NUM_MESA" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CLIENTE_RESERVA_FK">
-    <End Role="RESERVA" Type="Self.RESERVA" Multiplicity="1" />
-    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RESERVA">
-        <PropertyRef Name="NUM_RESERVA" />
-      </Principal>
-      <Dependent Role="CLIENTE">
-        <PropertyRef Name="RESERVA_NUM_RESERVA" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -442,10 +434,6 @@
       <End Role="MESA" EntitySet="MESA" />
       <End Role="CLIENTE" EntitySet="CLIENTE" />
     </AssociationSet>
-    <AssociationSet Name="CLIENTE_RESERVA_FK" Association="Self.CLIENTE_RESERVA_FK">
-      <End Role="RESERVA" EntitySet="RESERVA" />
-      <End Role="CLIENTE" EntitySet="CLIENTE" />
-    </AssociationSet>
     <AssociationSet Name="EMPLEADO_LOCAL_FK" Association="Self.EMPLEADO_LOCAL_FK">
       <End Role="LOCAL" EntitySet="LOCAL" />
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
@@ -490,5 +478,37 @@
       <End Role="RECETA" EntitySet="RECETA" />
       <End Role="RECETA_INGREDIENTE" EntitySet="RECETA_INGREDIENTE" />
     </AssociationSet>
+    <FunctionImport Name="CREATE_MESA">
+      <Parameter Name="NUMMESA" Mode="In" Type="Decimal" />
+      <Parameter Name="ESTADMESA" Mode="In" Type="String" />
+      <Parameter Name="LOCALNUM" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="DELETE_MESA">
+      <Parameter Name="NUMMESA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="LISTABEBIDAS" />
+    <FunctionImport Name="LISTAMESAS" />
+    <FunctionImport Name="LISTAPLATOS" />
+    <FunctionImport Name="MODIFICAR_MESA">
+      <Parameter Name="NUMMESA" Mode="In" Type="Decimal" />
+      <Parameter Name="ESTADMESA" Mode="In" Type="String" />
+      <Parameter Name="LOCALNUM" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <AssociationSet Name="RESERVA_CLIENTE_FK" Association="Model.RESERVA_CLIENTE_FK">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="RESERVA" EntitySet="RESERVA" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="RESERVA_CLIENTE_FK">
+    <End Type="Model.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
+    <End Type="Model.RESERVA" Role="RESERVA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="RUT" />
+      </Principal>
+      <Dependent Role="RESERVA">
+        <PropertyRef Name="CLIENTE_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

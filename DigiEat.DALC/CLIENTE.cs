@@ -14,18 +14,22 @@ namespace DigiEat.DALC
     
     public partial class CLIENTE
     {
+        public CLIENTE()
+        {
+            this.RESERVA = new HashSet<RESERVA>();
+        }
+    
         public decimal RUT { get; set; }
         public string NOMBRE { get; set; }
         public string APELLIDO_PAT { get; set; }
         public string APELLIDO_MAT { get; set; }
-        public int TELEFONO { get; set; }
+        public Nullable<decimal> TELEFONO { get; set; }
         public string CORREO { get; set; }
         public string CONTRASENA { get; set; }
-        public int CUENTA_USER { get; set; }
+        public Nullable<int> CUENTA_USER { get; set; }
         public decimal MESA_NUM_MESA { get; set; }
-        public decimal RESERVA_NUM_RESERVA { get; set; }
     
         public virtual MESA MESA { get; set; }
-        public virtual RESERVA RESERVA { get; set; }
+        public virtual ICollection<RESERVA> RESERVA { get; set; }
     }
 }

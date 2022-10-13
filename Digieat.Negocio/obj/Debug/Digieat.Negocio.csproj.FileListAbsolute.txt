@@ -24,3 +24,16 @@ C:\Users\matia\Source\Repos\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Neg
 C:\Users\matia\Source\Repos\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CopyComplete
 C:\Users\matia\Source\Repos\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
 C:\Users\matia\Source\Repos\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.dll.config
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.dll
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.pdb
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.dll
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\EntityFramework.dll
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.pdb
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.dll.config
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\EntityFramework.xml
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.AssemblyReference.cache
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CoreCompileInputs.cache
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CopyComplete
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb

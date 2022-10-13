@@ -18,3 +18,13 @@ C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.c
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CopyComplete
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.dll
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.pdb
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.dll.config
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.dll
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.pdb
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\bin\Debug\EntityFramework.dll
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\bin\Debug\EntityFramework.xml
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.AssemblyReference.cache
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CoreCompileInputs.cache
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CopyComplete
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.dll
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.pdb

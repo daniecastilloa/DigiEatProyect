@@ -10,7 +10,7 @@ namespace Digieat.Negocio
     class Empleado
     {
         
-        public string rut_empleado { get; set; }
+        public decimal rut_empleado { get; set; }
         public string nombre_empleado { get; set; }
         public string apellido_pat { get; set; }
         public string apellido_mat { get; set; }
@@ -36,7 +36,7 @@ namespace Digieat.Negocio
                 apellido_mat = c.APELLIDO_MAT,
                 telefono = c.TELEFONO,
                 correo = c.CORREO,
-                contrasena = c.CONTRASEÑA,
+                contrasena = c.CONTRASENA,
                 fecha_contrato = c.FECHA_CONTRATO,
                 turno = c.TURNO,
                 TipoEmpleado = new TipoEmpleado()

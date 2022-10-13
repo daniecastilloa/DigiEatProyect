@@ -22,6 +22,8 @@ namespace DigiEat.DALC
     
         public decimal ID_BEBIDA { get; set; }
         public string NOM_BEBIDA { get; set; }
+        public Nullable<decimal> VALOR { get; set; }
+        public byte[] IMAGEN { get; set; }
     
         public virtual ICollection<ORDEN_DETALLES> ORDEN_DETALLES { get; set; }
         public virtual ICollection<RECETA> RECETA { get; set; }

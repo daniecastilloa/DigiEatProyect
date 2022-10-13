@@ -19,7 +19,7 @@ namespace DigiEat.DALC
             this.INGREDIENTES = new HashSet<INGREDIENTES>();
         }
     
-        public string RUT_EMPRESA { get; set; }
+        public decimal RUT_EMPRESA { get; set; }
         public string NOM_EMPRESA { get; set; }
         public string CORREO { get; set; }
         public Nullable<decimal> TELEFONO { get; set; }

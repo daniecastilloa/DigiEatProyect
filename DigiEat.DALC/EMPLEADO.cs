@@ -14,17 +14,17 @@ namespace DigiEat.DALC
     
     public partial class EMPLEADO
     {
-        public string RUT_EMPLEADO { get; set; }
+        public decimal RUT_EMPLEADO { get; set; }
         public string NOMBRE_EMPLEADO { get; set; }
         public string APELLIDO_PAT { get; set; }
         public string APELLIDO_MAT { get; set; }
         public Nullable<decimal> TELEFONO { get; set; }
         public string CORREO { get; set; }
-        public string CONTRASEÑA { get; set; }
         public Nullable<System.DateTime> FECHA_CONTRATO { get; set; }
         public string TURNO { get; set; }
         public decimal LOCAL_NUMERO_LOCAL { get; set; }
         public decimal TIPO_EMPLEADO_ID_CARGO { get; set; }
+        public string CONTRASENA { get; set; }
     
         public virtual LOCAL LOCAL { get; set; }
         public virtual TIPO_EMPLEADO TIPO_EMPLEADO { get; set; }

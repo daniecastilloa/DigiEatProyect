@@ -12,6 +12,9 @@ namespace DigiEat.DALC
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class Entities : DbContext
     {
@@ -42,5 +45,63 @@ namespace DigiEat.DALC
         public DbSet<RECETA_INGREDIENTE> RECETA_INGREDIENTE { get; set; }
         public DbSet<RESERVA> RESERVA { get; set; }
         public DbSet<TIPO_EMPLEADO> TIPO_EMPLEADO { get; set; }
+    
+        public virtual int CREATE_MESA(Nullable<decimal> nUMMESA, string eSTADMESA, Nullable<decimal> lOCALNUM)
+        {
+            var nUMMESAParameter = nUMMESA.HasValue ?
+                new ObjectParameter("NUMMESA", nUMMESA) :
+                new ObjectParameter("NUMMESA", typeof(decimal));
+    
+            var eSTADMESAParameter = eSTADMESA != null ?
+                new ObjectParameter("ESTADMESA", eSTADMESA) :
+                new ObjectParameter("ESTADMESA", typeof(string));
+    
+            var lOCALNUMParameter = lOCALNUM.HasValue ?
+                new ObjectParameter("LOCALNUM", lOCALNUM) :
+                new ObjectParameter("LOCALNUM", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_MESA", nUMMESAParameter, eSTADMESAParameter, lOCALNUMParameter);
+        }
+    
+        public virtual int DELETE_MESA(Nullable<decimal> nUMMESA)
+        {
+            var nUMMESAParameter = nUMMESA.HasValue ?
+                new ObjectParameter("NUMMESA", nUMMESA) :
+                new ObjectParameter("NUMMESA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_MESA", nUMMESAParameter);
+        }
+    
+        public virtual int LISTABEBIDAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTABEBIDAS");
+        }
+    
+        public virtual int LISTAMESAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAMESAS");
+        }
+    
+        public virtual int LISTAPLATOS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAPLATOS");
+        }
+    
+        public virtual int MODIFICAR_MESA(Nullable<decimal> nUMMESA, string eSTADMESA, Nullable<decimal> lOCALNUM)
+        {
+            var nUMMESAParameter = nUMMESA.HasValue ?
+                new ObjectParameter("NUMMESA", nUMMESA) :
+                new ObjectParameter("NUMMESA", typeof(decimal));
+    
+            var eSTADMESAParameter = eSTADMESA != null ?
+                new ObjectParameter("ESTADMESA", eSTADMESA) :
+                new ObjectParameter("ESTADMESA", typeof(string));
+    
+            var lOCALNUMParameter = lOCALNUM.HasValue ?
+                new ObjectParameter("LOCALNUM", lOCALNUM) :
+                new ObjectParameter("LOCALNUM", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_MESA", nUMMESAParameter, eSTADMESAParameter, lOCALNUMParameter);
+        }
     }
 }

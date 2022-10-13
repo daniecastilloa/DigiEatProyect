@@ -13,7 +13,7 @@ namespace Digieat.Negocio
         public string nombre { get; set; }
         public string apellido_pat { get; set; }
         public string apellido_mat { get; set; }
-        public int telefono { get; set; }
+        public decimal telefono { get; set; }
         public string correo { get; set; }
         public string contrasena { get; set; }
         public int cuenta_user { get; set; }
@@ -32,10 +32,10 @@ namespace Digieat.Negocio
                 nombre = c.NOMBRE,
                 apellido_mat = c.APELLIDO_MAT,
                 apellido_pat = c.APELLIDO_PAT,
-                telefono = c.TELEFONO,
+                telefono = (decimal)c.TELEFONO,
                 correo = c.CORREO,
                 contrasena = c.CONTRASENA,
-                cuenta_user = c.CUENTA_USER,
+                cuenta_user = (int)c.CUENTA_USER,
             }).ToList();
         }
 

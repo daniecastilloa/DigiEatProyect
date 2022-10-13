@@ -14,15 +14,11 @@ namespace DigiEat.DALC
     
     public partial class RESERVA
     {
-        public RESERVA()
-        {
-            this.CLIENTE = new HashSet<CLIENTE>();
-        }
-    
         public decimal NUM_RESERVA { get; set; }
         public Nullable<System.DateTime> FECHA { get; set; }
         public string HORA { get; set; }
+        public Nullable<decimal> CLIENTE_RUT { get; set; }
     
-        public virtual ICollection<CLIENTE> CLIENTE { get; set; }
+        public virtual CLIENTE CLIENTE { get; set; }
     }
 }

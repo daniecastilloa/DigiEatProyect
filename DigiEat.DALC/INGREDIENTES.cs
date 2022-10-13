@@ -21,7 +21,7 @@ namespace DigiEat.DALC
     
         public decimal ID_INGREDIENTE { get; set; }
         public Nullable<decimal> CANTIDAD { get; set; }
-        public string PROVEEDOR_RUT_EMPRESA { get; set; }
+        public decimal PROVEEDOR_RUT_EMPRESA { get; set; }
     
         public virtual PROVEEDOR PROVEEDOR { get; set; }
         public virtual ICollection<RECETA_INGREDIENTE> RECETA_INGREDIENTE { get; set; }
