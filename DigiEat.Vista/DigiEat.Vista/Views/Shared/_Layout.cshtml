@@ -8,8 +8,10 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/font-awesome-4.7.0/css/font-awesome.min.css" /> <!--ESTE ES EL FONT AWESOME-->
+    <link href="~/lib/twitter-bootstrap/css/personal/personalizado.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body style="color: white" class="background">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,12 +20,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink(" DigiEat", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fa fa-cutlery" })
             </div>
           
             @* Menu Bootstrap *@
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!--<a class="navbar-brand" href="#">Navbar</a>-->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,30 +34,30 @@
                     <li class="nav-item active">
                         <a class="nav-link" @Html.ActionLink("Inicio", "Index", "Home")</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Menú</a>
-                    </li>
+                    <!--<li class="nav-item">
+                         <a class="nav-link" href="#">Menú</a>
+                    </li>-->
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
                             @Html.ActionLink("Cerrar Sesion Cliente", "Logout", "Auth", null, new { @class = "nav-link" })
                         </li>
-                      
+                        <i class="" aria-hidden="true"></i>
                     }
                     else
                     {
-                        
+
                         <li class="nav-item">
-                             @Html.ActionLink("Iniciar Sesión Cliente", "Index", "Cliente", null, new { @class = "nav-link" })
+                            @Html.ActionLink(" Ingreso Cliente", "Index", "Cliente", null, new { @class = "nav-link fa fa-user-circle"})
                         </li>
                     }
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ingreso Sesión Administrador</a>
+                        <a class="nav-link" href="#"><i class="fa fa-users" aria-hidden="true"></i> Ingreso Administrador</a>
                     </li>
                 </ul>
             </div>
-            </nav>
+        </nav>
             @* Menu Bootstrap *@
         </div>
     </div>

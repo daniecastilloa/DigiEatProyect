@@ -1,0 +1,9 @@
+﻿/*Permite tener fondos con imágenes*/
+.background {
+    background: rgba(0, 0, 0, 0.6) url('https://fondosmil.com/fondo/35733.jpg'); /*El fondo y el número final, es lo oscurecido que está*/
+    height: 100%;
+    background-position: center;
+    background-repeat: repeat;
+    /*background-size: auto;  ESTE ES EL TAMAÑO DEL FONDO*/
+    background-blend-mode: darken;
+}
