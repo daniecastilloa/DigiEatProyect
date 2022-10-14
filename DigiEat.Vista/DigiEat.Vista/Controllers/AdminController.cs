@@ -6,10 +6,11 @@ using System.Web.Mvc;
 
 namespace DigiEat.Vista.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Admin()
         {
             return View();
         }
@@ -34,7 +35,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
@@ -56,7 +57,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
@@ -78,7 +79,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
