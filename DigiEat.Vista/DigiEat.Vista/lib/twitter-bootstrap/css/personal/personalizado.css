@@ -7,3 +7,8 @@
     /*background-size: auto;  ESTE ES EL TAMAÑO DEL FONDO*/
     background-blend-mode: darken;
 }
+
+.wow {
+    border: 1px solid black;
+    text-align: center;
+}
