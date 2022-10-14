@@ -22,42 +22,51 @@
                 </button>
                 @Html.ActionLink(" DigiEat", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fa fa-cutlery" })
             </div>
-          
+
             @* Menu Bootstrap *@
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!--<a class="navbar-brand" href="#">Navbar</a>-->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" @Html.ActionLink("Inicio", "Index", "Home")</a>
-                    </li>
-                    <!--<li class="nav-item">
-                         <a class="nav-link" href="#">Menú</a>
-                    </li>-->
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>
-                            @Html.ActionLink("Cerrar Sesion Cliente", "Logout", "Auth", null, new { @class = "nav-link" })
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <!--<a class="navbar-brand" href="#">Navbar</a>-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" @Html.ActionLink("Inicio", "Index", "Home")></a>
                         </li>
-                        <i class="" aria-hidden="true"></i>
-                    }
-                    else
-                    {
+                        <!--<li class="nav-item">
+         <a class="nav-link" href="#">Menú</a>
+    </li>-->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                @Html.ActionLink("Cerrar Sesion Cliente", "Logout", "Auth", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                        else
+                        {
 
-                        <li class="nav-item">
-                            @Html.ActionLink(" Ingreso Cliente", "Index", "Cliente", null, new { @class = "nav-link fa fa-user-circle"})
-                        </li>
-                    }
+                            <li class="nav-item">
+                                @Html.ActionLink(" Ingreso Cliente", "Index", "Cliente", null, new { @class = "nav-link fa fa-user-circle" })
+                            </li>
+                        }
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-users" aria-hidden="true"></i> Ingreso Administrador</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                @Html.ActionLink("Cerrar Sesion Empleado", "Logout", "Empleado", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="nav-item">
+                                @Html.ActionLink(" Ingreso Empleado", "Empleado", "Empleado", null, new { @class = "nav-link fa fa-users" })
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
             @* Menu Bootstrap *@
         </div>
     </div>
@@ -74,3 +83,4 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
+
