@@ -7,7 +7,7 @@ using DigiEat.DALC;
 
 namespace Digieat.Negocio
 {
-    class Empleado
+    public class Empleado
     {
         
         public decimal rut_empleado { get; set; }
@@ -48,7 +48,13 @@ namespace Digieat.Negocio
 
             }).ToList();
         }
+        public bool Autenticar()
+        {
+            return db.EMPLEADO
+                 .Where(c => c.CORREO == this.correo && c.CONTRASENA == this.contrasena)
+            .FirstOrDefault() != null;
 
+        }
 
     }
 }

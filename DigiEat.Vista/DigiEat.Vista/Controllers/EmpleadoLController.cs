@@ -6,28 +6,27 @@ using System.Web.Mvc;
 
 namespace DigiEat.Vista.Controllers
 {
-    [Authorize]
-    public class AdminController : Controller
+    public class EmpleadoLController : Controller
     {
-        // GET: Admin
-        public ActionResult Admin()
+        // GET: EmpleadoL
+        public ActionResult EmpleadoL()
         {
             return View();
         }
 
-        // GET: Admin/Details/5
+        // GET: EmpleadoL/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Admin/Create
+        // GET: EmpleadoL/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Create
+        // POST: EmpleadoL/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -35,7 +34,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Admin");
+                return RedirectToAction("EmpleadoL");
             }
             catch
             {
@@ -43,13 +42,13 @@ namespace DigiEat.Vista.Controllers
             }
         }
 
-        // GET: Admin/Edit/5
+        // GET: EmpleadoL/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Admin/Edit/5
+        // POST: EmpleadoL/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -57,7 +56,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Admin");
+                return RedirectToAction("EmpleadoL");
             }
             catch
             {
@@ -65,13 +64,13 @@ namespace DigiEat.Vista.Controllers
             }
         }
 
-        // GET: Admin/Delete/5
+        // GET: EmpleadoL/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Admin/Delete/5
+        // POST: EmpleadoL/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -79,7 +78,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Admin");
+                return RedirectToAction("EmpleadoL");
             }
             catch
             {
