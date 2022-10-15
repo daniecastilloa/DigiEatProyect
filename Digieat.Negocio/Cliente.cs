@@ -13,13 +13,14 @@ namespace Digieat.Negocio
     {
         [Key]
         public decimal rut { get; set; }
-        [Required, MinLength(3, ErrorMessage = "El nombre debe contener entre {3} y {50} caracteres"), MaxLength(50)]
+
+        
         public string nombre { get; set; }
-        [Required, MinLength(3, ErrorMessage = "El apellido paterno debe contener entre {3} y {50} caracteres"), MaxLength(50)]
+        
         public string apellido_pat { get; set; }
-        [Required, MinLength(3, ErrorMessage = "El apellido materno debe contener entre {3} y {50} caracteres"), MaxLength(50)]
+        
         public string apellido_mat { get; set; }
-        [Required, MinLength(9, ErrorMessage ="El teléfono debe contener entre {9} y {11} números"), MaxLength(11)]
+        
         public decimal telefono { get; set; }
         public string correo { get; set; }
         public string contrasena { get; set; }
