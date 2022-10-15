@@ -201,6 +201,7 @@
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EmpleadoLController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -372,6 +373,7 @@
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Empleado\Empleado.cshtml" />
     <Content Include="Views\EmpleadoL\EmpleadoL.cshtml" />
+    <Content Include="Views\Reserva\Reserva.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
