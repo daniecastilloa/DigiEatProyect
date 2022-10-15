@@ -38,3 +38,13 @@ D:\basededatos\digieat\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CoreCompileInp
 D:\basededatos\digieat\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CopyComplete
 D:\basededatos\digieat\DigiEat.DALC\obj\Debug\DigiEat.DALC.dll
 D:\basededatos\digieat\DigiEat.DALC\obj\Debug\DigiEat.DALC.pdb
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.dll.config
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.dll
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.pdb
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\bin\Debug\EntityFramework.dll
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\bin\Debug\EntityFramework.xml
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.AssemblyReference.cache
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CoreCompileInputs.cache
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CopyComplete
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.dll
+D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.pdb
