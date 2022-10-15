@@ -158,6 +158,9 @@
     <Content Include="lib\font-awesome\sprites\regular.svg" />
     <Content Include="lib\font-awesome\sprites\solid.svg" />
     <Content Include="lib\img\35733.jpg" />
+    <Content Include="lib\img\cazuela.jpg" />
+    <Content Include="lib\img\mote.jpg" />
+    <Content Include="lib\img\pastel.jpg" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.css" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.rtl.css" />

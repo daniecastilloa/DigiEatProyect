@@ -50,3 +50,16 @@ D:\basededatos\digieat\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CoreComp
 D:\basededatos\digieat\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CopyComplete
 D:\basededatos\digieat\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
 D:\basededatos\digieat\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.dll.config
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.dll
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.pdb
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.dll
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\EntityFramework.dll
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.pdb
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.dll.config
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\EntityFramework.xml
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.AssemblyReference.cache
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CoreCompileInputs.cache
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CopyComplete
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb
