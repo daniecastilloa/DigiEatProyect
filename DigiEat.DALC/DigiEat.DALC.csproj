@@ -78,6 +78,9 @@
     <Compile Include="EMPLEADO.cs">
       <DependentUpon>DigiEatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ESTADO_CUENTA.cs">
+      <DependentUpon>DigiEatModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ESTADO_ORDEN.cs">
       <DependentUpon>DigiEatModel.tt</DependentUpon>
     </Compile>

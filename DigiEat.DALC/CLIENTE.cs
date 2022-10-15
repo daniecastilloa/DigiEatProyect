@@ -26,10 +26,11 @@ namespace DigiEat.DALC
         public Nullable<decimal> TELEFONO { get; set; }
         public string CORREO { get; set; }
         public string CONTRASENA { get; set; }
-        public Nullable<int> CUENTA_USER { get; set; }
         public decimal MESA_NUM_MESA { get; set; }
+        public Nullable<decimal> ESTADO_CUENTA { get; set; }
     
         public virtual MESA MESA { get; set; }
         public virtual ICollection<RESERVA> RESERVA { get; set; }
+        public virtual ESTADO_CUENTA ESTADO_CUENTA1 { get; set; }
     }
 }

@@ -39,6 +39,8 @@
         <AssociationConnector Association="Model.RECETA_PLATO_COCINA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RECETA_INGREDIENTE_RECETA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RESERVA_CLIENTE_FK" />
+        <EntityTypeShape EntityType="Model.ESTADO_CUENTA" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="Model.CLIENTE_ESTADO_CUENTA_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -45,6 +45,7 @@ namespace DigiEat.DALC
         public DbSet<RECETA_INGREDIENTE> RECETA_INGREDIENTE { get; set; }
         public DbSet<RESERVA> RESERVA { get; set; }
         public DbSet<TIPO_EMPLEADO> TIPO_EMPLEADO { get; set; }
+        public DbSet<ESTADO_CUENTA> ESTADO_CUENTA { get; set; }
     
         public virtual int CREATE_MESA(Nullable<decimal> nUMMESA, string eSTADMESA, Nullable<decimal> lOCALNUM)
         {

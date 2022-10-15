@@ -49,7 +49,7 @@
           <Property Name="CORREO" Type="varchar2" MaxLength="30" />
           <Property Name="CONTRASENA" Type="varchar2" MaxLength="30" />
           <Property Name="MESA_NUM_MESA" Type="number" Precision="38" Scale="0" />
-          <Property Name="CUENTA_USER" Type="number" Precision="38" Scale="0" />
+          <Property Name="ESTADO_CUENTA" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
@@ -66,6 +66,13 @@
           <Property Name="TURNO" Type="varchar2" MaxLength="30" />
           <Property Name="LOCAL_NUMERO_LOCAL" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="TIPO_EMPLEADO_ID_CARGO" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ESTADO_CUENTA">
+          <Key>
+            <PropertyRef Name="ID_ESTADO" />
+          </Key>
+          <Property Name="ID_ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar2" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="ESTADO_ORDEN">
           <Key>
@@ -184,6 +191,18 @@
             </Principal>
             <Dependent Role="CAJA_FACTURA">
               <PropertyRef Name="ORDEN_NUM_ORDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CLIENTE_ESTADO_CUENTA_FK">
+          <End Role="ESTADO_CUENTA" Type="Self.ESTADO_CUENTA" Multiplicity="0..1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADO_CUENTA">
+              <PropertyRef Name="ID_ESTADO" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="ESTADO_CUENTA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -401,6 +420,7 @@
           <EntitySet Name="CAJA_FACTURA" EntityType="Self.CAJA_FACTURA" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="DIGIEATDB" store:Type="Tables" />
+          <EntitySet Name="ESTADO_CUENTA" EntityType="Self.ESTADO_CUENTA" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="ESTADO_ORDEN" EntityType="Self.ESTADO_ORDEN" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="INGREDIENTES" EntityType="Self.INGREDIENTES" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="LOCAL" EntityType="Self.LOCAL" Schema="DIGIEATDB" store:Type="Tables" />
@@ -416,6 +436,10 @@
           <AssociationSet Name="CAJA_FACTURA_ORDEN_FK" Association="Self.CAJA_FACTURA_ORDEN_FK">
             <End Role="ORDEN" EntitySet="ORDEN" />
             <End Role="CAJA_FACTURA" EntitySet="CAJA_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTE_ESTADO_CUENTA_FK" Association="Self.CLIENTE_ESTADO_CUENTA_FK">
+            <End Role="ESTADO_CUENTA" EntitySet="ESTADO_CUENTA" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
           </AssociationSet>
           <AssociationSet Name="CLIENTE_MESA_FK" Association="Self.CLIENTE_MESA_FK">
             <End Role="MESA" EntitySet="MESA" />
@@ -533,10 +557,11 @@
           <Property Name="TELEFONO" Type="Decimal" />
           <Property Name="CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CONTRASENA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="CUENTA_USER" Type="Int32" />
           <Property Name="MESA_NUM_MESA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="MESA" Relationship="Self.CLIENTE_MESA_FK" FromRole="CLIENTE" ToRole="MESA" />
           <NavigationProperty Name="RESERVA" Relationship="Model.RESERVA_CLIENTE_FK" FromRole="CLIENTE" ToRole="RESERVA" />
+          <Property Name="ESTADO_CUENTA" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="ESTADO_CUENTA1" Relationship="Model.CLIENTE_ESTADO_CUENTA_FK" FromRole="CLIENTE" ToRole="ESTADO_CUENTA" />
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
@@ -984,6 +1009,11 @@
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="RESERVA" EntitySet="RESERVA" />
           </AssociationSet>
+          <EntitySet Name="ESTADO_CUENTA" EntityType="Model.ESTADO_CUENTA" />
+          <AssociationSet Name="CLIENTE_ESTADO_CUENTA_FK" Association="Model.CLIENTE_ESTADO_CUENTA_FK">
+            <End Role="ESTADO_CUENTA" EntitySet="ESTADO_CUENTA" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="RESERVA_CLIENTE_FK">
           <End Type="Model.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
@@ -994,6 +1024,26 @@
             </Principal>
             <Dependent Role="RESERVA">
               <PropertyRef Name="CLIENTE_RUT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ESTADO_CUENTA">
+          <Key>
+            <PropertyRef Name="ID_ESTADO" />
+          </Key>
+          <Property Name="ID_ESTADO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Model.CLIENTE_ESTADO_CUENTA_FK" FromRole="ESTADO_CUENTA" ToRole="CLIENTE" />
+        </EntityType>
+        <Association Name="CLIENTE_ESTADO_CUENTA_FK">
+          <End Type="Model.ESTADO_CUENTA" Role="ESTADO_CUENTA" Multiplicity="0..1" />
+          <End Type="Model.CLIENTE" Role="CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADO_CUENTA">
+              <PropertyRef Name="ID_ESTADO" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="ESTADO_CUENTA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1040,6 +1090,7 @@
           <EntitySetMapping Name="CLIENTE">
             <EntityTypeMapping TypeName="Model.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="ESTADO_CUENTA" ColumnName="ESTADO_CUENTA" />
                 <ScalarProperty Name="RUT" ColumnName="RUT" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="APELLIDO_PAT" ColumnName="APELLIDO_PAT" />
@@ -1047,7 +1098,6 @@
                 <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
                 <ScalarProperty Name="CORREO" ColumnName="CORREO" />
                 <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
-                <ScalarProperty Name="CUENTA_USER" ColumnName="CUENTA_USER" />
                 <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1195,6 +1245,14 @@
           <FunctionImportMapping FunctionImportName="LISTAMESAS" FunctionName="Model.Store.LISTAMESAS" />
           <FunctionImportMapping FunctionImportName="LISTAPLATOS" FunctionName="Model.Store.LISTAPLATOS" />
           <FunctionImportMapping FunctionImportName="MODIFICAR_MESA" FunctionName="Model.Store.MODIFICAR_MESA" />
+          <EntitySetMapping Name="ESTADO_CUENTA">
+            <EntityTypeMapping TypeName="Model.ESTADO_CUENTA">
+              <MappingFragment StoreEntitySet="ESTADO_CUENTA">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

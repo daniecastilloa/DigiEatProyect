@@ -38,6 +38,7 @@
     <EntitySetMapping Name="CLIENTE">
       <EntityTypeMapping TypeName="Model.CLIENTE">
         <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="ESTADO_CUENTA" ColumnName="ESTADO_CUENTA" />
           <ScalarProperty Name="RUT" ColumnName="RUT" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
           <ScalarProperty Name="APELLIDO_PAT" ColumnName="APELLIDO_PAT" />
@@ -45,7 +46,6 @@
           <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
           <ScalarProperty Name="CORREO" ColumnName="CORREO" />
           <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
-          <ScalarProperty Name="CUENTA_USER" ColumnName="CUENTA_USER" />
           <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -193,5 +193,13 @@
     <FunctionImportMapping FunctionImportName="LISTAMESAS" FunctionName="Model.Store.LISTAMESAS" />
     <FunctionImportMapping FunctionImportName="LISTAPLATOS" FunctionName="Model.Store.LISTAPLATOS" />
     <FunctionImportMapping FunctionImportName="MODIFICAR_MESA" FunctionName="Model.Store.MODIFICAR_MESA" />
+    <EntitySetMapping Name="ESTADO_CUENTA">
+      <EntityTypeMapping TypeName="Model.ESTADO_CUENTA">
+        <MappingFragment StoreEntitySet="ESTADO_CUENTA">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
