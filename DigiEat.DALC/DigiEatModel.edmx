@@ -49,7 +49,7 @@
           <Property Name="CORREO" Type="varchar2" MaxLength="30" />
           <Property Name="CONTRASENA" Type="varchar2" MaxLength="30" />
           <Property Name="MESA_NUM_MESA" Type="number" Precision="38" Scale="0" />
-          <Property Name="CUENTA_USER" Type="number" Precision="38" Scale="0" />
+          <Property Name="ESTADO_CUENTA" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
@@ -533,10 +533,10 @@
           <Property Name="TELEFONO" Type="Decimal" />
           <Property Name="CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CONTRASENA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="CUENTA_USER" Type="Int32" />
           <Property Name="MESA_NUM_MESA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="MESA" Relationship="Self.CLIENTE_MESA_FK" FromRole="CLIENTE" ToRole="MESA" />
           <NavigationProperty Name="RESERVA" Relationship="Model.RESERVA_CLIENTE_FK" FromRole="CLIENTE" ToRole="RESERVA" />
+          <Property Name="ESTADO_CUENTA" Type="Decimal" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
@@ -1040,6 +1040,7 @@
           <EntitySetMapping Name="CLIENTE">
             <EntityTypeMapping TypeName="Model.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="ESTADO_CUENTA" ColumnName="ESTADO_CUENTA" />
                 <ScalarProperty Name="RUT" ColumnName="RUT" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="APELLIDO_PAT" ColumnName="APELLIDO_PAT" />
@@ -1047,7 +1048,6 @@
                 <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
                 <ScalarProperty Name="CORREO" ColumnName="CORREO" />
                 <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
-                <ScalarProperty Name="CUENTA_USER" ColumnName="CUENTA_USER" />
                 <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
               </MappingFragment>
             </EntityTypeMapping>

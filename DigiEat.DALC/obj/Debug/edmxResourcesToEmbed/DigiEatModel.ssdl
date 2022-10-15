@@ -44,7 +44,7 @@
     <Property Name="CORREO" Type="varchar2" MaxLength="30" />
     <Property Name="CONTRASENA" Type="varchar2" MaxLength="30" />
     <Property Name="MESA_NUM_MESA" Type="number" Precision="38" Scale="0" />
-    <Property Name="CUENTA_USER" Type="number" Precision="38" Scale="0" />
+    <Property Name="ESTADO_CUENTA" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="EMPLEADO">
     <Key>

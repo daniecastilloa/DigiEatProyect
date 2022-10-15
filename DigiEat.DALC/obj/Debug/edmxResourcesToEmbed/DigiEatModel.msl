@@ -38,6 +38,7 @@
     <EntitySetMapping Name="CLIENTE">
       <EntityTypeMapping TypeName="Model.CLIENTE">
         <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="ESTADO_CUENTA" ColumnName="ESTADO_CUENTA" />
           <ScalarProperty Name="RUT" ColumnName="RUT" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
           <ScalarProperty Name="APELLIDO_PAT" ColumnName="APELLIDO_PAT" />
@@ -45,7 +46,6 @@
           <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
           <ScalarProperty Name="CORREO" ColumnName="CORREO" />
           <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
-          <ScalarProperty Name="CUENTA_USER" ColumnName="CUENTA_USER" />
           <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
         </MappingFragment>
       </EntityTypeMapping>
