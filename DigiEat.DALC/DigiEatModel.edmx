@@ -561,10 +561,9 @@
           <NavigationProperty Name="MESA" Relationship="Self.CLIENTE_MESA_FK" FromRole="CLIENTE" ToRole="MESA" />
           <NavigationProperty Name="RESERVA" Relationship="Model.RESERVA_CLIENTE_FK" FromRole="CLIENTE" ToRole="RESERVA" />
           <Property Name="ESTADO_CUENTA" Type="Decimal" Precision="38" Scale="0" />
-<<<<<<< HEAD
-=======
+
           <NavigationProperty Name="ESTADO_CUENTA1" Relationship="Model.CLIENTE_ESTADO_CUENTA_FK" FromRole="CLIENTE" ToRole="ESTADO_CUENTA" />
->>>>>>> dd39c11b59f3f9899c076eefdb401c9beee8476d
+
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
