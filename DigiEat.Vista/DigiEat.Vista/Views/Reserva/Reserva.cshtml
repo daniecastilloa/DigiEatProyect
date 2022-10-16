@@ -6,10 +6,10 @@
 
 <h2>Reserva</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Reserva</h4>
         <hr />
@@ -17,8 +17,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FECHA, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                @Html.EditorFor(model => model.FECHA, new { htmlAttributes = new { @type = "date", @class="form-control"} })
+
+                @Html.EditorFor(model => model.FECHA, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FECHA, "", new { @type = "date", @class = "text-danger" })
             </div>
         </div>

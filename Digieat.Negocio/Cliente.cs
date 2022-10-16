@@ -24,8 +24,12 @@ namespace Digieat.Negocio
         public decimal telefono { get; set; }
         public string correo { get; set; }
         public string contrasena { get; set; }
+<<<<<<< HEAD
+        public int Estado_cuenta { get; set; }
+=======
         [ForeignKey("Estado_cuenta")]
         public int estado_cuenta { get; set; }
+>>>>>>> dd39c11b59f3f9899c076eefdb401c9beee8476d
         [ForeignKey("Mesa")]
         public int mesa_num_mesa { get; set; }
         [ForeignKey("Reserva")]
@@ -46,7 +50,11 @@ namespace Digieat.Negocio
                 telefono = (decimal)c.TELEFONO,
                 correo = c.CORREO,
                 contrasena = c.CONTRASENA,
+<<<<<<< HEAD
+                Estado_cuenta = (int)c.ESTADO_CUENTA,
+=======
                 estado_cuenta = (int)c.ESTADO_CUENTA,
+>>>>>>> dd39c11b59f3f9899c076eefdb401c9beee8476d
             }).ToList();
         }
 
