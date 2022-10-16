@@ -15,6 +15,7 @@ namespace DigiEat.Vista.Controllers
         // GET: Reserva
         public ActionResult Reserva()
         {
+            
             return View();
         }
 
