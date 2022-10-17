@@ -104,5 +104,30 @@ namespace DigiEat.DALC
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_MESA", nUMMESAParameter, eSTADMESAParameter, lOCALNUMParameter);
         }
+    
+        public virtual int CREATE_RESERVA(Nullable<decimal> nUMRESERVA, Nullable<System.DateTime> fECHA, string hORA, Nullable<decimal> cLIENTE_RUT, Nullable<decimal> cANTIDAD_PERSONAS)
+        {
+            var nUMRESERVAParameter = nUMRESERVA.HasValue ?
+                new ObjectParameter("NUMRESERVA", nUMRESERVA) :
+                new ObjectParameter("NUMRESERVA", typeof(decimal));
+    
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            var hORAParameter = hORA != null ?
+                new ObjectParameter("HORA", hORA) :
+                new ObjectParameter("HORA", typeof(string));
+    
+            var cLIENTE_RUTParameter = cLIENTE_RUT.HasValue ?
+                new ObjectParameter("CLIENTE_RUT", cLIENTE_RUT) :
+                new ObjectParameter("CLIENTE_RUT", typeof(decimal));
+    
+            var cANTIDAD_PERSONASParameter = cANTIDAD_PERSONAS.HasValue ?
+                new ObjectParameter("CANTIDAD_PERSONAS", cANTIDAD_PERSONAS) :
+                new ObjectParameter("CANTIDAD_PERSONAS", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_RESERVA", nUMRESERVAParameter, fECHAParameter, hORAParameter, cLIENTE_RUTParameter, cANTIDAD_PERSONASParameter);
+        }
     }
 }
