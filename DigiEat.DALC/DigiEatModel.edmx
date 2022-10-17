@@ -174,6 +174,7 @@
           <Property Name="FECHA" Type="date" />
           <Property Name="HORA" Type="varchar2" MaxLength="30" />
           <Property Name="CLIENTE_RUT" Type="number" Precision="38" Scale="0" />
+          <Property Name="CANTIDAD_PERSONAS" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="TIPO_EMPLEADO">
           <Key>
@@ -402,6 +403,13 @@
           <Parameter Name="NUMMESA" Type="number" Mode="In" />
           <Parameter Name="ESTADMESA" Type="varchar2" Mode="In" />
           <Parameter Name="LOCALNUM" Type="number" Mode="In" />
+        </Function>
+        <Function Name="CREATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="NUMRESERVA" Type="number" Mode="In" />
+          <Parameter Name="FECHA" Type="date" Mode="In" />
+          <Parameter Name="HORA" Type="varchar2" Mode="In" />
+          <Parameter Name="CLIENTE_RUT" Type="number" Mode="In" />
+          <Parameter Name="CANTIDAD_PERSONAS" Type="number" Mode="In" />
         </Function>
         <Function Name="DELETE_MESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMMESA" Type="number" Mode="In" />
@@ -706,6 +714,7 @@
           <Property Name="HORA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CLIENTE_RUT" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="CLIENTE" Relationship="Model.RESERVA_CLIENTE_FK" FromRole="RESERVA" ToRole="CLIENTE" />
+          <Property Name="CANTIDAD_PERSONAS" Type="Decimal" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="TIPO_EMPLEADO">
           <Key>
@@ -1014,6 +1023,13 @@
             <End Role="ESTADO_CUENTA" EntitySet="ESTADO_CUENTA" />
             <End Role="CLIENTE" EntitySet="CLIENTE" />
           </AssociationSet>
+          <FunctionImport Name="CREATE_RESERVA">
+            <Parameter Name="NUMRESERVA" Mode="In" Type="Decimal" />
+            <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="HORA" Mode="In" Type="String" />
+            <Parameter Name="CLIENTE_RUT" Mode="In" Type="Decimal" />
+            <Parameter Name="CANTIDAD_PERSONAS" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="RESERVA_CLIENTE_FK">
           <End Type="Model.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
@@ -1224,6 +1240,7 @@
           <EntitySetMapping Name="RESERVA">
             <EntityTypeMapping TypeName="Model.RESERVA">
               <MappingFragment StoreEntitySet="RESERVA">
+                <ScalarProperty Name="CANTIDAD_PERSONAS" ColumnName="CANTIDAD_PERSONAS" />
                 <ScalarProperty Name="CLIENTE_RUT" ColumnName="CLIENTE_RUT" />
                 <ScalarProperty Name="NUM_RESERVA" ColumnName="NUM_RESERVA" />
                 <ScalarProperty Name="FECHA" ColumnName="FECHA" />
@@ -1253,6 +1270,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CREATE_RESERVA" FunctionName="Model.Store.CREATE_RESERVA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

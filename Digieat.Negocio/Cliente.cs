@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DigiEat.DALC;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
+using Digieat.Negocio;
 
 namespace Digieat.Negocio
 {
@@ -83,11 +84,6 @@ namespace Digieat.Negocio
 
         }
 
-
-
-
-
-
         public bool Autenticar()
         {
             return db.CLIENTE
@@ -95,5 +91,8 @@ namespace Digieat.Negocio
             .FirstOrDefault() != null;
 
         }
+
+
+
     }
 }
