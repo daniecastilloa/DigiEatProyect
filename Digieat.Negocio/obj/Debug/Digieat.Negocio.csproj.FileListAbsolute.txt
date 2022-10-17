@@ -64,3 +64,4 @@ D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio
 D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
 D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb
 C:\Users\matia\source\repos\DigiEatProyect\Digieat.Negocio\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\bin\Debug\Oracle.ManagedDataAccess.dll
