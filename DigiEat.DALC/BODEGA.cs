@@ -19,7 +19,7 @@ namespace DigiEat.DALC
             this.RECETA = new HashSet<RECETA>();
         }
     
-        public string NUM_BODEGA { get; set; }
+        public decimal NUM_BODEGA { get; set; }
         public string UBICACION { get; set; }
     
         public virtual ICollection<RECETA> RECETA { get; set; }

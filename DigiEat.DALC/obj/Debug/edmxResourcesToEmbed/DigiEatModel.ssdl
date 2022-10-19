@@ -13,8 +13,8 @@
     <Key>
       <PropertyRef Name="NUM_BODEGA" />
     </Key>
-    <Property Name="NUM_BODEGA" Type="varchar2" MaxLength="30" Nullable="false" />
-    <Property Name="UBICACION" Type="varchar2" MaxLength="30" />
+    <Property Name="NUM_BODEGA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="UBICACION" Type="varchar2" MaxLength="300" />
   </EntityType>
   <EntityType Name="CAJA_FACTURA">
     <Key>
@@ -69,6 +69,13 @@
     <Property Name="ID_ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ESTADO" Type="varchar2" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="ESTADO_MESA">
+    <Key>
+      <PropertyRef Name="ID_ESTADO" />
+    </Key>
+    <Property Name="ID_ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ESTADO" Type="varchar2" MaxLength="20" />
+  </EntityType>
   <EntityType Name="ESTADO_ORDEN">
     <Key>
       <PropertyRef Name="ID_ESTADO" />
@@ -76,13 +83,14 @@
     <Property Name="ID_ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar2" MaxLength="30" />
   </EntityType>
-  <EntityType Name="INGREDIENTES">
+  <EntityType Name="INGREDIENTE">
     <Key>
       <PropertyRef Name="ID_INGREDIENTE" />
     </Key>
     <Property Name="ID_INGREDIENTE" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" />
     <Property Name="PROVEEDOR_RUT_EMPRESA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_INGREDIENTE" Type="varchar2" MaxLength="30" />
   </EntityType>
   <EntityType Name="LOCAL">
     <Key>
@@ -99,7 +107,7 @@
       <PropertyRef Name="NUM_MESA" />
     </Key>
     <Property Name="NUM_MESA" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="ESTADO_MESA" Type="varchar2" MaxLength="30" />
+    <Property Name="ESTADO_MESA" Type="number" Precision="38" Scale="0" />
     <Property Name="LOCAL_NUMERO_LOCAL" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="ORDEN">
@@ -145,12 +153,12 @@
       <PropertyRef Name="ID_RECETA" />
     </Key>
     <Property Name="ID_RECETA" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="NOMBRE_REC" Type="varchar2" MaxLength="30" />
+    <Property Name="NOMBRE_REC" Type="varchar2" MaxLength="300" />
     <Property Name="NUM_PASO" Type="number" Precision="38" Scale="0" />
-    <Property Name="DESCRIPCION" Type="number" Precision="38" Scale="0" />
-    <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="PLATO_COCINA_ID_PLATO" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="BODEGA_NUM_BODEGA" Type="varchar2" MaxLength="30" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar2" MaxLength="4000" />
+    <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="number" Precision="38" Scale="0" />
+    <Property Name="PLATO_COCINA_ID_PLATO" Type="number" Precision="38" Scale="0" />
+    <Property Name="BODEGA_NUM_BODEGA" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="RECETA_INGREDIENTE">
     <Key>
@@ -169,6 +177,7 @@
     <Property Name="FECHA" Type="date" />
     <Property Name="HORA" Type="varchar2" MaxLength="30" />
     <Property Name="CLIENTE_RUT" Type="number" Precision="38" Scale="0" />
+    <Property Name="CANTIDAD_PERSONAS" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="TIPO_EMPLEADO">
     <Key>
@@ -239,13 +248,25 @@
   </Association>
   <Association Name="INGREDIENTES_PROVEEDOR_FK">
     <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
-    <End Role="INGREDIENTES" Type="Self.INGREDIENTES" Multiplicity="*" />
+    <End Role="INGREDIENTE" Type="Self.INGREDIENTE" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PROVEEDOR">
         <PropertyRef Name="RUT_EMPRESA" />
       </Principal>
-      <Dependent Role="INGREDIENTES">
+      <Dependent Role="INGREDIENTE">
         <PropertyRef Name="PROVEEDOR_RUT_EMPRESA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESA_ESTADO_FK">
+    <End Role="ESTADO_MESA" Type="Self.ESTADO_MESA" Multiplicity="0..1" />
+    <End Role="MESA" Type="Self.MESA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_MESA">
+        <PropertyRef Name="ID_ESTADO" />
+      </Principal>
+      <Dependent Role="MESA">
+        <PropertyRef Name="ESTADO_MESA" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -322,7 +343,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RECETA_BEBIDA_BAR_FK">
-    <End Role="BEBIDA_BAR" Type="Self.BEBIDA_BAR" Multiplicity="1" />
+    <End Role="BEBIDA_BAR" Type="Self.BEBIDA_BAR" Multiplicity="0..1" />
     <End Role="RECETA" Type="Self.RECETA" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BEBIDA_BAR">
@@ -334,7 +355,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RECETA_BODEGA_FK">
-    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="1" />
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="0..1" />
     <End Role="RECETA" Type="Self.RECETA" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BODEGA">
@@ -358,10 +379,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RECETA_INGREDIENTES_FK">
-    <End Role="INGREDIENTES" Type="Self.INGREDIENTES" Multiplicity="1" />
+    <End Role="INGREDIENTE" Type="Self.INGREDIENTE" Multiplicity="1" />
     <End Role="RECETA_INGREDIENTE" Type="Self.RECETA_INGREDIENTE" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="INGREDIENTES">
+      <Principal Role="INGREDIENTE">
         <PropertyRef Name="ID_INGREDIENTE" />
       </Principal>
       <Dependent Role="RECETA_INGREDIENTE">
@@ -370,7 +391,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RECETA_PLATO_COCINA_FK">
-    <End Role="PLATO_COCINA" Type="Self.PLATO_COCINA" Multiplicity="1" />
+    <End Role="PLATO_COCINA" Type="Self.PLATO_COCINA" Multiplicity="0..1" />
     <End Role="RECETA" Type="Self.RECETA" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PLATO_COCINA">
@@ -393,20 +414,105 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="CREATE_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="RUT" Type="number" Mode="In" />
+    <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
+    <Parameter Name="APELLIDO_PAT" Type="varchar2" Mode="In" />
+    <Parameter Name="APELLIDO_MAT" Type="varchar2" Mode="In" />
+    <Parameter Name="TELEFONO" Type="number" Mode="In" />
+    <Parameter Name="CORREO" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRASENA" Type="varchar2" Mode="In" />
+    <Parameter Name="MESA_NUM_MESA" Type="number" Mode="In" />
+    <Parameter Name="ESTADO_CUENTA" Type="number" Mode="In" />
+  </Function>
+  <Function Name="CREATE_EMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="RUT" Type="number" Mode="In" />
+    <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
+    <Parameter Name="APELLIDO_PAT" Type="varchar2" Mode="In" />
+    <Parameter Name="APELLIDO_MAT" Type="varchar2" Mode="In" />
+    <Parameter Name="TELEFONO" Type="number" Mode="In" />
+    <Parameter Name="CORREO" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRASENA" Type="varchar2" Mode="In" />
+    <Parameter Name="FECHA" Type="date" Mode="In" />
+    <Parameter Name="TURNO" Type="varchar2" Mode="In" />
+    <Parameter Name="LOCALNUM" Type="number" Mode="In" />
+    <Parameter Name="CARGO" Type="number" Mode="In" />
+  </Function>
+  <Function Name="CREATE_LOCAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="NUMERO" Type="number" Mode="In" />
+    <Parameter Name="CALLE" Type="varchar2" Mode="In" />
+    <Parameter Name="COMUNA" Type="varchar2" Mode="In" />
+    <Parameter Name="CIUDAD" Type="varchar2" Mode="In" />
+    <Parameter Name="PAIS" Type="varchar2" Mode="In" />
+  </Function>
   <Function Name="CREATE_MESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
     <Parameter Name="NUMMESA" Type="number" Mode="In" />
-    <Parameter Name="ESTADMESA" Type="varchar2" Mode="In" />
+    <Parameter Name="ESTADMESA" Type="number" Mode="In" />
     <Parameter Name="LOCALNUM" Type="number" Mode="In" />
+  </Function>
+  <Function Name="CREATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="NUMRESERVA" Type="number" Mode="In" />
+    <Parameter Name="FECHA" Type="date" Mode="In" />
+    <Parameter Name="HORA" Type="varchar2" Mode="In" />
+    <Parameter Name="CLIENTE_RUT" Type="number" Mode="In" />
+    <Parameter Name="CANTIDAD_PERSONAS" Type="number" Mode="In" />
+  </Function>
+  <Function Name="DELETE_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="RUTVAR" Type="number" Mode="In" />
+  </Function>
+  <Function Name="DELETE_EMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="RUTVAR" Type="number" Mode="In" />
+  </Function>
+  <Function Name="DELETE_LOCAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="NUMM" Type="number" Mode="In" />
   </Function>
   <Function Name="DELETE_MESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
     <Parameter Name="NUMMESA" Type="number" Mode="In" />
   </Function>
   <Function Name="LISTABEBIDAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="LISTACARGOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="LISTACLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="LISTAEMPLEADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="LISTAESTADOSCUENTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="LISTAESTADOSMESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="LISTALOCALES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
   <Function Name="LISTAMESAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
   <Function Name="LISTAPLATOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="LISTARESERVAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+  <Function Name="MODIFICAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="RUTT" Type="number" Mode="In" />
+    <Parameter Name="NOM" Type="varchar2" Mode="In" />
+    <Parameter Name="APAT" Type="varchar2" Mode="In" />
+    <Parameter Name="AMAT" Type="varchar2" Mode="In" />
+    <Parameter Name="FONO" Type="number" Mode="In" />
+    <Parameter Name="EMAIL" Type="varchar2" Mode="In" />
+    <Parameter Name="PASS" Type="varchar2" Mode="In" />
+    <Parameter Name="NUMMESA" Type="number" Mode="In" />
+    <Parameter Name="NUMESTADO" Type="number" Mode="In" />
+  </Function>
+  <Function Name="MODIFICAR_EMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="RUTT" Type="number" Mode="In" />
+    <Parameter Name="NOM" Type="varchar2" Mode="In" />
+    <Parameter Name="APAT" Type="varchar2" Mode="In" />
+    <Parameter Name="AMAT" Type="varchar2" Mode="In" />
+    <Parameter Name="FONO" Type="number" Mode="In" />
+    <Parameter Name="EMAIL" Type="varchar2" Mode="In" />
+    <Parameter Name="PASS" Type="varchar2" Mode="In" />
+    <Parameter Name="FECHA" Type="date" Mode="In" />
+    <Parameter Name="TURNNO" Type="varchar2" Mode="In" />
+    <Parameter Name="NUMLOCAL" Type="number" Mode="In" />
+    <Parameter Name="CARGO" Type="number" Mode="In" />
+  </Function>
+  <Function Name="MODIFICAR_LOCAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="NUMERO" Type="number" Mode="In" />
+    <Parameter Name="CALLEL" Type="varchar2" Mode="In" />
+    <Parameter Name="COMUNAN" Type="varchar2" Mode="In" />
+    <Parameter Name="CIUDADD" Type="varchar2" Mode="In" />
+    <Parameter Name="PAISS" Type="varchar2" Mode="In" />
+  </Function>
   <Function Name="MODIFICAR_MESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
     <Parameter Name="NUMMESA" Type="number" Mode="In" />
-    <Parameter Name="ESTADMESA" Type="varchar2" Mode="In" />
+    <Parameter Name="ESTADMESA" Type="number" Mode="In" />
     <Parameter Name="LOCALNUM" Type="number" Mode="In" />
   </Function>
   <EntityContainer Name="ModelStoreContainer">
@@ -416,8 +522,9 @@
     <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="ESTADO_CUENTA" EntityType="Self.ESTADO_CUENTA" Schema="DIGIEATDB" store:Type="Tables" />
+    <EntitySet Name="ESTADO_MESA" EntityType="Self.ESTADO_MESA" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="ESTADO_ORDEN" EntityType="Self.ESTADO_ORDEN" Schema="DIGIEATDB" store:Type="Tables" />
-    <EntitySet Name="INGREDIENTES" EntityType="Self.INGREDIENTES" Schema="DIGIEATDB" store:Type="Tables" />
+    <EntitySet Name="INGREDIENTE" EntityType="Self.INGREDIENTE" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="LOCAL" EntityType="Self.LOCAL" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="MESA" EntityType="Self.MESA" Schema="DIGIEATDB" store:Type="Tables" />
     <EntitySet Name="ORDEN" EntityType="Self.ORDEN" Schema="DIGIEATDB" store:Type="Tables" />
@@ -450,7 +557,11 @@
     </AssociationSet>
     <AssociationSet Name="INGREDIENTES_PROVEEDOR_FK" Association="Self.INGREDIENTES_PROVEEDOR_FK">
       <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
-      <End Role="INGREDIENTES" EntitySet="INGREDIENTES" />
+      <End Role="INGREDIENTE" EntitySet="INGREDIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="MESA_ESTADO_FK" Association="Self.MESA_ESTADO_FK">
+      <End Role="ESTADO_MESA" EntitySet="ESTADO_MESA" />
+      <End Role="MESA" EntitySet="MESA" />
     </AssociationSet>
     <AssociationSet Name="MESA_LOCAL_FK" Association="Self.MESA_LOCAL_FK">
       <End Role="LOCAL" EntitySet="LOCAL" />
@@ -489,7 +600,7 @@
       <End Role="RECETA_INGREDIENTE" EntitySet="RECETA_INGREDIENTE" />
     </AssociationSet>
     <AssociationSet Name="RECETA_INGREDIENTES_FK" Association="Self.RECETA_INGREDIENTES_FK">
-      <End Role="INGREDIENTES" EntitySet="INGREDIENTES" />
+      <End Role="INGREDIENTE" EntitySet="INGREDIENTE" />
       <End Role="RECETA_INGREDIENTE" EntitySet="RECETA_INGREDIENTE" />
     </AssociationSet>
     <AssociationSet Name="RECETA_PLATO_COCINA_FK" Association="Self.RECETA_PLATO_COCINA_FK">

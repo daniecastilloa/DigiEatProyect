@@ -15,7 +15,7 @@
     <Key>
       <PropertyRef Name="NUM_BODEGA" />
     </Key>
-    <Property Name="NUM_BODEGA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NUM_BODEGA" Type="Decimal" Nullable="false" />
     <Property Name="UBICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="RECETA" Relationship="Self.RECETA_BODEGA_FK" FromRole="BODEGA" ToRole="RECETA" />
   </EntityType>
@@ -79,16 +79,6 @@
     <Property Name="DESCRIPCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ORDEN" Relationship="Self.ORDEN_ESTADO_ORDEN_FK" FromRole="ESTADO_ORDEN" ToRole="ORDEN" />
   </EntityType>
-  <EntityType Name="INGREDIENTES">
-    <Key>
-      <PropertyRef Name="ID_INGREDIENTE" />
-    </Key>
-    <Property Name="ID_INGREDIENTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
-    <Property Name="PROVEEDOR_RUT_EMPRESA" Type="Decimal" Nullable="false" />
-    <NavigationProperty Name="PROVEEDOR" Relationship="Self.INGREDIENTES_PROVEEDOR_FK" FromRole="INGREDIENTES" ToRole="PROVEEDOR" />
-    <NavigationProperty Name="RECETA_INGREDIENTE" Relationship="Self.RECETA_INGREDIENTES_FK" FromRole="INGREDIENTES" ToRole="RECETA_INGREDIENTE" />
-  </EntityType>
   <EntityType Name="LOCAL">
     <Key>
       <PropertyRef Name="NUMERO_LOCAL" />
@@ -106,11 +96,12 @@
       <PropertyRef Name="NUM_MESA" />
     </Key>
     <Property Name="NUM_MESA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="ESTADO_MESA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO_MESA" Type="Decimal" />
     <Property Name="LOCAL_NUMERO_LOCAL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <NavigationProperty Name="CLIENTE" Relationship="Self.CLIENTE_MESA_FK" FromRole="MESA" ToRole="CLIENTE" />
     <NavigationProperty Name="LOCAL" Relationship="Self.MESA_LOCAL_FK" FromRole="MESA" ToRole="LOCAL" />
     <NavigationProperty Name="ORDEN" Relationship="Self.ORDEN_MESA_FK" FromRole="MESA" ToRole="ORDEN" />
+    <NavigationProperty Name="ESTADO_MESA1" Relationship="Model.MESA_ESTADO_FK" FromRole="MESA" ToRole="ESTADO_MESA" />
   </EntityType>
   <EntityType Name="ORDEN">
     <Key>
@@ -158,7 +149,7 @@
     <Property Name="TELEFONO" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="DIRECCION_POSTAL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="SITIO_WEB" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="INGREDIENTES" Relationship="Self.INGREDIENTES_PROVEEDOR_FK" FromRole="PROVEEDOR" ToRole="INGREDIENTES" />
+    <NavigationProperty Name="INGREDIENTE" Relationship="Model.INGREDIENTES_PROVEEDOR_FK1" FromRole="PROVEEDOR" ToRole="INGREDIENTE" />
   </EntityType>
   <EntityType Name="RECETA">
     <Key>
@@ -167,10 +158,10 @@
     <Property Name="ID_RECETA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="NOMBRE_REC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="NUM_PASO" Type="Decimal" Precision="38" Scale="0" />
-    <Property Name="DESCRIPCION" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DESCRIPCION" Type="String" />
     <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="PLATO_COCINA_ID_PLATO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="BODEGA_NUM_BODEGA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BODEGA_NUM_BODEGA" Type="Decimal" Nullable="false" />
     <NavigationProperty Name="BEBIDA_BAR" Relationship="Self.RECETA_BEBIDA_BAR_FK" FromRole="RECETA" ToRole="BEBIDA_BAR" />
     <NavigationProperty Name="BODEGA" Relationship="Self.RECETA_BODEGA_FK" FromRole="RECETA" ToRole="BODEGA" />
     <NavigationProperty Name="PLATO_COCINA" Relationship="Self.RECETA_PLATO_COCINA_FK" FromRole="RECETA" ToRole="PLATO_COCINA" />
@@ -184,8 +175,8 @@
     <Property Name="CANTIDAD_REQ" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="RECETA_ID_RECETA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="INGREDIENTES_ID_INGREDIENTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <NavigationProperty Name="INGREDIENTES" Relationship="Self.RECETA_INGREDIENTES_FK" FromRole="RECETA_INGREDIENTE" ToRole="INGREDIENTES" />
     <NavigationProperty Name="RECETA" Relationship="Self.RECETA_INGREDIENTE_RECETA_FK" FromRole="RECETA_INGREDIENTE" ToRole="RECETA" />
+    <NavigationProperty Name="INGREDIENTE" Relationship="Model.RECETA_INGREDIENTES_FK1" FromRole="RECETA_INGREDIENTE" ToRole="INGREDIENTE" />
   </EntityType>
   <EntityType Name="RESERVA">
     <Key>
@@ -196,6 +187,7 @@
     <Property Name="HORA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="CLIENTE_RUT" Type="Decimal" Precision="38" Scale="0" />
     <NavigationProperty Name="CLIENTE" Relationship="Model.RESERVA_CLIENTE_FK" FromRole="RESERVA" ToRole="CLIENTE" />
+    <Property Name="CANTIDAD_PERSONAS" Type="Decimal" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="TIPO_EMPLEADO">
     <Key>
@@ -301,30 +293,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="INGREDIENTES_PROVEEDOR_FK">
-    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
-    <End Role="INGREDIENTES" Type="Self.INGREDIENTES" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PROVEEDOR">
-        <PropertyRef Name="RUT_EMPRESA" />
-      </Principal>
-      <Dependent Role="INGREDIENTES">
-        <PropertyRef Name="PROVEEDOR_RUT_EMPRESA" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RECETA_INGREDIENTES_FK">
-    <End Role="INGREDIENTES" Type="Self.INGREDIENTES" Multiplicity="1" />
-    <End Role="RECETA_INGREDIENTE" Type="Self.RECETA_INGREDIENTE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="INGREDIENTES">
-        <PropertyRef Name="ID_INGREDIENTE" />
-      </Principal>
-      <Dependent Role="RECETA_INGREDIENTE">
-        <PropertyRef Name="INGREDIENTES_ID_INGREDIENTE" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="MESA_LOCAL_FK">
     <End Role="LOCAL" Type="Self.LOCAL" Multiplicity="1" />
     <End Role="MESA" Type="Self.MESA" Multiplicity="*" />
@@ -404,7 +372,6 @@
     <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
     <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
     <EntitySet Name="ESTADO_ORDEN" EntityType="Self.ESTADO_ORDEN" />
-    <EntitySet Name="INGREDIENTES" EntityType="Self.INGREDIENTES" />
     <EntitySet Name="LOCAL" EntityType="Self.LOCAL" />
     <EntitySet Name="MESA" EntityType="Self.MESA" />
     <EntitySet Name="ORDEN" EntityType="Self.ORDEN" />
@@ -447,14 +414,6 @@
       <End Role="ESTADO_ORDEN" EntitySet="ESTADO_ORDEN" />
       <End Role="ORDEN" EntitySet="ORDEN" />
     </AssociationSet>
-    <AssociationSet Name="INGREDIENTES_PROVEEDOR_FK" Association="Self.INGREDIENTES_PROVEEDOR_FK">
-      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
-      <End Role="INGREDIENTES" EntitySet="INGREDIENTES" />
-    </AssociationSet>
-    <AssociationSet Name="RECETA_INGREDIENTES_FK" Association="Self.RECETA_INGREDIENTES_FK">
-      <End Role="INGREDIENTES" EntitySet="INGREDIENTES" />
-      <End Role="RECETA_INGREDIENTE" EntitySet="RECETA_INGREDIENTE" />
-    </AssociationSet>
     <AssociationSet Name="MESA_LOCAL_FK" Association="Self.MESA_LOCAL_FK">
       <End Role="LOCAL" EntitySet="LOCAL" />
       <End Role="MESA" EntitySet="MESA" />
@@ -481,7 +440,7 @@
     </AssociationSet>
     <FunctionImport Name="CREATE_MESA">
       <Parameter Name="NUMMESA" Mode="In" Type="Decimal" />
-      <Parameter Name="ESTADMESA" Mode="In" Type="String" />
+      <Parameter Name="ESTADMESA" Mode="In" Type="Decimal" />
       <Parameter Name="LOCALNUM" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="DELETE_MESA">
@@ -492,7 +451,7 @@
     <FunctionImport Name="LISTAPLATOS" />
     <FunctionImport Name="MODIFICAR_MESA">
       <Parameter Name="NUMMESA" Mode="In" Type="Decimal" />
-      <Parameter Name="ESTADMESA" Mode="In" Type="String" />
+      <Parameter Name="ESTADMESA" Mode="In" Type="Decimal" />
       <Parameter Name="LOCALNUM" Mode="In" Type="Decimal" />
     </FunctionImport>
     <AssociationSet Name="RESERVA_CLIENTE_FK" Association="Model.RESERVA_CLIENTE_FK">
@@ -504,6 +463,105 @@
       <End Role="ESTADO_CUENTA" EntitySet="ESTADO_CUENTA" />
       <End Role="CLIENTE" EntitySet="CLIENTE" />
     </AssociationSet>
+    <EntitySet Name="ESTADO_MESA" EntityType="Model.ESTADO_MESA" />
+    <EntitySet Name="INGREDIENTE" EntityType="Model.INGREDIENTE" />
+    <AssociationSet Name="MESA_ESTADO_FK" Association="Model.MESA_ESTADO_FK">
+      <End Role="ESTADO_MESA" EntitySet="ESTADO_MESA" />
+      <End Role="MESA" EntitySet="MESA" />
+    </AssociationSet>
+    <AssociationSet Name="INGREDIENTES_PROVEEDOR_FK1" Association="Model.INGREDIENTES_PROVEEDOR_FK1">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="INGREDIENTE" EntitySet="INGREDIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="RECETA_INGREDIENTES_FK1" Association="Model.RECETA_INGREDIENTES_FK1">
+      <End Role="INGREDIENTE" EntitySet="INGREDIENTE" />
+      <End Role="RECETA_INGREDIENTE" EntitySet="RECETA_INGREDIENTE" />
+    </AssociationSet>
+    <FunctionImport Name="CREATE_CLIENTE">
+      <Parameter Name="RUT" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMBRE" Mode="In" Type="String" />
+      <Parameter Name="APELLIDO_PAT" Mode="In" Type="String" />
+      <Parameter Name="APELLIDO_MAT" Mode="In" Type="String" />
+      <Parameter Name="TELEFONO" Mode="In" Type="Decimal" />
+      <Parameter Name="CORREO" Mode="In" Type="String" />
+      <Parameter Name="CONTRASENA" Mode="In" Type="String" />
+      <Parameter Name="MESA_NUM_MESA" Mode="In" Type="Decimal" />
+      <Parameter Name="ESTADO_CUENTA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="CREATE_EMPLEADO">
+      <Parameter Name="RUT" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMBRE" Mode="In" Type="String" />
+      <Parameter Name="APELLIDO_PAT" Mode="In" Type="String" />
+      <Parameter Name="APELLIDO_MAT" Mode="In" Type="String" />
+      <Parameter Name="TELEFONO" Mode="In" Type="Decimal" />
+      <Parameter Name="CORREO" Mode="In" Type="String" />
+      <Parameter Name="CONTRASENA" Mode="In" Type="String" />
+      <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+      <Parameter Name="TURNO" Mode="In" Type="String" />
+      <Parameter Name="LOCALNUM" Mode="In" Type="Decimal" />
+      <Parameter Name="CARGO" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="CREATE_LOCAL">
+      <Parameter Name="NUMERO" Mode="In" Type="Decimal" />
+      <Parameter Name="CALLE" Mode="In" Type="String" />
+      <Parameter Name="COMUNA" Mode="In" Type="String" />
+      <Parameter Name="CIUDAD" Mode="In" Type="String" />
+      <Parameter Name="PAIS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CREATE_RESERVA">
+      <Parameter Name="NUMRESERVA" Mode="In" Type="Decimal" />
+      <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+      <Parameter Name="HORA" Mode="In" Type="String" />
+      <Parameter Name="CLIENTE_RUT" Mode="In" Type="Decimal" />
+      <Parameter Name="CANTIDAD_PERSONAS" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="DELETE_CLIENTE">
+      <Parameter Name="RUTVAR" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="DELETE_EMPLEADO">
+      <Parameter Name="RUTVAR" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="DELETE_LOCAL">
+      <Parameter Name="NUMM" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="LISTACARGOS" />
+    <FunctionImport Name="LISTACLIENTES" />
+    <FunctionImport Name="LISTAEMPLEADOS" />
+    <FunctionImport Name="LISTAESTADOSCUENTA" />
+    <FunctionImport Name="LISTAESTADOSMESA" />
+    <FunctionImport Name="LISTALOCALES" />
+    <FunctionImport Name="MODIFICAR_CLIENTE">
+      <Parameter Name="RUTT" Mode="In" Type="Decimal" />
+      <Parameter Name="NOM" Mode="In" Type="String" />
+      <Parameter Name="APAT" Mode="In" Type="String" />
+      <Parameter Name="AMAT" Mode="In" Type="String" />
+      <Parameter Name="FONO" Mode="In" Type="Decimal" />
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+      <Parameter Name="PASS" Mode="In" Type="String" />
+      <Parameter Name="NUMMESA" Mode="In" Type="Decimal" />
+      <Parameter Name="NUMESTADO" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="MODIFICAR_EMPLEADO">
+      <Parameter Name="RUTT" Mode="In" Type="Decimal" />
+      <Parameter Name="NOM" Mode="In" Type="String" />
+      <Parameter Name="APAT" Mode="In" Type="String" />
+      <Parameter Name="AMAT" Mode="In" Type="String" />
+      <Parameter Name="FONO" Mode="In" Type="Decimal" />
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+      <Parameter Name="PASS" Mode="In" Type="String" />
+      <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+      <Parameter Name="TURNNO" Mode="In" Type="String" />
+      <Parameter Name="NUMLOCAL" Mode="In" Type="Decimal" />
+      <Parameter Name="CARGO" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="MODIFICAR_LOCAL">
+      <Parameter Name="NUMERO" Mode="In" Type="Decimal" />
+      <Parameter Name="CALLEL" Mode="In" Type="String" />
+      <Parameter Name="COMUNAN" Mode="In" Type="String" />
+      <Parameter Name="CIUDADD" Mode="In" Type="String" />
+      <Parameter Name="PAISS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LISTARESERVAS" />
   </EntityContainer>
   <Association Name="RESERVA_CLIENTE_FK">
     <End Type="Model.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
@@ -534,6 +592,61 @@
       </Principal>
       <Dependent Role="CLIENTE">
         <PropertyRef Name="ESTADO_CUENTA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ESTADO_MESA">
+    <Key>
+      <PropertyRef Name="ID_ESTADO" />
+    </Key>
+    <Property Name="ID_ESTADO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="ESTADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MESA" Relationship="Model.MESA_ESTADO_FK" FromRole="ESTADO_MESA" ToRole="MESA" />
+  </EntityType>
+  <EntityType Name="INGREDIENTE">
+    <Key>
+      <PropertyRef Name="ID_INGREDIENTE" />
+    </Key>
+    <Property Name="ID_INGREDIENTE" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PROVEEDOR_RUT_EMPRESA" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_INGREDIENTE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Model.INGREDIENTES_PROVEEDOR_FK1" FromRole="INGREDIENTE" ToRole="PROVEEDOR" />
+    <NavigationProperty Name="RECETA_INGREDIENTE" Relationship="Model.RECETA_INGREDIENTES_FK1" FromRole="INGREDIENTE" ToRole="RECETA_INGREDIENTE" />
+  </EntityType>
+  <Association Name="MESA_ESTADO_FK">
+    <End Type="Model.ESTADO_MESA" Role="ESTADO_MESA" Multiplicity="0..1" />
+    <End Type="Model.MESA" Role="MESA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_MESA">
+        <PropertyRef Name="ID_ESTADO" />
+      </Principal>
+      <Dependent Role="MESA">
+        <PropertyRef Name="ESTADO_MESA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INGREDIENTES_PROVEEDOR_FK1">
+    <End Type="Model.PROVEEDOR" Role="PROVEEDOR" Multiplicity="1" />
+    <End Type="Model.INGREDIENTE" Role="INGREDIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="RUT_EMPRESA" />
+      </Principal>
+      <Dependent Role="INGREDIENTE">
+        <PropertyRef Name="PROVEEDOR_RUT_EMPRESA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RECETA_INGREDIENTES_FK1">
+    <End Type="Model.INGREDIENTE" Role="INGREDIENTE" Multiplicity="1" />
+    <End Type="Model.RECETA_INGREDIENTE" Role="RECETA_INGREDIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INGREDIENTE">
+        <PropertyRef Name="ID_INGREDIENTE" />
+      </Principal>
+      <Dependent Role="RECETA_INGREDIENTE">
+        <PropertyRef Name="INGREDIENTES_ID_INGREDIENTE" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

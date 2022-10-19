@@ -16,7 +16,7 @@ namespace DigiEat.DALC
     {
         public PROVEEDOR()
         {
-            this.INGREDIENTES = new HashSet<INGREDIENTES>();
+            this.INGREDIENTE = new HashSet<INGREDIENTE>();
         }
     
         public decimal RUT_EMPRESA { get; set; }
@@ -26,6 +26,6 @@ namespace DigiEat.DALC
         public string DIRECCION_POSTAL { get; set; }
         public string SITIO_WEB { get; set; }
     
-        public virtual ICollection<INGREDIENTES> INGREDIENTES { get; set; }
+        public virtual ICollection<INGREDIENTE> INGREDIENTE { get; set; }
     }
 }

@@ -63,3 +63,4 @@ D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio
 D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CopyComplete
 D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
 D:\basededatos\Digieat2\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb
+C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\bin\Debug\Oracle.ManagedDataAccess.dll

@@ -5,14 +5,25 @@
 }
 
 <h2>Reserva</h2>
+@{
+    var cantidad = new List<SelectListItem>() {
+            new SelectListItem(){
+                    Text = "1",
+                    Value = "1"
+                },
+            new SelectListItem() {
+                Text = "2",
+                Value = "2",
+            }
+        };
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Reserva</h4>
-        <hr />
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.FECHA, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -32,16 +43,29 @@
         </div>
 
         <div class="form-group">
+            <br>
             @Html.LabelFor(model => model.CLIENTE_RUT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <p>Reserva.CLIENTE_RUT</p>
+            <br />
+
+            @Html.TextBoxFor(model => model.CLIENTE_RUT)
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            @Html.LabelFor(model => model.CANTIDAD_PERSONAS, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.CANTIDAD_PERSONAS,cantidad)
+        </div>
+
+
+
+        <div class="form-group">
+            @*<div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Aceptar" class="btn btn-primary" />
+                </div>*@
+
+            <button>Ingresar </button>
         </div>
     </div>
 }
+@TempData["mensaje"]
 
 <div>
     @Html.ActionLink("Back to List", "Index")

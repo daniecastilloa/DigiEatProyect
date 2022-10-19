@@ -34,7 +34,6 @@ namespace DigiEat.DALC
         public DbSet<CLIENTE> CLIENTE { get; set; }
         public DbSet<EMPLEADO> EMPLEADO { get; set; }
         public DbSet<ESTADO_ORDEN> ESTADO_ORDEN { get; set; }
-        public DbSet<INGREDIENTES> INGREDIENTES { get; set; }
         public DbSet<LOCAL> LOCAL { get; set; }
         public DbSet<MESA> MESA { get; set; }
         public DbSet<ORDEN> ORDEN { get; set; }
@@ -46,16 +45,18 @@ namespace DigiEat.DALC
         public DbSet<RESERVA> RESERVA { get; set; }
         public DbSet<TIPO_EMPLEADO> TIPO_EMPLEADO { get; set; }
         public DbSet<ESTADO_CUENTA> ESTADO_CUENTA { get; set; }
+        public DbSet<ESTADO_MESA> ESTADO_MESA { get; set; }
+        public DbSet<INGREDIENTE> INGREDIENTE { get; set; }
     
-        public virtual int CREATE_MESA(Nullable<decimal> nUMMESA, string eSTADMESA, Nullable<decimal> lOCALNUM)
+        public virtual int CREATE_MESA(Nullable<decimal> nUMMESA, Nullable<decimal> eSTADMESA, Nullable<decimal> lOCALNUM)
         {
             var nUMMESAParameter = nUMMESA.HasValue ?
                 new ObjectParameter("NUMMESA", nUMMESA) :
                 new ObjectParameter("NUMMESA", typeof(decimal));
     
-            var eSTADMESAParameter = eSTADMESA != null ?
+            var eSTADMESAParameter = eSTADMESA.HasValue ?
                 new ObjectParameter("ESTADMESA", eSTADMESA) :
-                new ObjectParameter("ESTADMESA", typeof(string));
+                new ObjectParameter("ESTADMESA", typeof(decimal));
     
             var lOCALNUMParameter = lOCALNUM.HasValue ?
                 new ObjectParameter("LOCALNUM", lOCALNUM) :
@@ -88,21 +89,338 @@ namespace DigiEat.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAPLATOS");
         }
     
-        public virtual int MODIFICAR_MESA(Nullable<decimal> nUMMESA, string eSTADMESA, Nullable<decimal> lOCALNUM)
+        public virtual int MODIFICAR_MESA(Nullable<decimal> nUMMESA, Nullable<decimal> eSTADMESA, Nullable<decimal> lOCALNUM)
         {
             var nUMMESAParameter = nUMMESA.HasValue ?
                 new ObjectParameter("NUMMESA", nUMMESA) :
                 new ObjectParameter("NUMMESA", typeof(decimal));
     
-            var eSTADMESAParameter = eSTADMESA != null ?
+            var eSTADMESAParameter = eSTADMESA.HasValue ?
                 new ObjectParameter("ESTADMESA", eSTADMESA) :
-                new ObjectParameter("ESTADMESA", typeof(string));
+                new ObjectParameter("ESTADMESA", typeof(decimal));
     
             var lOCALNUMParameter = lOCALNUM.HasValue ?
                 new ObjectParameter("LOCALNUM", lOCALNUM) :
                 new ObjectParameter("LOCALNUM", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_MESA", nUMMESAParameter, eSTADMESAParameter, lOCALNUMParameter);
+        }
+    
+        public virtual int CREATE_CLIENTE(Nullable<decimal> rUT, string nOMBRE, string aPELLIDO_PAT, string aPELLIDO_MAT, Nullable<decimal> tELEFONO, string cORREO, string cONTRASENA, Nullable<decimal> mESA_NUM_MESA, Nullable<decimal> eSTADO_CUENTA)
+        {
+            var rUTParameter = rUT.HasValue ?
+                new ObjectParameter("RUT", rUT) :
+                new ObjectParameter("RUT", typeof(decimal));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var aPELLIDO_PATParameter = aPELLIDO_PAT != null ?
+                new ObjectParameter("APELLIDO_PAT", aPELLIDO_PAT) :
+                new ObjectParameter("APELLIDO_PAT", typeof(string));
+    
+            var aPELLIDO_MATParameter = aPELLIDO_MAT != null ?
+                new ObjectParameter("APELLIDO_MAT", aPELLIDO_MAT) :
+                new ObjectParameter("APELLIDO_MAT", typeof(string));
+    
+            var tELEFONOParameter = tELEFONO.HasValue ?
+                new ObjectParameter("TELEFONO", tELEFONO) :
+                new ObjectParameter("TELEFONO", typeof(decimal));
+    
+            var cORREOParameter = cORREO != null ?
+                new ObjectParameter("CORREO", cORREO) :
+                new ObjectParameter("CORREO", typeof(string));
+    
+            var cONTRASENAParameter = cONTRASENA != null ?
+                new ObjectParameter("CONTRASENA", cONTRASENA) :
+                new ObjectParameter("CONTRASENA", typeof(string));
+    
+            var mESA_NUM_MESAParameter = mESA_NUM_MESA.HasValue ?
+                new ObjectParameter("MESA_NUM_MESA", mESA_NUM_MESA) :
+                new ObjectParameter("MESA_NUM_MESA", typeof(decimal));
+    
+            var eSTADO_CUENTAParameter = eSTADO_CUENTA.HasValue ?
+                new ObjectParameter("ESTADO_CUENTA", eSTADO_CUENTA) :
+                new ObjectParameter("ESTADO_CUENTA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_CLIENTE", rUTParameter, nOMBREParameter, aPELLIDO_PATParameter, aPELLIDO_MATParameter, tELEFONOParameter, cORREOParameter, cONTRASENAParameter, mESA_NUM_MESAParameter, eSTADO_CUENTAParameter);
+        }
+    
+        public virtual int CREATE_EMPLEADO(Nullable<decimal> rUT, string nOMBRE, string aPELLIDO_PAT, string aPELLIDO_MAT, Nullable<decimal> tELEFONO, string cORREO, string cONTRASENA, Nullable<System.DateTime> fECHA, string tURNO, Nullable<decimal> lOCALNUM, Nullable<decimal> cARGO)
+        {
+            var rUTParameter = rUT.HasValue ?
+                new ObjectParameter("RUT", rUT) :
+                new ObjectParameter("RUT", typeof(decimal));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var aPELLIDO_PATParameter = aPELLIDO_PAT != null ?
+                new ObjectParameter("APELLIDO_PAT", aPELLIDO_PAT) :
+                new ObjectParameter("APELLIDO_PAT", typeof(string));
+    
+            var aPELLIDO_MATParameter = aPELLIDO_MAT != null ?
+                new ObjectParameter("APELLIDO_MAT", aPELLIDO_MAT) :
+                new ObjectParameter("APELLIDO_MAT", typeof(string));
+    
+            var tELEFONOParameter = tELEFONO.HasValue ?
+                new ObjectParameter("TELEFONO", tELEFONO) :
+                new ObjectParameter("TELEFONO", typeof(decimal));
+    
+            var cORREOParameter = cORREO != null ?
+                new ObjectParameter("CORREO", cORREO) :
+                new ObjectParameter("CORREO", typeof(string));
+    
+            var cONTRASENAParameter = cONTRASENA != null ?
+                new ObjectParameter("CONTRASENA", cONTRASENA) :
+                new ObjectParameter("CONTRASENA", typeof(string));
+    
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            var tURNOParameter = tURNO != null ?
+                new ObjectParameter("TURNO", tURNO) :
+                new ObjectParameter("TURNO", typeof(string));
+    
+            var lOCALNUMParameter = lOCALNUM.HasValue ?
+                new ObjectParameter("LOCALNUM", lOCALNUM) :
+                new ObjectParameter("LOCALNUM", typeof(decimal));
+    
+            var cARGOParameter = cARGO.HasValue ?
+                new ObjectParameter("CARGO", cARGO) :
+                new ObjectParameter("CARGO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_EMPLEADO", rUTParameter, nOMBREParameter, aPELLIDO_PATParameter, aPELLIDO_MATParameter, tELEFONOParameter, cORREOParameter, cONTRASENAParameter, fECHAParameter, tURNOParameter, lOCALNUMParameter, cARGOParameter);
+        }
+    
+        public virtual int CREATE_LOCAL(Nullable<decimal> nUMERO, string cALLE, string cOMUNA, string cIUDAD, string pAIS)
+        {
+            var nUMEROParameter = nUMERO.HasValue ?
+                new ObjectParameter("NUMERO", nUMERO) :
+                new ObjectParameter("NUMERO", typeof(decimal));
+    
+            var cALLEParameter = cALLE != null ?
+                new ObjectParameter("CALLE", cALLE) :
+                new ObjectParameter("CALLE", typeof(string));
+    
+            var cOMUNAParameter = cOMUNA != null ?
+                new ObjectParameter("COMUNA", cOMUNA) :
+                new ObjectParameter("COMUNA", typeof(string));
+    
+            var cIUDADParameter = cIUDAD != null ?
+                new ObjectParameter("CIUDAD", cIUDAD) :
+                new ObjectParameter("CIUDAD", typeof(string));
+    
+            var pAISParameter = pAIS != null ?
+                new ObjectParameter("PAIS", pAIS) :
+                new ObjectParameter("PAIS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_LOCAL", nUMEROParameter, cALLEParameter, cOMUNAParameter, cIUDADParameter, pAISParameter);
+        }
+    
+        public virtual int CREATE_RESERVA(Nullable<decimal> nUMRESERVA, Nullable<System.DateTime> fECHA, string hORA, Nullable<decimal> cLIENTE_RUT, Nullable<decimal> cANTIDAD_PERSONAS)
+        {
+            var nUMRESERVAParameter = nUMRESERVA.HasValue ?
+                new ObjectParameter("NUMRESERVA", nUMRESERVA) :
+                new ObjectParameter("NUMRESERVA", typeof(decimal));
+    
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            var hORAParameter = hORA != null ?
+                new ObjectParameter("HORA", hORA) :
+                new ObjectParameter("HORA", typeof(string));
+    
+            var cLIENTE_RUTParameter = cLIENTE_RUT.HasValue ?
+                new ObjectParameter("CLIENTE_RUT", cLIENTE_RUT) :
+                new ObjectParameter("CLIENTE_RUT", typeof(decimal));
+    
+            var cANTIDAD_PERSONASParameter = cANTIDAD_PERSONAS.HasValue ?
+                new ObjectParameter("CANTIDAD_PERSONAS", cANTIDAD_PERSONAS) :
+                new ObjectParameter("CANTIDAD_PERSONAS", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_RESERVA", nUMRESERVAParameter, fECHAParameter, hORAParameter, cLIENTE_RUTParameter, cANTIDAD_PERSONASParameter);
+        }
+    
+        public virtual int DELETE_CLIENTE(Nullable<decimal> rUTVAR)
+        {
+            var rUTVARParameter = rUTVAR.HasValue ?
+                new ObjectParameter("RUTVAR", rUTVAR) :
+                new ObjectParameter("RUTVAR", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_CLIENTE", rUTVARParameter);
+        }
+    
+        public virtual int DELETE_EMPLEADO(Nullable<decimal> rUTVAR)
+        {
+            var rUTVARParameter = rUTVAR.HasValue ?
+                new ObjectParameter("RUTVAR", rUTVAR) :
+                new ObjectParameter("RUTVAR", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_EMPLEADO", rUTVARParameter);
+        }
+    
+        public virtual int DELETE_LOCAL(Nullable<decimal> nUMM)
+        {
+            var nUMMParameter = nUMM.HasValue ?
+                new ObjectParameter("NUMM", nUMM) :
+                new ObjectParameter("NUMM", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_LOCAL", nUMMParameter);
+        }
+    
+        public virtual int LISTACARGOS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTACARGOS");
+        }
+    
+        public virtual int LISTACLIENTES()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTACLIENTES");
+        }
+    
+        public virtual int LISTAEMPLEADOS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAEMPLEADOS");
+        }
+    
+        public virtual int LISTAESTADOSCUENTA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAESTADOSCUENTA");
+        }
+    
+        public virtual int LISTAESTADOSMESA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAESTADOSMESA");
+        }
+    
+        public virtual int LISTALOCALES()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTALOCALES");
+        }
+    
+        public virtual int MODIFICAR_CLIENTE(Nullable<decimal> rUTT, string nOM, string aPAT, string aMAT, Nullable<decimal> fONO, string eMAIL, string pASS, Nullable<decimal> nUMMESA, Nullable<decimal> nUMESTADO)
+        {
+            var rUTTParameter = rUTT.HasValue ?
+                new ObjectParameter("RUTT", rUTT) :
+                new ObjectParameter("RUTT", typeof(decimal));
+    
+            var nOMParameter = nOM != null ?
+                new ObjectParameter("NOM", nOM) :
+                new ObjectParameter("NOM", typeof(string));
+    
+            var aPATParameter = aPAT != null ?
+                new ObjectParameter("APAT", aPAT) :
+                new ObjectParameter("APAT", typeof(string));
+    
+            var aMATParameter = aMAT != null ?
+                new ObjectParameter("AMAT", aMAT) :
+                new ObjectParameter("AMAT", typeof(string));
+    
+            var fONOParameter = fONO.HasValue ?
+                new ObjectParameter("FONO", fONO) :
+                new ObjectParameter("FONO", typeof(decimal));
+    
+            var eMAILParameter = eMAIL != null ?
+                new ObjectParameter("EMAIL", eMAIL) :
+                new ObjectParameter("EMAIL", typeof(string));
+    
+            var pASSParameter = pASS != null ?
+                new ObjectParameter("PASS", pASS) :
+                new ObjectParameter("PASS", typeof(string));
+    
+            var nUMMESAParameter = nUMMESA.HasValue ?
+                new ObjectParameter("NUMMESA", nUMMESA) :
+                new ObjectParameter("NUMMESA", typeof(decimal));
+    
+            var nUMESTADOParameter = nUMESTADO.HasValue ?
+                new ObjectParameter("NUMESTADO", nUMESTADO) :
+                new ObjectParameter("NUMESTADO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_CLIENTE", rUTTParameter, nOMParameter, aPATParameter, aMATParameter, fONOParameter, eMAILParameter, pASSParameter, nUMMESAParameter, nUMESTADOParameter);
+        }
+    
+        public virtual int MODIFICAR_EMPLEADO(Nullable<decimal> rUTT, string nOM, string aPAT, string aMAT, Nullable<decimal> fONO, string eMAIL, string pASS, Nullable<System.DateTime> fECHA, string tURNNO, Nullable<decimal> nUMLOCAL, Nullable<decimal> cARGO)
+        {
+            var rUTTParameter = rUTT.HasValue ?
+                new ObjectParameter("RUTT", rUTT) :
+                new ObjectParameter("RUTT", typeof(decimal));
+    
+            var nOMParameter = nOM != null ?
+                new ObjectParameter("NOM", nOM) :
+                new ObjectParameter("NOM", typeof(string));
+    
+            var aPATParameter = aPAT != null ?
+                new ObjectParameter("APAT", aPAT) :
+                new ObjectParameter("APAT", typeof(string));
+    
+            var aMATParameter = aMAT != null ?
+                new ObjectParameter("AMAT", aMAT) :
+                new ObjectParameter("AMAT", typeof(string));
+    
+            var fONOParameter = fONO.HasValue ?
+                new ObjectParameter("FONO", fONO) :
+                new ObjectParameter("FONO", typeof(decimal));
+    
+            var eMAILParameter = eMAIL != null ?
+                new ObjectParameter("EMAIL", eMAIL) :
+                new ObjectParameter("EMAIL", typeof(string));
+    
+            var pASSParameter = pASS != null ?
+                new ObjectParameter("PASS", pASS) :
+                new ObjectParameter("PASS", typeof(string));
+    
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            var tURNNOParameter = tURNNO != null ?
+                new ObjectParameter("TURNNO", tURNNO) :
+                new ObjectParameter("TURNNO", typeof(string));
+    
+            var nUMLOCALParameter = nUMLOCAL.HasValue ?
+                new ObjectParameter("NUMLOCAL", nUMLOCAL) :
+                new ObjectParameter("NUMLOCAL", typeof(decimal));
+    
+            var cARGOParameter = cARGO.HasValue ?
+                new ObjectParameter("CARGO", cARGO) :
+                new ObjectParameter("CARGO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_EMPLEADO", rUTTParameter, nOMParameter, aPATParameter, aMATParameter, fONOParameter, eMAILParameter, pASSParameter, fECHAParameter, tURNNOParameter, nUMLOCALParameter, cARGOParameter);
+        }
+    
+        public virtual int MODIFICAR_LOCAL(Nullable<decimal> nUMERO, string cALLEL, string cOMUNAN, string cIUDADD, string pAISS)
+        {
+            var nUMEROParameter = nUMERO.HasValue ?
+                new ObjectParameter("NUMERO", nUMERO) :
+                new ObjectParameter("NUMERO", typeof(decimal));
+    
+            var cALLELParameter = cALLEL != null ?
+                new ObjectParameter("CALLEL", cALLEL) :
+                new ObjectParameter("CALLEL", typeof(string));
+    
+            var cOMUNANParameter = cOMUNAN != null ?
+                new ObjectParameter("COMUNAN", cOMUNAN) :
+                new ObjectParameter("COMUNAN", typeof(string));
+    
+            var cIUDADDParameter = cIUDADD != null ?
+                new ObjectParameter("CIUDADD", cIUDADD) :
+                new ObjectParameter("CIUDADD", typeof(string));
+    
+            var pAISSParameter = pAISS != null ?
+                new ObjectParameter("PAISS", pAISS) :
+                new ObjectParameter("PAISS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_LOCAL", nUMEROParameter, cALLELParameter, cOMUNANParameter, cIUDADDParameter, pAISSParameter);
+        }
+    
+        public virtual int LISTARESERVAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTARESERVAS");
         }
     }
 }

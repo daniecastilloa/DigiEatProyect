@@ -19,7 +19,7 @@ namespace DigiEat.DALC
         public decimal RECETA_ID_RECETA { get; set; }
         public decimal INGREDIENTES_ID_INGREDIENTE { get; set; }
     
-        public virtual INGREDIENTES INGREDIENTES { get; set; }
         public virtual RECETA RECETA { get; set; }
+        public virtual INGREDIENTE INGREDIENTE { get; set; }
     }
 }

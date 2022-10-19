@@ -18,6 +18,7 @@ namespace DigiEat.DALC
         public Nullable<System.DateTime> FECHA { get; set; }
         public string HORA { get; set; }
         public Nullable<decimal> CLIENTE_RUT { get; set; }
+        public Nullable<decimal> CANTIDAD_PERSONAS { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
     }

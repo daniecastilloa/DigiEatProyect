@@ -75,15 +75,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="INGREDIENTES">
-      <EntityTypeMapping TypeName="Model.INGREDIENTES">
-        <MappingFragment StoreEntitySet="INGREDIENTES">
-          <ScalarProperty Name="ID_INGREDIENTE" ColumnName="ID_INGREDIENTE" />
-          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-          <ScalarProperty Name="PROVEEDOR_RUT_EMPRESA" ColumnName="PROVEEDOR_RUT_EMPRESA" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LOCAL">
       <EntityTypeMapping TypeName="Model.LOCAL">
         <MappingFragment StoreEntitySet="LOCAL">
@@ -172,6 +163,7 @@
     <EntitySetMapping Name="RESERVA">
       <EntityTypeMapping TypeName="Model.RESERVA">
         <MappingFragment StoreEntitySet="RESERVA">
+          <ScalarProperty Name="CANTIDAD_PERSONAS" ColumnName="CANTIDAD_PERSONAS" />
           <ScalarProperty Name="CLIENTE_RUT" ColumnName="CLIENTE_RUT" />
           <ScalarProperty Name="NUM_RESERVA" ColumnName="NUM_RESERVA" />
           <ScalarProperty Name="FECHA" ColumnName="FECHA" />
@@ -201,5 +193,40 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO_MESA">
+      <EntityTypeMapping TypeName="Model.ESTADO_MESA">
+        <MappingFragment StoreEntitySet="ESTADO_MESA">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INGREDIENTE">
+      <EntityTypeMapping TypeName="Model.INGREDIENTE">
+        <MappingFragment StoreEntitySet="INGREDIENTE">
+          <ScalarProperty Name="NOMBRE_INGREDIENTE" ColumnName="NOMBRE_INGREDIENTE" />
+          <ScalarProperty Name="PROVEEDOR_RUT_EMPRESA" ColumnName="PROVEEDOR_RUT_EMPRESA" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="ID_INGREDIENTE" ColumnName="ID_INGREDIENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CREATE_CLIENTE" FunctionName="Model.Store.CREATE_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="CREATE_EMPLEADO" FunctionName="Model.Store.CREATE_EMPLEADO" />
+    <FunctionImportMapping FunctionImportName="CREATE_LOCAL" FunctionName="Model.Store.CREATE_LOCAL" />
+    <FunctionImportMapping FunctionImportName="CREATE_RESERVA" FunctionName="Model.Store.CREATE_RESERVA" />
+    <FunctionImportMapping FunctionImportName="DELETE_CLIENTE" FunctionName="Model.Store.DELETE_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="DELETE_EMPLEADO" FunctionName="Model.Store.DELETE_EMPLEADO" />
+    <FunctionImportMapping FunctionImportName="DELETE_LOCAL" FunctionName="Model.Store.DELETE_LOCAL" />
+    <FunctionImportMapping FunctionImportName="LISTACARGOS" FunctionName="Model.Store.LISTACARGOS" />
+    <FunctionImportMapping FunctionImportName="LISTACLIENTES" FunctionName="Model.Store.LISTACLIENTES" />
+    <FunctionImportMapping FunctionImportName="LISTAEMPLEADOS" FunctionName="Model.Store.LISTAEMPLEADOS" />
+    <FunctionImportMapping FunctionImportName="LISTAESTADOSCUENTA" FunctionName="Model.Store.LISTAESTADOSCUENTA" />
+    <FunctionImportMapping FunctionImportName="LISTAESTADOSMESA" FunctionName="Model.Store.LISTAESTADOSMESA" />
+    <FunctionImportMapping FunctionImportName="LISTALOCALES" FunctionName="Model.Store.LISTALOCALES" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_CLIENTE" FunctionName="Model.Store.MODIFICAR_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_EMPLEADO" FunctionName="Model.Store.MODIFICAR_EMPLEADO" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_LOCAL" FunctionName="Model.Store.MODIFICAR_LOCAL" />
+    <FunctionImportMapping FunctionImportName="LISTARESERVAS" FunctionName="Model.Store.LISTARESERVAS" />
   </EntityContainerMapping>
 </Mapping>

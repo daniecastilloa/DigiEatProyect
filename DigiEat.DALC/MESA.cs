@@ -21,11 +21,12 @@ namespace DigiEat.DALC
         }
     
         public decimal NUM_MESA { get; set; }
-        public string ESTADO_MESA { get; set; }
+        public Nullable<decimal> ESTADO_MESA { get; set; }
         public decimal LOCAL_NUMERO_LOCAL { get; set; }
     
         public virtual ICollection<CLIENTE> CLIENTE { get; set; }
         public virtual LOCAL LOCAL { get; set; }
         public virtual ICollection<ORDEN> ORDEN { get; set; }
+        public virtual ESTADO_MESA ESTADO_MESA1 { get; set; }
     }
 }
