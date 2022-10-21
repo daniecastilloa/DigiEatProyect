@@ -106,6 +106,7 @@ namespace DigiEat.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_MESA", nUMMESAParameter, eSTADMESAParameter, lOCALNUMParameter);
         }
     
+<<<<<<< HEAD
         public virtual int CREATE_CLIENTE(Nullable<decimal> rUT, string nOMBRE, string aPELLIDO_PAT, string aPELLIDO_MAT, Nullable<decimal> tELEFONO, string cORREO, string cONTRASENA, Nullable<decimal> mESA_NUM_MESA, Nullable<decimal> eSTADO_CUENTA)
         {
             var rUTParameter = rUT.HasValue ?
@@ -221,6 +222,8 @@ namespace DigiEat.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_LOCAL", nUMEROParameter, cALLEParameter, cOMUNAParameter, cIUDADParameter, pAISParameter);
         }
     
+=======
+>>>>>>> c8348b142b7c752451524c335e237f18cc2eae69
         public virtual int CREATE_RESERVA(Nullable<decimal> nUMRESERVA, Nullable<System.DateTime> fECHA, string hORA, Nullable<decimal> cLIENTE_RUT, Nullable<decimal> cANTIDAD_PERSONAS)
         {
             var nUMRESERVAParameter = nUMRESERVA.HasValue ?
@@ -245,6 +248,7 @@ namespace DigiEat.DALC
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_RESERVA", nUMRESERVAParameter, fECHAParameter, hORAParameter, cLIENTE_RUTParameter, cANTIDAD_PERSONASParameter);
         }
+<<<<<<< HEAD
     
         public virtual int DELETE_CLIENTE(Nullable<decimal> rUTVAR)
         {
@@ -422,5 +426,7 @@ namespace DigiEat.DALC
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTARESERVAS");
         }
+=======
+>>>>>>> c8348b142b7c752451524c335e237f18cc2eae69
     }
 }

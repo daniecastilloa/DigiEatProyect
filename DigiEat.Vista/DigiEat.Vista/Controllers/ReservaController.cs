@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using Digieat.Negocio;
+
+
 
 namespace DigiEat.Vista.Controllers
 {
@@ -12,6 +16,7 @@ namespace DigiEat.Vista.Controllers
         // GET: Reserva
         public ActionResult Reserva()
         {
+            
             return View();
         }
 
@@ -22,6 +27,7 @@ namespace DigiEat.Vista.Controllers
         }
 
         // GET: Reserva/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -92,5 +98,6 @@ namespace DigiEat.Vista.Controllers
                 return View();
             }
         }
+
     }
 }
