@@ -462,7 +462,7 @@
           <Parameter Name="CLIENTE_RUT" Type="number" Mode="In" />
           <Parameter Name="CANTIDAD_PERSONAS" Type="number" Mode="In" />
         </Function>
-<<<<<<< HEAD
+
         <Function Name="DELETE_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="RUTVAR" Type="number" Mode="In" />
         </Function>
@@ -472,8 +472,7 @@
         <Function Name="DELETE_LOCAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMM" Type="number" Mode="In" />
         </Function>
-=======
->>>>>>> c8348b142b7c752451524c335e237f18cc2eae69
+
         <Function Name="DELETE_MESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMMESA" Type="number" Mode="In" />
         </Function>
@@ -1089,7 +1088,7 @@
             <End Role="ESTADO_CUENTA" EntitySet="ESTADO_CUENTA" />
             <End Role="CLIENTE" EntitySet="CLIENTE" />
           </AssociationSet>
-<<<<<<< HEAD
+
           <EntitySet Name="ESTADO_MESA" EntityType="Model.ESTADO_MESA" />
           <EntitySet Name="INGREDIENTE" EntityType="Model.INGREDIENTE" />
           <AssociationSet Name="MESA_ESTADO_FK" Association="Model.MESA_ESTADO_FK">
@@ -1135,8 +1134,7 @@
             <Parameter Name="CIUDAD" Mode="In" Type="String" />
             <Parameter Name="PAIS" Mode="In" Type="String" />
           </FunctionImport>
-=======
->>>>>>> c8348b142b7c752451524c335e237f18cc2eae69
+
           <FunctionImport Name="CREATE_RESERVA">
             <Parameter Name="NUMRESERVA" Mode="In" Type="Decimal" />
             <Parameter Name="FECHA" Mode="In" Type="DateTime" />
@@ -1144,7 +1142,7 @@
             <Parameter Name="CLIENTE_RUT" Mode="In" Type="Decimal" />
             <Parameter Name="CANTIDAD_PERSONAS" Mode="In" Type="Decimal" />
           </FunctionImport>
-<<<<<<< HEAD
+
           <FunctionImport Name="DELETE_CLIENTE">
           <Parameter Name="RUTVAR" Mode="In" Type="Decimal" />
           </FunctionImport>
@@ -1192,8 +1190,7 @@
             <Parameter Name="PAISS" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LISTARESERVAS" />
-=======
->>>>>>> c8348b142b7c752451524c335e237f18cc2eae69
+
         </EntityContainer>
         <Association Name="RESERVA_CLIENTE_FK">
           <End Type="Model.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
@@ -1480,7 +1477,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-<<<<<<< HEAD
+
           <EntitySetMapping Name="ESTADO_MESA">
             <EntityTypeMapping TypeName="Model.ESTADO_MESA">
               <MappingFragment StoreEntitySet="ESTADO_MESA">
@@ -1516,9 +1513,9 @@
           <FunctionImportMapping FunctionImportName="MODIFICAR_EMPLEADO" FunctionName="Model.Store.MODIFICAR_EMPLEADO" />
           <FunctionImportMapping FunctionImportName="MODIFICAR_LOCAL" FunctionName="Model.Store.MODIFICAR_LOCAL" />
           <FunctionImportMapping FunctionImportName="LISTARESERVAS" FunctionName="Model.Store.LISTARESERVAS" />
-=======
-          <FunctionImportMapping FunctionImportName="CREATE_RESERVA" FunctionName="Model.Store.CREATE_RESERVA" />
->>>>>>> c8348b142b7c752451524c335e237f18cc2eae69
+
+          
+
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

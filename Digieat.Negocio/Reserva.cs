@@ -9,7 +9,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DigiEat.DALC;
 
 namespace Digieat.Negocio
 {
@@ -29,7 +28,7 @@ namespace Digieat.Negocio
 		[DisplayName("Rut del Cliente")]
 		public decimal CLIENTE_RUT { get; set; }
 
-<<<<<<< HEAD
+
         [DisplayName("Ingrese la cantidad de personas")]
         public decimal CANTIDAD_PERSONAS { get; set; }
 		public virtual Cliente Cliente { get; set; } // Se supone que con esto le indico qué usuario dio de baja la reserva
@@ -90,27 +89,5 @@ namespace Digieat.Negocio
 
 		}
 
-
-
-=======
-		public decimal CANTIDAD_PERSONAS { get; set; }
-		public virtual Cliente Cliente { get; set; } // Se supone que con esto le indico qué usuario dio de baja la reserva
-
-		Entities db = new Entities();
-		public bool CrearReserva()
-		{
-			try
-			{
-				db.CREATE_RESERVA(this.NUM_RESERVA, this.FECHA, this.HORA, this.CLIENTE_RUT,  this.CANTIDAD_PERSONAS);
-				return true;
-			}
-			catch (Exception c)
-			{
-				return false;
-			}
-
-		}
-
->>>>>>> c8348b142b7c752451524c335e237f18cc2eae69
 	}
 }
