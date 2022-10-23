@@ -13,7 +13,6 @@ C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.d
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\bin\Debug\DigiEat.DALC.pdb
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\bin\Debug\EntityFramework.dll
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\bin\Debug\EntityFramework.xml
-C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.AssemblyReference.cache
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CoreCompileInputs.cache
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CopyComplete
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.dll

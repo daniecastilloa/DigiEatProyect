@@ -125,3 +125,4 @@ C:\DigiEatRepo\DigiEatProyect\DigiEat.Vista\DigiEat.Vista.Tests\obj\Debug\DigiEa
 C:\DigiEatRepo\DigiEatProyect\DigiEat.Vista\DigiEat.Vista.Tests\obj\Debug\DigiEat.Vista.Tests.dll
 C:\DigiEatRepo\DigiEatProyect\DigiEat.Vista\DigiEat.Vista.Tests\obj\Debug\DigiEat.Vista.Tests.pdb
 C:\DigiEatRepo\DigiEatProyect\DigiEat.Vista\DigiEat.Vista.Tests\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\matia\source\repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista.Tests\bin\Debug\Oracle.ManagedDataAccess.dll
