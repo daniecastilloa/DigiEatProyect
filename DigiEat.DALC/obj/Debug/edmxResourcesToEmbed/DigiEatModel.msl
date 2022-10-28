@@ -204,6 +204,7 @@
     <EntitySetMapping Name="INGREDIENTE">
       <EntityTypeMapping TypeName="Model.INGREDIENTE">
         <MappingFragment StoreEntitySet="INGREDIENTE">
+          <ScalarProperty Name="INGREDIENTE_NUM_BODEGA" ColumnName="INGREDIENTE_NUM_BODEGA" />
           <ScalarProperty Name="NOMBRE_INGREDIENTE" ColumnName="NOMBRE_INGREDIENTE" />
           <ScalarProperty Name="PROVEEDOR_RUT_EMPRESA" ColumnName="PROVEEDOR_RUT_EMPRESA" />
           <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
@@ -228,5 +229,18 @@
     <FunctionImportMapping FunctionImportName="MODIFICAR_EMPLEADO" FunctionName="Model.Store.MODIFICAR_EMPLEADO" />
     <FunctionImportMapping FunctionImportName="MODIFICAR_LOCAL" FunctionName="Model.Store.MODIFICAR_LOCAL" />
     <FunctionImportMapping FunctionImportName="LISTARESERVAS" FunctionName="Model.Store.LISTARESERVAS" />
+    <FunctionImportMapping FunctionImportName="CREATE_BODEGA" FunctionName="Model.Store.CREATE_BODEGA" />
+    <FunctionImportMapping FunctionImportName="CREATE_INGREDIENTE" FunctionName="Model.Store.CREATE_INGREDIENTE" />
+    <FunctionImportMapping FunctionImportName="CREATE_PROVEEDOR" FunctionName="Model.Store.CREATE_PROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="DELETE_BODEGA" FunctionName="Model.Store.DELETE_BODEGA" />
+    <FunctionImportMapping FunctionImportName="DELETE_INGREDIENTE" FunctionName="Model.Store.DELETE_INGREDIENTE" />
+    <FunctionImportMapping FunctionImportName="DELETE_PROVEEDOR" FunctionName="Model.Store.DELETE_PROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="LISTABODEGA" FunctionName="Model.Store.LISTABODEGA" />
+    <FunctionImportMapping FunctionImportName="LISTAINVENTARIO" FunctionName="Model.Store.LISTAINVENTARIO" />
+    <FunctionImportMapping FunctionImportName="LISTAPROVEEDOR" FunctionName="Model.Store.LISTAPROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_BODEGA" FunctionName="Model.Store.MODIFICAR_BODEGA" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_INGREDIENTE" FunctionName="Model.Store.MODIFICAR_INGREDIENTE" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_PROVEEDOR" FunctionName="Model.Store.MODIFICAR_PROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="ROL" FunctionName="Model.Store.ROL" />
   </EntityContainerMapping>
 </Mapping>

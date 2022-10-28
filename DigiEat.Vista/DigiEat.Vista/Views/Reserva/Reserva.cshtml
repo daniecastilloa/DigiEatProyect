@@ -25,7 +25,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.FECHA, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -53,7 +53,7 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CANTIDAD_PERSONAS, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.DropDownListFor(model => model.CANTIDAD_PERSONAS,cantidad)
+            @Html.DropDownListFor(model => model.CANTIDAD_PERSONAS, cantidad)
         </div>
 
         <div class="form-group">
@@ -67,7 +67,7 @@
         </div>
     </div>
 }
-@TempData["mensaje"]
+@Html.Raw(TempData["msg"])
 
 <div>
     @Html.ActionLink("Back to List", "Index")

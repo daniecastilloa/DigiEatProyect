@@ -46,3 +46,4 @@ D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.cspro
 D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.CopyComplete
 D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.dll
 D:\basededatos\Digieat2\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.pdb
+C:\DigiEatRepo\DigiEatProyect\DigiEat.DALC\obj\Debug\DigiEat.DALC.csproj.AssemblyReference.cache

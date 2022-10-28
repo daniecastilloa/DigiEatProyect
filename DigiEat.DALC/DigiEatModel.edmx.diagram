@@ -43,6 +43,7 @@
         <AssociationConnector Association="Model.MESA_ESTADO_FK" />
         <AssociationConnector Association="Model.INGREDIENTES_PROVEEDOR_FK1" />
         <AssociationConnector Association="Model.RECETA_INGREDIENTES_FK1" />
+        <AssociationConnector Association="Model.INGREDIENTES_BODEGA_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

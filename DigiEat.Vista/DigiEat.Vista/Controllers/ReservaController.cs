@@ -42,14 +42,15 @@ namespace DigiEat.Vista.Controllers
 
                 if(reserva.AgregarReserva())
                 {
-                    TempData["mensaje"] = "Reserva creada exitosamente";
                    
+                    TempData["msg"] = "<script>alert('Reserva creada exitosamente');</script>";
+
                 }
                 return RedirectToAction("Reserva");
             }
             catch
             {
-                TempData["mensaje"] = "No se pudo crear reserva";
+               
                 return View(reserva);
             }
         }

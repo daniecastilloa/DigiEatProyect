@@ -18,6 +18,7 @@
     <Property Name="NUM_BODEGA" Type="Decimal" Nullable="false" />
     <Property Name="UBICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="RECETA" Relationship="Self.RECETA_BODEGA_FK" FromRole="BODEGA" ToRole="RECETA" />
+    <NavigationProperty Name="INGREDIENTE" Relationship="Model.INGREDIENTES_BODEGA_FK" FromRole="BODEGA" ToRole="INGREDIENTE" />
   </EntityType>
   <EntityType Name="CAJA_FACTURA">
     <Key>
@@ -172,7 +173,7 @@
       <PropertyRef Name="ID_RI" />
     </Key>
     <Property Name="ID_RI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="CANTIDAD_REQ" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CANTIDAD_REQ" Type="String" />
     <Property Name="RECETA_ID_RECETA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="INGREDIENTES_ID_INGREDIENTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <NavigationProperty Name="RECETA" Relationship="Self.RECETA_INGREDIENTE_RECETA_FK" FromRole="RECETA_INGREDIENTE" ToRole="RECETA" />
@@ -562,6 +563,64 @@
       <Parameter Name="PAISS" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="LISTARESERVAS" />
+    <AssociationSet Name="INGREDIENTES_BODEGA_FK" Association="Model.INGREDIENTES_BODEGA_FK">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="INGREDIENTE" EntitySet="INGREDIENTE" />
+    </AssociationSet>
+    <FunctionImport Name="CREATE_BODEGA">
+      <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+      <Parameter Name="UBICACION" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CREATE_INGREDIENTE">
+      <Parameter Name="IDINGREDIENTE" Mode="In" Type="Decimal" />
+      <Parameter Name="STOCK" Mode="In" Type="Decimal" />
+      <Parameter Name="RUT" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMBRE" Mode="In" Type="String" />
+      <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="CREATE_PROVEEDOR">
+      <Parameter Name="RUTEMPRE" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMB" Mode="In" Type="String" />
+      <Parameter Name="CORREO" Mode="In" Type="String" />
+      <Parameter Name="TELEFONO" Mode="In" Type="Decimal" />
+      <Parameter Name="POSTAL" Mode="In" Type="String" />
+      <Parameter Name="SITIOWEB" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DELETE_BODEGA">
+      <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="DELETE_INGREDIENTE">
+      <Parameter Name="NUMM" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="DELETE_PROVEEDOR">
+      <Parameter Name="RUTVAR" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="LISTABODEGA" />
+    <FunctionImport Name="LISTAINVENTARIO" />
+    <FunctionImport Name="LISTAPROVEEDOR" />
+    <FunctionImport Name="MODIFICAR_BODEGA">
+      <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+      <Parameter Name="UBICACIONN" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MODIFICAR_INGREDIENTE">
+      <Parameter Name="IDINGREDIENTE" Mode="In" Type="Decimal" />
+      <Parameter Name="STOCK" Mode="In" Type="Decimal" />
+      <Parameter Name="RUT" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMBRE" Mode="In" Type="String" />
+      <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="MODIFICAR_PROVEEDOR">
+      <Parameter Name="RUTEMPRE" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMB" Mode="In" Type="String" />
+      <Parameter Name="CORRREO" Mode="In" Type="String" />
+      <Parameter Name="FONO" Mode="In" Type="Decimal" />
+      <Parameter Name="POSTAL" Mode="In" Type="String" />
+      <Parameter Name="SITIOWEB" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ROL">
+      <Parameter Name="VARCORREO" Mode="In" Type="String" />
+      <Parameter Name="ROLNUM" Mode="Out" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <Association Name="RESERVA_CLIENTE_FK">
     <End Type="Model.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
@@ -613,6 +672,8 @@
     <Property Name="NOMBRE_INGREDIENTE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PROVEEDOR" Relationship="Model.INGREDIENTES_PROVEEDOR_FK1" FromRole="INGREDIENTE" ToRole="PROVEEDOR" />
     <NavigationProperty Name="RECETA_INGREDIENTE" Relationship="Model.RECETA_INGREDIENTES_FK1" FromRole="INGREDIENTE" ToRole="RECETA_INGREDIENTE" />
+    <Property Name="INGREDIENTE_NUM_BODEGA" Type="Decimal" Precision="38" Scale="0" />
+    <NavigationProperty Name="BODEGA" Relationship="Model.INGREDIENTES_BODEGA_FK" FromRole="INGREDIENTE" ToRole="BODEGA" />
   </EntityType>
   <Association Name="MESA_ESTADO_FK">
     <End Type="Model.ESTADO_MESA" Role="ESTADO_MESA" Multiplicity="0..1" />
@@ -647,6 +708,18 @@
       </Principal>
       <Dependent Role="RECETA_INGREDIENTE">
         <PropertyRef Name="INGREDIENTES_ID_INGREDIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INGREDIENTES_BODEGA_FK">
+    <End Type="Model.BODEGA" Role="BODEGA" Multiplicity="0..1" />
+    <End Type="Model.INGREDIENTE" Role="INGREDIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="NUM_BODEGA" />
+      </Principal>
+      <Dependent Role="INGREDIENTE">
+        <PropertyRef Name="INGREDIENTE_NUM_BODEGA" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

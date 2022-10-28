@@ -77,7 +77,10 @@ namespace Digieat.Negocio
 
         public bool AgregarReserva()
 		{
-			try
+            Random randomnumber = new Random();
+            this.NUM_RESERVA = randomnumber.Next(100000, 999999);
+
+            try
 			{
 				db.CREATE_RESERVA(this.NUM_RESERVA, this.FECHA, this.HORA, this.CLIENTE_RUT, this.CANTIDAD_PERSONAS);
 				return true;

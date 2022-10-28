@@ -96,6 +96,7 @@
           <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" />
           <Property Name="PROVEEDOR_RUT_EMPRESA" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE_INGREDIENTE" Type="varchar2" MaxLength="30" />
+          <Property Name="INGREDIENTE_NUM_BODEGA" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="LOCAL">
           <Key>
@@ -170,7 +171,7 @@
             <PropertyRef Name="ID_RI" />
           </Key>
           <Property Name="ID_RI" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="CANTIDAD_REQ" Type="number" Precision="38" Scale="0" />
+          <Property Name="CANTIDAD_REQ" Type="varchar2" MaxLength="100" />
           <Property Name="RECETA_ID_RECETA" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="INGREDIENTES_ID_INGREDIENTE" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
@@ -248,6 +249,18 @@
             </Principal>
             <Dependent Role="EMPLEADO">
               <PropertyRef Name="TIPO_EMPLEADO_ID_CARGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENTES_BODEGA_FK">
+          <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="0..1" />
+          <End Role="INGREDIENTE" Type="Self.INGREDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BODEGA">
+              <PropertyRef Name="NUM_BODEGA" />
+            </Principal>
+            <Dependent Role="INGREDIENTE">
+              <PropertyRef Name="INGREDIENTE_NUM_BODEGA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -419,6 +432,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="CREATE_BODEGA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="NUMBODEGA" Type="number" Mode="In" />
+          <Parameter Name="UBICACION" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="CREATE_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="RUT" Type="number" Mode="In" />
           <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
@@ -443,6 +460,13 @@
           <Parameter Name="LOCALNUM" Type="number" Mode="In" />
           <Parameter Name="CARGO" Type="number" Mode="In" />
         </Function>
+        <Function Name="CREATE_INGREDIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="IDINGREDIENTE" Type="number" Mode="In" />
+          <Parameter Name="STOCK" Type="number" Mode="In" />
+          <Parameter Name="RUT" Type="number" Mode="In" />
+          <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="NUMBODEGA" Type="number" Mode="In" />
+        </Function>
         <Function Name="CREATE_LOCAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMERO" Type="number" Mode="In" />
           <Parameter Name="CALLE" Type="varchar2" Mode="In" />
@@ -455,6 +479,14 @@
           <Parameter Name="ESTADMESA" Type="number" Mode="In" />
           <Parameter Name="LOCALNUM" Type="number" Mode="In" />
         </Function>
+        <Function Name="CREATE_PROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="RUTEMPRE" Type="number" Mode="In" />
+          <Parameter Name="NOMB" Type="varchar2" Mode="In" />
+          <Parameter Name="CORREO" Type="varchar2" Mode="In" />
+          <Parameter Name="TELEFONO" Type="number" Mode="In" />
+          <Parameter Name="POSTAL" Type="varchar2" Mode="In" />
+          <Parameter Name="SITIOWEB" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="CREATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMRESERVA" Type="number" Mode="In" />
           <Parameter Name="FECHA" Type="date" Mode="In" />
@@ -462,30 +494,44 @@
           <Parameter Name="CLIENTE_RUT" Type="number" Mode="In" />
           <Parameter Name="CANTIDAD_PERSONAS" Type="number" Mode="In" />
         </Function>
-
+        <Function Name="DELETE_BODEGA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="NUMBODEGA" Type="number" Mode="In" />
+        </Function>
         <Function Name="DELETE_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="RUTVAR" Type="number" Mode="In" />
         </Function>
         <Function Name="DELETE_EMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="RUTVAR" Type="number" Mode="In" />
         </Function>
+        <Function Name="DELETE_INGREDIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="NUMM" Type="number" Mode="In" />
+        </Function>
         <Function Name="DELETE_LOCAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMM" Type="number" Mode="In" />
         </Function>
-
         <Function Name="DELETE_MESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMMESA" Type="number" Mode="In" />
         </Function>
+        <Function Name="DELETE_PROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="RUTVAR" Type="number" Mode="In" />
+        </Function>
         <Function Name="LISTABEBIDAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+        <Function Name="LISTABODEGA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTACARGOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTACLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAEMPLEADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAESTADOSCUENTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAESTADOSMESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+        <Function Name="LISTAINVENTARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTALOCALES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAMESAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAPLATOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+        <Function Name="LISTAPROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTARESERVAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+        <Function Name="MODIFICAR_BODEGA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="NUMBODEGA" Type="number" Mode="In" />
+          <Parameter Name="UBICACIONN" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="MODIFICAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="RUTT" Type="number" Mode="In" />
           <Parameter Name="NOM" Type="varchar2" Mode="In" />
@@ -510,6 +556,13 @@
           <Parameter Name="NUMLOCAL" Type="number" Mode="In" />
           <Parameter Name="CARGO" Type="number" Mode="In" />
         </Function>
+        <Function Name="MODIFICAR_INGREDIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="IDINGREDIENTE" Type="number" Mode="In" />
+          <Parameter Name="STOCK" Type="number" Mode="In" />
+          <Parameter Name="RUT" Type="number" Mode="In" />
+          <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="NUMBODEGA" Type="number" Mode="In" />
+        </Function>
         <Function Name="MODIFICAR_LOCAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMERO" Type="number" Mode="In" />
           <Parameter Name="CALLEL" Type="varchar2" Mode="In" />
@@ -521,6 +574,18 @@
           <Parameter Name="NUMMESA" Type="number" Mode="In" />
           <Parameter Name="ESTADMESA" Type="number" Mode="In" />
           <Parameter Name="LOCALNUM" Type="number" Mode="In" />
+        </Function>
+        <Function Name="MODIFICAR_PROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="RUTEMPRE" Type="number" Mode="In" />
+          <Parameter Name="NOMB" Type="varchar2" Mode="In" />
+          <Parameter Name="CORRREO" Type="varchar2" Mode="In" />
+          <Parameter Name="FONO" Type="number" Mode="In" />
+          <Parameter Name="POSTAL" Type="varchar2" Mode="In" />
+          <Parameter Name="SITIOWEB" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="VARCORREO" Type="varchar2" Mode="In" />
+          <Parameter Name="ROLNUM" Type="number" Mode="Out" />
         </Function>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="BEBIDA_BAR" EntityType="Self.BEBIDA_BAR" Schema="DIGIEATDB" store:Type="Tables" />
@@ -561,6 +626,10 @@
           <AssociationSet Name="EMPLEADO_TIPO_EMPLEADO_FK" Association="Self.EMPLEADO_TIPO_EMPLEADO_FK">
             <End Role="TIPO_EMPLEADO" EntitySet="TIPO_EMPLEADO" />
             <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENTES_BODEGA_FK" Association="Self.INGREDIENTES_BODEGA_FK">
+            <End Role="BODEGA" EntitySet="BODEGA" />
+            <End Role="INGREDIENTE" EntitySet="INGREDIENTE" />
           </AssociationSet>
           <AssociationSet Name="INGREDIENTES_PROVEEDOR_FK" Association="Self.INGREDIENTES_PROVEEDOR_FK">
             <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
@@ -641,6 +710,7 @@
           <Property Name="NUM_BODEGA" Type="Decimal" Nullable="false" />
           <Property Name="UBICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RECETA" Relationship="Self.RECETA_BODEGA_FK" FromRole="BODEGA" ToRole="RECETA" />
+          <NavigationProperty Name="INGREDIENTE" Relationship="Model.INGREDIENTES_BODEGA_FK" FromRole="BODEGA" ToRole="INGREDIENTE" />
         </EntityType>
         <EntityType Name="CAJA_FACTURA">
           <Key>
@@ -797,7 +867,7 @@
             <PropertyRef Name="ID_RI" />
           </Key>
           <Property Name="ID_RI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="CANTIDAD_REQ" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CANTIDAD_REQ" Type="String" />
           <Property Name="RECETA_ID_RECETA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="INGREDIENTES_ID_INGREDIENTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="RECETA" Relationship="Self.RECETA_INGREDIENTE_RECETA_FK" FromRole="RECETA_INGREDIENTE" ToRole="RECETA" />
@@ -1190,6 +1260,64 @@
             <Parameter Name="PAISS" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LISTARESERVAS" />
+          <AssociationSet Name="INGREDIENTES_BODEGA_FK" Association="Model.INGREDIENTES_BODEGA_FK">
+            <End Role="BODEGA" EntitySet="BODEGA" />
+            <End Role="INGREDIENTE" EntitySet="INGREDIENTE" />
+          </AssociationSet>
+          <FunctionImport Name="CREATE_BODEGA">
+            <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+            <Parameter Name="UBICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CREATE_INGREDIENTE">
+            <Parameter Name="IDINGREDIENTE" Mode="In" Type="Decimal" />
+            <Parameter Name="STOCK" Mode="In" Type="Decimal" />
+            <Parameter Name="RUT" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="CREATE_PROVEEDOR">
+            <Parameter Name="RUTEMPRE" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMB" Mode="In" Type="String" />
+            <Parameter Name="CORREO" Mode="In" Type="String" />
+            <Parameter Name="TELEFONO" Mode="In" Type="Decimal" />
+            <Parameter Name="POSTAL" Mode="In" Type="String" />
+            <Parameter Name="SITIOWEB" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_BODEGA">
+            <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_INGREDIENTE">
+            <Parameter Name="NUMM" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_PROVEEDOR">
+            <Parameter Name="RUTVAR" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="LISTABODEGA" />
+          <FunctionImport Name="LISTAINVENTARIO" />
+          <FunctionImport Name="LISTAPROVEEDOR" />
+          <FunctionImport Name="MODIFICAR_BODEGA">
+            <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+            <Parameter Name="UBICACIONN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MODIFICAR_INGREDIENTE">
+            <Parameter Name="IDINGREDIENTE" Mode="In" Type="Decimal" />
+            <Parameter Name="STOCK" Mode="In" Type="Decimal" />
+            <Parameter Name="RUT" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="MODIFICAR_PROVEEDOR">
+            <Parameter Name="RUTEMPRE" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMB" Mode="In" Type="String" />
+            <Parameter Name="CORRREO" Mode="In" Type="String" />
+            <Parameter Name="FONO" Mode="In" Type="Decimal" />
+            <Parameter Name="POSTAL" Mode="In" Type="String" />
+            <Parameter Name="SITIOWEB" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ROL">
+            <Parameter Name="VARCORREO" Mode="In" Type="String" />
+            <Parameter Name="ROLNUM" Mode="Out" Type="Decimal" />
+          </FunctionImport>
 
         </EntityContainer>
         <Association Name="RESERVA_CLIENTE_FK">
@@ -1242,6 +1370,8 @@
           <Property Name="NOMBRE_INGREDIENTE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PROVEEDOR" Relationship="Model.INGREDIENTES_PROVEEDOR_FK1" FromRole="INGREDIENTE" ToRole="PROVEEDOR" />
           <NavigationProperty Name="RECETA_INGREDIENTE" Relationship="Model.RECETA_INGREDIENTES_FK1" FromRole="INGREDIENTE" ToRole="RECETA_INGREDIENTE" />
+          <Property Name="INGREDIENTE_NUM_BODEGA" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="BODEGA" Relationship="Model.INGREDIENTES_BODEGA_FK" FromRole="INGREDIENTE" ToRole="BODEGA" />
         </EntityType>
         <Association Name="MESA_ESTADO_FK">
           <End Type="Model.ESTADO_MESA" Role="ESTADO_MESA" Multiplicity="0..1" />
@@ -1276,6 +1406,18 @@
             </Principal>
             <Dependent Role="RECETA_INGREDIENTE">
               <PropertyRef Name="INGREDIENTES_ID_INGREDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENTES_BODEGA_FK">
+          <End Type="Model.BODEGA" Role="BODEGA" Multiplicity="0..1" />
+          <End Type="Model.INGREDIENTE" Role="INGREDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BODEGA">
+              <PropertyRef Name="NUM_BODEGA" />
+            </Principal>
+            <Dependent Role="INGREDIENTE">
+              <PropertyRef Name="INGREDIENTE_NUM_BODEGA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1489,6 +1631,7 @@
           <EntitySetMapping Name="INGREDIENTE">
             <EntityTypeMapping TypeName="Model.INGREDIENTE">
               <MappingFragment StoreEntitySet="INGREDIENTE">
+                <ScalarProperty Name="INGREDIENTE_NUM_BODEGA" ColumnName="INGREDIENTE_NUM_BODEGA" />
                 <ScalarProperty Name="NOMBRE_INGREDIENTE" ColumnName="NOMBRE_INGREDIENTE" />
                 <ScalarProperty Name="PROVEEDOR_RUT_EMPRESA" ColumnName="PROVEEDOR_RUT_EMPRESA" />
                 <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
@@ -1513,6 +1656,19 @@
           <FunctionImportMapping FunctionImportName="MODIFICAR_EMPLEADO" FunctionName="Model.Store.MODIFICAR_EMPLEADO" />
           <FunctionImportMapping FunctionImportName="MODIFICAR_LOCAL" FunctionName="Model.Store.MODIFICAR_LOCAL" />
           <FunctionImportMapping FunctionImportName="LISTARESERVAS" FunctionName="Model.Store.LISTARESERVAS" />
+          <FunctionImportMapping FunctionImportName="CREATE_BODEGA" FunctionName="Model.Store.CREATE_BODEGA" />
+          <FunctionImportMapping FunctionImportName="CREATE_INGREDIENTE" FunctionName="Model.Store.CREATE_INGREDIENTE" />
+          <FunctionImportMapping FunctionImportName="CREATE_PROVEEDOR" FunctionName="Model.Store.CREATE_PROVEEDOR" />
+          <FunctionImportMapping FunctionImportName="DELETE_BODEGA" FunctionName="Model.Store.DELETE_BODEGA" />
+          <FunctionImportMapping FunctionImportName="DELETE_INGREDIENTE" FunctionName="Model.Store.DELETE_INGREDIENTE" />
+          <FunctionImportMapping FunctionImportName="DELETE_PROVEEDOR" FunctionName="Model.Store.DELETE_PROVEEDOR" />
+          <FunctionImportMapping FunctionImportName="LISTABODEGA" FunctionName="Model.Store.LISTABODEGA" />
+          <FunctionImportMapping FunctionImportName="LISTAINVENTARIO" FunctionName="Model.Store.LISTAINVENTARIO" />
+          <FunctionImportMapping FunctionImportName="LISTAPROVEEDOR" FunctionName="Model.Store.LISTAPROVEEDOR" />
+          <FunctionImportMapping FunctionImportName="MODIFICAR_BODEGA" FunctionName="Model.Store.MODIFICAR_BODEGA" />
+          <FunctionImportMapping FunctionImportName="MODIFICAR_INGREDIENTE" FunctionName="Model.Store.MODIFICAR_INGREDIENTE" />
+          <FunctionImportMapping FunctionImportName="MODIFICAR_PROVEEDOR" FunctionName="Model.Store.MODIFICAR_PROVEEDOR" />
+          <FunctionImportMapping FunctionImportName="ROL" FunctionName="Model.Store.ROL" />
 
           
 

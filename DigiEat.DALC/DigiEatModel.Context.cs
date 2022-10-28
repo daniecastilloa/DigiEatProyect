@@ -106,7 +106,6 @@ namespace DigiEat.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_MESA", nUMMESAParameter, eSTADMESAParameter, lOCALNUMParameter);
         }
     
-
         public virtual int CREATE_CLIENTE(Nullable<decimal> rUT, string nOMBRE, string aPELLIDO_PAT, string aPELLIDO_MAT, Nullable<decimal> tELEFONO, string cORREO, string cONTRASENA, Nullable<decimal> mESA_NUM_MESA, Nullable<decimal> eSTADO_CUENTA)
         {
             var rUTParameter = rUT.HasValue ?
@@ -222,7 +221,6 @@ namespace DigiEat.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_LOCAL", nUMEROParameter, cALLEParameter, cOMUNAParameter, cIUDADParameter, pAISParameter);
         }
     
-
         public virtual int CREATE_RESERVA(Nullable<decimal> nUMRESERVA, Nullable<System.DateTime> fECHA, string hORA, Nullable<decimal> cLIENTE_RUT, Nullable<decimal> cANTIDAD_PERSONAS)
         {
             var nUMRESERVAParameter = nUMRESERVA.HasValue ?
@@ -247,7 +245,6 @@ namespace DigiEat.DALC
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_RESERVA", nUMRESERVAParameter, fECHAParameter, hORAParameter, cLIENTE_RUTParameter, cANTIDAD_PERSONASParameter);
         }
-
     
         public virtual int DELETE_CLIENTE(Nullable<decimal> rUTVAR)
         {
@@ -425,6 +422,190 @@ namespace DigiEat.DALC
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTARESERVAS");
         }
-
+    
+        public virtual int CREATE_BODEGA(Nullable<decimal> nUMBODEGA, string uBICACION)
+        {
+            var nUMBODEGAParameter = nUMBODEGA.HasValue ?
+                new ObjectParameter("NUMBODEGA", nUMBODEGA) :
+                new ObjectParameter("NUMBODEGA", typeof(decimal));
+    
+            var uBICACIONParameter = uBICACION != null ?
+                new ObjectParameter("UBICACION", uBICACION) :
+                new ObjectParameter("UBICACION", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_BODEGA", nUMBODEGAParameter, uBICACIONParameter);
+        }
+    
+        public virtual int CREATE_INGREDIENTE(Nullable<decimal> iDINGREDIENTE, Nullable<decimal> sTOCK, Nullable<decimal> rUT, string nOMBRE, Nullable<decimal> nUMBODEGA)
+        {
+            var iDINGREDIENTEParameter = iDINGREDIENTE.HasValue ?
+                new ObjectParameter("IDINGREDIENTE", iDINGREDIENTE) :
+                new ObjectParameter("IDINGREDIENTE", typeof(decimal));
+    
+            var sTOCKParameter = sTOCK.HasValue ?
+                new ObjectParameter("STOCK", sTOCK) :
+                new ObjectParameter("STOCK", typeof(decimal));
+    
+            var rUTParameter = rUT.HasValue ?
+                new ObjectParameter("RUT", rUT) :
+                new ObjectParameter("RUT", typeof(decimal));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var nUMBODEGAParameter = nUMBODEGA.HasValue ?
+                new ObjectParameter("NUMBODEGA", nUMBODEGA) :
+                new ObjectParameter("NUMBODEGA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_INGREDIENTE", iDINGREDIENTEParameter, sTOCKParameter, rUTParameter, nOMBREParameter, nUMBODEGAParameter);
+        }
+    
+        public virtual int CREATE_PROVEEDOR(Nullable<decimal> rUTEMPRE, string nOMB, string cORREO, Nullable<decimal> tELEFONO, string pOSTAL, string sITIOWEB)
+        {
+            var rUTEMPREParameter = rUTEMPRE.HasValue ?
+                new ObjectParameter("RUTEMPRE", rUTEMPRE) :
+                new ObjectParameter("RUTEMPRE", typeof(decimal));
+    
+            var nOMBParameter = nOMB != null ?
+                new ObjectParameter("NOMB", nOMB) :
+                new ObjectParameter("NOMB", typeof(string));
+    
+            var cORREOParameter = cORREO != null ?
+                new ObjectParameter("CORREO", cORREO) :
+                new ObjectParameter("CORREO", typeof(string));
+    
+            var tELEFONOParameter = tELEFONO.HasValue ?
+                new ObjectParameter("TELEFONO", tELEFONO) :
+                new ObjectParameter("TELEFONO", typeof(decimal));
+    
+            var pOSTALParameter = pOSTAL != null ?
+                new ObjectParameter("POSTAL", pOSTAL) :
+                new ObjectParameter("POSTAL", typeof(string));
+    
+            var sITIOWEBParameter = sITIOWEB != null ?
+                new ObjectParameter("SITIOWEB", sITIOWEB) :
+                new ObjectParameter("SITIOWEB", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_PROVEEDOR", rUTEMPREParameter, nOMBParameter, cORREOParameter, tELEFONOParameter, pOSTALParameter, sITIOWEBParameter);
+        }
+    
+        public virtual int DELETE_BODEGA(Nullable<decimal> nUMBODEGA)
+        {
+            var nUMBODEGAParameter = nUMBODEGA.HasValue ?
+                new ObjectParameter("NUMBODEGA", nUMBODEGA) :
+                new ObjectParameter("NUMBODEGA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_BODEGA", nUMBODEGAParameter);
+        }
+    
+        public virtual int DELETE_INGREDIENTE(Nullable<decimal> nUMM)
+        {
+            var nUMMParameter = nUMM.HasValue ?
+                new ObjectParameter("NUMM", nUMM) :
+                new ObjectParameter("NUMM", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_INGREDIENTE", nUMMParameter);
+        }
+    
+        public virtual int DELETE_PROVEEDOR(Nullable<decimal> rUTVAR)
+        {
+            var rUTVARParameter = rUTVAR.HasValue ?
+                new ObjectParameter("RUTVAR", rUTVAR) :
+                new ObjectParameter("RUTVAR", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_PROVEEDOR", rUTVARParameter);
+        }
+    
+        public virtual int LISTABODEGA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTABODEGA");
+        }
+    
+        public virtual int LISTAINVENTARIO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAINVENTARIO");
+        }
+    
+        public virtual int LISTAPROVEEDOR()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTAPROVEEDOR");
+        }
+    
+        public virtual int MODIFICAR_BODEGA(Nullable<decimal> nUMBODEGA, string uBICACIONN)
+        {
+            var nUMBODEGAParameter = nUMBODEGA.HasValue ?
+                new ObjectParameter("NUMBODEGA", nUMBODEGA) :
+                new ObjectParameter("NUMBODEGA", typeof(decimal));
+    
+            var uBICACIONNParameter = uBICACIONN != null ?
+                new ObjectParameter("UBICACIONN", uBICACIONN) :
+                new ObjectParameter("UBICACIONN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_BODEGA", nUMBODEGAParameter, uBICACIONNParameter);
+        }
+    
+        public virtual int MODIFICAR_INGREDIENTE(Nullable<decimal> iDINGREDIENTE, Nullable<decimal> sTOCK, Nullable<decimal> rUT, string nOMBRE, Nullable<decimal> nUMBODEGA)
+        {
+            var iDINGREDIENTEParameter = iDINGREDIENTE.HasValue ?
+                new ObjectParameter("IDINGREDIENTE", iDINGREDIENTE) :
+                new ObjectParameter("IDINGREDIENTE", typeof(decimal));
+    
+            var sTOCKParameter = sTOCK.HasValue ?
+                new ObjectParameter("STOCK", sTOCK) :
+                new ObjectParameter("STOCK", typeof(decimal));
+    
+            var rUTParameter = rUT.HasValue ?
+                new ObjectParameter("RUT", rUT) :
+                new ObjectParameter("RUT", typeof(decimal));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var nUMBODEGAParameter = nUMBODEGA.HasValue ?
+                new ObjectParameter("NUMBODEGA", nUMBODEGA) :
+                new ObjectParameter("NUMBODEGA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_INGREDIENTE", iDINGREDIENTEParameter, sTOCKParameter, rUTParameter, nOMBREParameter, nUMBODEGAParameter);
+        }
+    
+        public virtual int MODIFICAR_PROVEEDOR(Nullable<decimal> rUTEMPRE, string nOMB, string cORRREO, Nullable<decimal> fONO, string pOSTAL, string sITIOWEB)
+        {
+            var rUTEMPREParameter = rUTEMPRE.HasValue ?
+                new ObjectParameter("RUTEMPRE", rUTEMPRE) :
+                new ObjectParameter("RUTEMPRE", typeof(decimal));
+    
+            var nOMBParameter = nOMB != null ?
+                new ObjectParameter("NOMB", nOMB) :
+                new ObjectParameter("NOMB", typeof(string));
+    
+            var cORRREOParameter = cORRREO != null ?
+                new ObjectParameter("CORRREO", cORRREO) :
+                new ObjectParameter("CORRREO", typeof(string));
+    
+            var fONOParameter = fONO.HasValue ?
+                new ObjectParameter("FONO", fONO) :
+                new ObjectParameter("FONO", typeof(decimal));
+    
+            var pOSTALParameter = pOSTAL != null ?
+                new ObjectParameter("POSTAL", pOSTAL) :
+                new ObjectParameter("POSTAL", typeof(string));
+    
+            var sITIOWEBParameter = sITIOWEB != null ?
+                new ObjectParameter("SITIOWEB", sITIOWEB) :
+                new ObjectParameter("SITIOWEB", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_PROVEEDOR", rUTEMPREParameter, nOMBParameter, cORRREOParameter, fONOParameter, pOSTALParameter, sITIOWEBParameter);
+        }
+    
+        public virtual int ROL(string vARCORREO, ObjectParameter rOLNUM)
+        {
+            var vARCORREOParameter = vARCORREO != null ?
+                new ObjectParameter("VARCORREO", vARCORREO) :
+                new ObjectParameter("VARCORREO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ROL", vARCORREOParameter, rOLNUM);
+        }
     }
 }
