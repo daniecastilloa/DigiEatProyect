@@ -15,11 +15,11 @@ namespace DigiEat.DALC
     public partial class RECETA_INGREDIENTE
     {
         public decimal ID_RI { get; set; }
-        public Nullable<decimal> CANTIDAD_REQ { get; set; }
+        public string CANTIDAD_REQ { get; set; }
         public decimal RECETA_ID_RECETA { get; set; }
         public decimal INGREDIENTES_ID_INGREDIENTE { get; set; }
     
-        public virtual INGREDIENTES INGREDIENTES { get; set; }
         public virtual RECETA RECETA { get; set; }
+        public virtual INGREDIENTE INGREDIENTE { get; set; }
     }
 }

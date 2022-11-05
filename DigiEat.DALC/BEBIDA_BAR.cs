@@ -16,8 +16,8 @@ namespace DigiEat.DALC
     {
         public BEBIDA_BAR()
         {
-            this.ORDEN_DETALLES = new HashSet<ORDEN_DETALLES>();
             this.RECETA = new HashSet<RECETA>();
+            this.ORDEN_BEBIDA = new HashSet<ORDEN_BEBIDA>();
         }
     
         public decimal ID_BEBIDA { get; set; }
@@ -25,7 +25,7 @@ namespace DigiEat.DALC
         public Nullable<decimal> VALOR { get; set; }
         public byte[] IMAGEN { get; set; }
     
-        public virtual ICollection<ORDEN_DETALLES> ORDEN_DETALLES { get; set; }
         public virtual ICollection<RECETA> RECETA { get; set; }
+        public virtual ICollection<ORDEN_BEBIDA> ORDEN_BEBIDA { get; set; }
     }
 }

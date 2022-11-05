@@ -21,9 +21,17 @@ namespace Digieat.Negocio
         public decimal? telefono { get; set; }
         public string correo { get; set; }
         public string contrasena { get; set; }
-        public decimal mesa_num_mesa { get; set; }
-        public decimal num_estado { get; set; }
-        public string nombre_estado { get; set; }
+
+
+        [ForeignKey("Estado_cuenta")]
+        public int estado_cuenta { get; set; }
+
+        [ForeignKey("Mesa")]
+        public int mesa_num_mesa { get; set; }
+
+        [ForeignKey("Reserva")]
+        public int? reserva_num_reserva { get; set; }
+
 
         //public virtual MESA MESA { get; set; }
         //public virtual RESERVA RESERVA { get; set; }
@@ -47,40 +55,19 @@ namespace Digieat.Negocio
         OracleConnection ora = new OracleConnection("DATA SOURCE=localhost:1521/xe ; PASSWORD=1234; USER ID=DIGIEATDB");
         public List<Cliente> ObtenerCliente()
         {
-            List<Cliente> clientedatos = new List<Cliente>();
 
-            OracleCommand comando = new OracleCommand("LISTACLIENTES", ora);
-            comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.Parameters.Add("listamesas", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+            return this.db.CLIENTE.Select(c => new Cliente() {
+                rut_cliente = c.RUT,
+                nombre = c.NOMBRE,
+                apellido_mat = c.APELLIDO_MAT,
+                apellido_pat = c.APELLIDO_PAT,
+                telefono = (decimal)c.TELEFONO,
+                correo = c.CORREO,
+                contrasena = c.CONTRASENA,
 
-            OracleDataAdapter adaptador = new OracleDataAdapter();
-            adaptador.SelectCommand = comando;
-            DataTable tabla = new DataTable();
+                estado_cuenta = (int)c.ESTADO_CUENTA,
 
-            ora.Open();
-            using (OracleDataReader reader = comando.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-
-                    Cliente c = new Cliente();
-                    c.rut_cliente = reader.GetFieldValue<decimal>(0);
-                    c.nombre = reader.GetFieldValue<string>(1);
-                    c.apellido_pat = reader.GetFieldValue<string>(2);
-                    c.apellido_mat = reader.GetFieldValue<string>(3);
-                    c.telefono = reader.GetFieldValue<decimal>(4);
-                    c.correo = reader.GetFieldValue<string>(5);
-                    c.contrasena = reader.GetFieldValue<string>(6);
-                    c.mesa_num_mesa = reader.GetFieldValue<decimal>(7);
-                    c.num_estado = reader.GetFieldValue<decimal>(8);
-                    c.nombre_estado = reader.GetFieldValue<string>(9);
-                    clientedatos.Add(c);
-
-                }
-
-            }
-            ora.Close();
-            return clientedatos;
+            }).ToList();
 
         }
 

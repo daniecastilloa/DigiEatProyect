@@ -19,22 +19,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CAJA_FACTURA">
-      <EntityTypeMapping TypeName="Model.CAJA_FACTURA">
-        <MappingFragment StoreEntitySet="CAJA_FACTURA">
-          <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
-          <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
-          <ScalarProperty Name="EMISOR" ColumnName="EMISOR" />
-          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-          <ScalarProperty Name="FORMA_PAGO" ColumnName="FORMA_PAGO" />
-          <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
-          <ScalarProperty Name="BASE" ColumnName="BASE" />
-          <ScalarProperty Name="IVA" ColumnName="IVA" />
-          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
-          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CLIENTE">
       <EntityTypeMapping TypeName="Model.CLIENTE">
         <MappingFragment StoreEntitySet="CLIENTE">
@@ -75,15 +59,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="INGREDIENTES">
-      <EntityTypeMapping TypeName="Model.INGREDIENTES">
-        <MappingFragment StoreEntitySet="INGREDIENTES">
-          <ScalarProperty Name="ID_INGREDIENTE" ColumnName="ID_INGREDIENTE" />
-          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-          <ScalarProperty Name="PROVEEDOR_RUT_EMPRESA" ColumnName="PROVEEDOR_RUT_EMPRESA" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LOCAL">
       <EntityTypeMapping TypeName="Model.LOCAL">
         <MappingFragment StoreEntitySet="LOCAL">
@@ -111,16 +86,6 @@
           <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
           <ScalarProperty Name="FECHA_ORDEN" ColumnName="FECHA_ORDEN" />
           <ScalarProperty Name="ESTADO_ORDEN_ID_ESTADO" ColumnName="ESTADO_ORDEN_ID_ESTADO" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORDEN_DETALLES">
-      <EntityTypeMapping TypeName="Model.ORDEN_DETALLES">
-        <MappingFragment StoreEntitySet="ORDEN_DETALLES">
-          <ScalarProperty Name="ID_DETALLES" ColumnName="ID_DETALLES" />
-          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
-          <ScalarProperty Name="BEBIDA_BAR_ID_BEBIDA" ColumnName="BEBIDA_BAR_ID_BEBIDA" />
-          <ScalarProperty Name="PLATO_COCINA_ID_PLATO" ColumnName="PLATO_COCINA_ID_PLATO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -172,6 +137,7 @@
     <EntitySetMapping Name="RESERVA">
       <EntityTypeMapping TypeName="Model.RESERVA">
         <MappingFragment StoreEntitySet="RESERVA">
+          <ScalarProperty Name="CANTIDAD_PERSONAS" ColumnName="CANTIDAD_PERSONAS" />
           <ScalarProperty Name="CLIENTE_RUT" ColumnName="CLIENTE_RUT" />
           <ScalarProperty Name="NUM_RESERVA" ColumnName="NUM_RESERVA" />
           <ScalarProperty Name="FECHA" ColumnName="FECHA" />
@@ -198,6 +164,92 @@
         <MappingFragment StoreEntitySet="ESTADO_CUENTA">
           <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
           <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO_MESA">
+      <EntityTypeMapping TypeName="Model.ESTADO_MESA">
+        <MappingFragment StoreEntitySet="ESTADO_MESA">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INGREDIENTE">
+      <EntityTypeMapping TypeName="Model.INGREDIENTE">
+        <MappingFragment StoreEntitySet="INGREDIENTE">
+          <ScalarProperty Name="INGREDIENTE_NUM_BODEGA" ColumnName="INGREDIENTE_NUM_BODEGA" />
+          <ScalarProperty Name="NOMBRE_INGREDIENTE" ColumnName="NOMBRE_INGREDIENTE" />
+          <ScalarProperty Name="PROVEEDOR_RUT_EMPRESA" ColumnName="PROVEEDOR_RUT_EMPRESA" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="ID_INGREDIENTE" ColumnName="ID_INGREDIENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CREATE_CLIENTE" FunctionName="Model.Store.CREATE_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="CREATE_EMPLEADO" FunctionName="Model.Store.CREATE_EMPLEADO" />
+    <FunctionImportMapping FunctionImportName="CREATE_LOCAL" FunctionName="Model.Store.CREATE_LOCAL" />
+    <FunctionImportMapping FunctionImportName="CREATE_RESERVA" FunctionName="Model.Store.CREATE_RESERVA" />
+    <FunctionImportMapping FunctionImportName="DELETE_CLIENTE" FunctionName="Model.Store.DELETE_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="DELETE_EMPLEADO" FunctionName="Model.Store.DELETE_EMPLEADO" />
+    <FunctionImportMapping FunctionImportName="DELETE_LOCAL" FunctionName="Model.Store.DELETE_LOCAL" />
+    <FunctionImportMapping FunctionImportName="LISTACARGOS" FunctionName="Model.Store.LISTACARGOS" />
+    <FunctionImportMapping FunctionImportName="LISTACLIENTES" FunctionName="Model.Store.LISTACLIENTES" />
+    <FunctionImportMapping FunctionImportName="LISTAEMPLEADOS" FunctionName="Model.Store.LISTAEMPLEADOS" />
+    <FunctionImportMapping FunctionImportName="LISTAESTADOSCUENTA" FunctionName="Model.Store.LISTAESTADOSCUENTA" />
+    <FunctionImportMapping FunctionImportName="LISTAESTADOSMESA" FunctionName="Model.Store.LISTAESTADOSMESA" />
+    <FunctionImportMapping FunctionImportName="LISTALOCALES" FunctionName="Model.Store.LISTALOCALES" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_CLIENTE" FunctionName="Model.Store.MODIFICAR_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_EMPLEADO" FunctionName="Model.Store.MODIFICAR_EMPLEADO" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_LOCAL" FunctionName="Model.Store.MODIFICAR_LOCAL" />
+    <FunctionImportMapping FunctionImportName="LISTARESERVAS" FunctionName="Model.Store.LISTARESERVAS" />
+    <FunctionImportMapping FunctionImportName="CREATE_BODEGA" FunctionName="Model.Store.CREATE_BODEGA" />
+    <FunctionImportMapping FunctionImportName="CREATE_INGREDIENTE" FunctionName="Model.Store.CREATE_INGREDIENTE" />
+    <FunctionImportMapping FunctionImportName="CREATE_PROVEEDOR" FunctionName="Model.Store.CREATE_PROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="DELETE_BODEGA" FunctionName="Model.Store.DELETE_BODEGA" />
+    <FunctionImportMapping FunctionImportName="DELETE_INGREDIENTE" FunctionName="Model.Store.DELETE_INGREDIENTE" />
+    <FunctionImportMapping FunctionImportName="DELETE_PROVEEDOR" FunctionName="Model.Store.DELETE_PROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="LISTABODEGA" FunctionName="Model.Store.LISTABODEGA" />
+    <FunctionImportMapping FunctionImportName="LISTAINVENTARIO" FunctionName="Model.Store.LISTAINVENTARIO" />
+    <FunctionImportMapping FunctionImportName="LISTAPROVEEDOR" FunctionName="Model.Store.LISTAPROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_BODEGA" FunctionName="Model.Store.MODIFICAR_BODEGA" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_INGREDIENTE" FunctionName="Model.Store.MODIFICAR_INGREDIENTE" />
+    <FunctionImportMapping FunctionImportName="MODIFICAR_PROVEEDOR" FunctionName="Model.Store.MODIFICAR_PROVEEDOR" />
+    <FunctionImportMapping FunctionImportName="ROL" FunctionName="Model.Store.ROL" />
+    <EntitySetMapping Name="ORDEN_BEBIDA">
+      <EntityTypeMapping TypeName="Model.ORDEN_BEBIDA">
+        <MappingFragment StoreEntitySet="ORDEN_BEBIDA">
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="ID_BEBIDA" ColumnName="ID_BEBIDA" />
+          <ScalarProperty Name="NUM_ORDEN" ColumnName="NUM_ORDEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDEN_PLATO">
+      <EntityTypeMapping TypeName="Model.ORDEN_PLATO">
+        <MappingFragment StoreEntitySet="ORDEN_PLATO">
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="ID_PLATO" ColumnName="ID_PLATO" />
+          <ScalarProperty Name="NUM_ORDEN" ColumnName="NUM_ORDEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CREATE_ORDEN" FunctionName="Model.Store.CREATE_ORDEN" />
+    <FunctionImportMapping FunctionImportName="CREATE_ORDENPLATO" FunctionName="Model.Store.CREATE_ORDENPLATO" />
+    <FunctionImportMapping FunctionImportName="LISTA_ORDEN" FunctionName="Model.Store.LISTA_ORDEN" />
+    <EntitySetMapping Name="CAJA_FACTURA">
+      <EntityTypeMapping TypeName="Model.CAJA_FACTURA">
+        <MappingFragment StoreEntitySet="CAJA_FACTURA">
+          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+          <ScalarProperty Name="BASE" ColumnName="BASE" />
+          <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
+          <ScalarProperty Name="FORMA_PAGO" ColumnName="FORMA_PAGO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="EMISOR" ColumnName="EMISOR" />
+          <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
+          <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

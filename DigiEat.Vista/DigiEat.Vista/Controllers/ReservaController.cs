@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Digieat.Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
-using Digieat.Negocio;
 
 
 
@@ -34,17 +34,24 @@ namespace DigiEat.Vista.Controllers
 
         // POST: Reserva/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "NUM_RESERVA,FECHA,HORA,CLIENTE_RUT,CANTIDAD_PERSONAS")] Reserva reserva)
         {
+            //Para testing rellenar rut de un cliente ya existente, de preferencia traer el del usuario que ya esta logueado en ese momento
             try
             {
-                // TODO: Add insert logic here
 
+                if(reserva.AgregarReserva())
+                {
+                   
+                    TempData["msg"] = "<script>alert('Reserva creada exitosamente');</script>";
+
+                }
                 return RedirectToAction("Reserva");
             }
             catch
             {
-                return View();
+               
+                return View(reserva);
             }
         }
 

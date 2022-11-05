@@ -23,7 +23,7 @@ namespace DigiEat.DALC
         public Nullable<decimal> BASE { get; set; }
         public Nullable<decimal> IVA { get; set; }
         public Nullable<decimal> TOTAL { get; set; }
-        public decimal ORDEN_NUM_ORDEN { get; set; }
+        public Nullable<decimal> ORDEN_NUM_ORDEN { get; set; }
     
         public virtual ORDEN ORDEN { get; set; }
     }

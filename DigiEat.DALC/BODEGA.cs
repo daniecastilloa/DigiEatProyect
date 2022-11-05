@@ -17,11 +17,13 @@ namespace DigiEat.DALC
         public BODEGA()
         {
             this.RECETA = new HashSet<RECETA>();
+            this.INGREDIENTE = new HashSet<INGREDIENTE>();
         }
     
-        public string NUM_BODEGA { get; set; }
+        public decimal NUM_BODEGA { get; set; }
         public string UBICACION { get; set; }
     
         public virtual ICollection<RECETA> RECETA { get; set; }
+        public virtual ICollection<INGREDIENTE> INGREDIENTE { get; set; }
     }
 }

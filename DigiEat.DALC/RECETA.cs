@@ -22,10 +22,10 @@ namespace DigiEat.DALC
         public decimal ID_RECETA { get; set; }
         public string NOMBRE_REC { get; set; }
         public Nullable<decimal> NUM_PASO { get; set; }
-        public Nullable<decimal> DESCRIPCION { get; set; }
+        public string DESCRIPCION { get; set; }
         public decimal BEBIDA_BAR_ID_BEBIDA { get; set; }
         public decimal PLATO_COCINA_ID_PLATO { get; set; }
-        public string BODEGA_NUM_BODEGA { get; set; }
+        public decimal BODEGA_NUM_BODEGA { get; set; }
     
         public virtual BEBIDA_BAR BEBIDA_BAR { get; set; }
         public virtual BODEGA BODEGA { get; set; }

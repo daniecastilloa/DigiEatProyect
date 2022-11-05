@@ -20,6 +20,7 @@
     <script src="https://kit.fontawesome.com/722d4e837d.js" crossorigin="anonymous"></script>
 </head>
 <body style="color: white" class="background">
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container col-md-12">
             <div id="preloader">
@@ -29,13 +30,14 @@
                     </a>
                 </div>
             </div>
-            
+            @* Menu Bootstrap *@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -69,7 +71,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>
-                                @Html.ActionLink("Reservar", "Reserva", "Reserva", null, new { @class = "nav-link fa-solid fa-calendar-days " })
+                                @Html.ActionLink("Reservar", "Create", "Reserva", null, new { @class = "nav-link fa-solid fa-calendar-days " })
                             </li>
                             <li>
                                 <i class="fa-solid fa-right-from-bracket" style="color: black; margin-right: -10px"></i>

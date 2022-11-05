@@ -203,7 +203,6 @@ C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\bin\es\Sy
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\bin\es\System.Web.Webpages.Razor.resources.dll
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\bin\es\System.Web.Helpers.resources.dll
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\bin\es\System.Web.Mvc.resources.dll
-C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.csproj.AssemblyReference.cache
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.csproj.CoreCompileInputs.cache
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.csproj.CopyComplete
 C:\Users\matia\Source\Repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.Vista.dll
@@ -523,3 +522,4 @@ D:\basededatos\Digieat2\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\Dig
 D:\basededatos\Digieat2\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.csproj.CopyComplete
 D:\basededatos\Digieat2\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.Vista.dll
 D:\basededatos\Digieat2\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.Vista.pdb
+C:\Users\matia\source\repos\DigiEatProyect\DigiEat.Vista\DigiEat.Vista\obj\Debug\DigiEat.csproj.AssemblyReference.cache

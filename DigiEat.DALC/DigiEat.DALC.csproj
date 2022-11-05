@@ -81,10 +81,13 @@
     <Compile Include="ESTADO_CUENTA.cs">
       <DependentUpon>DigiEatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ESTADO_MESA.cs">
+      <DependentUpon>DigiEatModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ESTADO_ORDEN.cs">
       <DependentUpon>DigiEatModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="INGREDIENTES.cs">
+    <Compile Include="INGREDIENTE.cs">
       <DependentUpon>DigiEatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LOCAL.cs">
@@ -96,7 +99,10 @@
     <Compile Include="ORDEN.cs">
       <DependentUpon>DigiEatModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ORDEN_DETALLES.cs">
+    <Compile Include="ORDEN_BEBIDA.cs">
+      <DependentUpon>DigiEatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORDEN_PLATO.cs">
       <DependentUpon>DigiEatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PLATO_COCINA.cs">

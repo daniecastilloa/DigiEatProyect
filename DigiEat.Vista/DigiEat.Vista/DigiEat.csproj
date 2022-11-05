@@ -374,6 +374,7 @@
     <Content Include="Views\Empleado\Empleado.cshtml" />
     <Content Include="Views\EmpleadoL\EmpleadoL.cshtml" />
     <Content Include="Views\Reserva\Reserva.cshtml" />
+    <Content Include="Views\Reserva\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

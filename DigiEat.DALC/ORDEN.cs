@@ -16,8 +16,9 @@ namespace DigiEat.DALC
     {
         public ORDEN()
         {
+            this.ORDEN_BEBIDA = new HashSet<ORDEN_BEBIDA>();
+            this.ORDEN_PLATO = new HashSet<ORDEN_PLATO>();
             this.CAJA_FACTURA = new HashSet<CAJA_FACTURA>();
-            this.ORDEN_DETALLES = new HashSet<ORDEN_DETALLES>();
         }
     
         public decimal NUM_ORDEN { get; set; }
@@ -25,9 +26,10 @@ namespace DigiEat.DALC
         public Nullable<System.DateTime> FECHA_ORDEN { get; set; }
         public decimal ESTADO_ORDEN_ID_ESTADO { get; set; }
     
-        public virtual ICollection<CAJA_FACTURA> CAJA_FACTURA { get; set; }
         public virtual ESTADO_ORDEN ESTADO_ORDEN { get; set; }
         public virtual MESA MESA { get; set; }
-        public virtual ICollection<ORDEN_DETALLES> ORDEN_DETALLES { get; set; }
+        public virtual ICollection<ORDEN_BEBIDA> ORDEN_BEBIDA { get; set; }
+        public virtual ICollection<ORDEN_PLATO> ORDEN_PLATO { get; set; }
+        public virtual ICollection<CAJA_FACTURA> CAJA_FACTURA { get; set; }
     }
 }
