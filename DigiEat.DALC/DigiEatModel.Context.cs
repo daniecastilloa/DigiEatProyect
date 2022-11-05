@@ -30,14 +30,12 @@ namespace DigiEat.DALC
     
         public DbSet<BEBIDA_BAR> BEBIDA_BAR { get; set; }
         public DbSet<BODEGA> BODEGA { get; set; }
-        public DbSet<CAJA_FACTURA> CAJA_FACTURA { get; set; }
         public DbSet<CLIENTE> CLIENTE { get; set; }
         public DbSet<EMPLEADO> EMPLEADO { get; set; }
         public DbSet<ESTADO_ORDEN> ESTADO_ORDEN { get; set; }
         public DbSet<LOCAL> LOCAL { get; set; }
         public DbSet<MESA> MESA { get; set; }
         public DbSet<ORDEN> ORDEN { get; set; }
-        public DbSet<ORDEN_DETALLES> ORDEN_DETALLES { get; set; }
         public DbSet<PLATO_COCINA> PLATO_COCINA { get; set; }
         public DbSet<PROVEEDOR> PROVEEDOR { get; set; }
         public DbSet<RECETA> RECETA { get; set; }
@@ -47,6 +45,9 @@ namespace DigiEat.DALC
         public DbSet<ESTADO_CUENTA> ESTADO_CUENTA { get; set; }
         public DbSet<ESTADO_MESA> ESTADO_MESA { get; set; }
         public DbSet<INGREDIENTE> INGREDIENTE { get; set; }
+        public DbSet<ORDEN_BEBIDA> ORDEN_BEBIDA { get; set; }
+        public DbSet<ORDEN_PLATO> ORDEN_PLATO { get; set; }
+        public DbSet<CAJA_FACTURA> CAJA_FACTURA { get; set; }
     
         public virtual int CREATE_MESA(Nullable<decimal> nUMMESA, Nullable<decimal> eSTADMESA, Nullable<decimal> lOCALNUM)
         {
@@ -606,6 +607,49 @@ namespace DigiEat.DALC
                 new ObjectParameter("VARCORREO", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ROL", vARCORREOParameter, rOLNUM);
+        }
+    
+        public virtual int CREATE_ORDEN(Nullable<decimal> nUMORDEN, Nullable<decimal> mESANUM, Nullable<System.DateTime> fECHA, Nullable<decimal> eSTADOORDEN)
+        {
+            var nUMORDENParameter = nUMORDEN.HasValue ?
+                new ObjectParameter("NUMORDEN", nUMORDEN) :
+                new ObjectParameter("NUMORDEN", typeof(decimal));
+    
+            var mESANUMParameter = mESANUM.HasValue ?
+                new ObjectParameter("MESANUM", mESANUM) :
+                new ObjectParameter("MESANUM", typeof(decimal));
+    
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            var eSTADOORDENParameter = eSTADOORDEN.HasValue ?
+                new ObjectParameter("ESTADOORDEN", eSTADOORDEN) :
+                new ObjectParameter("ESTADOORDEN", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_ORDEN", nUMORDENParameter, mESANUMParameter, fECHAParameter, eSTADOORDENParameter);
+        }
+    
+        public virtual int CREATE_ORDENPLATO(Nullable<decimal> nUMORDEN, Nullable<decimal> iDPLATO, Nullable<decimal> cANTIDAD)
+        {
+            var nUMORDENParameter = nUMORDEN.HasValue ?
+                new ObjectParameter("NUMORDEN", nUMORDEN) :
+                new ObjectParameter("NUMORDEN", typeof(decimal));
+    
+            var iDPLATOParameter = iDPLATO.HasValue ?
+                new ObjectParameter("IDPLATO", iDPLATO) :
+                new ObjectParameter("IDPLATO", typeof(decimal));
+    
+            var cANTIDADParameter = cANTIDAD.HasValue ?
+                new ObjectParameter("CANTIDAD", cANTIDAD) :
+                new ObjectParameter("CANTIDAD", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_ORDENPLATO", nUMORDENParameter, iDPLATOParameter, cANTIDADParameter);
+        }
+    
+        public virtual int LISTA_ORDEN()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTA_ORDEN");
         }
     }
 }

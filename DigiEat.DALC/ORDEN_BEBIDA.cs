@@ -12,19 +12,13 @@ namespace DigiEat.DALC
     using System;
     using System.Collections.Generic;
     
-    public partial class CAJA_FACTURA
+    public partial class ORDEN_BEBIDA
     {
-        public decimal NUM_FACTURA { get; set; }
-        public Nullable<System.DateTime> FECHA_FACTURA { get; set; }
-        public string EMISOR { get; set; }
-        public string DESCRIPCION { get; set; }
-        public string FORMA_PAGO { get; set; }
-        public string METODO_PAGO { get; set; }
-        public Nullable<decimal> BASE { get; set; }
-        public Nullable<decimal> IVA { get; set; }
-        public Nullable<decimal> TOTAL { get; set; }
-        public Nullable<decimal> ORDEN_NUM_ORDEN { get; set; }
+        public decimal NUM_ORDEN { get; set; }
+        public decimal ID_BEBIDA { get; set; }
+        public Nullable<decimal> CANTIDAD { get; set; }
     
+        public virtual BEBIDA_BAR BEBIDA_BAR { get; set; }
         public virtual ORDEN ORDEN { get; set; }
     }
 }

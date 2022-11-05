@@ -24,7 +24,6 @@
         <EntityType Name="CAJA_FACTURA">
           <Key>
             <PropertyRef Name="NUM_FACTURA" />
-            <PropertyRef Name="ORDEN_NUM_ORDEN" />
           </Key>
           <Property Name="NUM_FACTURA" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="FECHA_FACTURA" Type="date" />
@@ -35,7 +34,7 @@
           <Property Name="BASE" Type="number" Precision="38" Scale="0" />
           <Property Name="IVA" Type="number" Precision="38" Scale="0" />
           <Property Name="TOTAL" Type="number" Precision="38" Scale="0" />
-          <Property Name="ORDEN_NUM_ORDEN" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ORDEN_NUM_ORDEN" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="CLIENTE">
           <Key>
@@ -125,14 +124,23 @@
           <Property Name="FECHA_ORDEN" Type="date" />
           <Property Name="ESTADO_ORDEN_ID_ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
-        <EntityType Name="ORDEN_DETALLES">
+        <EntityType Name="ORDEN_BEBIDA">
           <Key>
-            <PropertyRef Name="ID_DETALLES" />
+            <PropertyRef Name="NUM_ORDEN" />
+            <PropertyRef Name="ID_BEBIDA" />
           </Key>
-          <Property Name="ID_DETALLES" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="ORDEN_NUM_ORDEN" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="PLATO_COCINA_ID_PLATO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NUM_ORDEN" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_BEBIDA" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="ORDEN_PLATO">
+          <Key>
+            <PropertyRef Name="NUM_ORDEN" />
+            <PropertyRef Name="ID_PLATO" />
+          </Key>
+          <Property Name="NUM_ORDEN" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PLATO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="PLATO_COCINA">
           <Key>
@@ -193,7 +201,7 @@
           <Property Name="NOM_CARGO" Type="varchar2" MaxLength="30" />
         </EntityType>
         <Association Name="CAJA_FACTURA_ORDEN_FK">
-          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="1" />
+          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="0..1" />
           <End Role="CAJA_FACTURA" Type="Self.CAJA_FACTURA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ORDEN">
@@ -300,39 +308,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ORDEN_DETALLES_BEBIDA_BAR_FK">
+        <Association Name="OPLATOS_IDBEBIDA_FK">
           <End Role="BEBIDA_BAR" Type="Self.BEBIDA_BAR" Multiplicity="1" />
-          <End Role="ORDEN_DETALLES" Type="Self.ORDEN_DETALLES" Multiplicity="*" />
+          <End Role="ORDEN_BEBIDA" Type="Self.ORDEN_BEBIDA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BEBIDA_BAR">
               <PropertyRef Name="ID_BEBIDA" />
             </Principal>
-            <Dependent Role="ORDEN_DETALLES">
-              <PropertyRef Name="BEBIDA_BAR_ID_BEBIDA" />
+            <Dependent Role="ORDEN_BEBIDA">
+              <PropertyRef Name="ID_BEBIDA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ORDEN_DETALLES_ORDEN_FK">
+        <Association Name="OPLATOS_NUM_ORDEN_FK">
           <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="1" />
-          <End Role="ORDEN_DETALLES" Type="Self.ORDEN_DETALLES" Multiplicity="*" />
+          <End Role="ORDEN_BEBIDA" Type="Self.ORDEN_BEBIDA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ORDEN">
               <PropertyRef Name="NUM_ORDEN" />
             </Principal>
-            <Dependent Role="ORDEN_DETALLES">
-              <PropertyRef Name="ORDEN_NUM_ORDEN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ORDEN_DETALLES_PLATO_COCINA_FK">
-          <End Role="PLATO_COCINA" Type="Self.PLATO_COCINA" Multiplicity="1" />
-          <End Role="ORDEN_DETALLES" Type="Self.ORDEN_DETALLES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PLATO_COCINA">
-              <PropertyRef Name="ID_PLATO" />
-            </Principal>
-            <Dependent Role="ORDEN_DETALLES">
-              <PropertyRef Name="PLATO_COCINA_ID_PLATO" />
+            <Dependent Role="ORDEN_BEBIDA">
+              <PropertyRef Name="NUM_ORDEN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -348,6 +344,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ORDEN_IDPLATO_FK">
+          <End Role="PLATO_COCINA" Type="Self.PLATO_COCINA" Multiplicity="1" />
+          <End Role="ORDEN_PLATO" Type="Self.ORDEN_PLATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLATO_COCINA">
+              <PropertyRef Name="ID_PLATO" />
+            </Principal>
+            <Dependent Role="ORDEN_PLATO">
+              <PropertyRef Name="ID_PLATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="ORDEN_MESA_FK">
           <End Role="MESA" Type="Self.MESA" Multiplicity="1" />
           <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="*" />
@@ -357,6 +365,18 @@
             </Principal>
             <Dependent Role="ORDEN">
               <PropertyRef Name="MESA_NUM_MESA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDEN_NUM_ORDEN_FK">
+          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="1" />
+          <End Role="ORDEN_PLATO" Type="Self.ORDEN_PLATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN">
+              <PropertyRef Name="NUM_ORDEN" />
+            </Principal>
+            <Dependent Role="ORDEN_PLATO">
+              <PropertyRef Name="NUM_ORDEN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -479,6 +499,17 @@
           <Parameter Name="ESTADMESA" Type="number" Mode="In" />
           <Parameter Name="LOCALNUM" Type="number" Mode="In" />
         </Function>
+        <Function Name="CREATE_ORDEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="NUMORDEN" Type="number" Mode="In" />
+          <Parameter Name="MESANUM" Type="number" Mode="In" />
+          <Parameter Name="FECHA" Type="date" Mode="In" />
+          <Parameter Name="ESTADOORDEN" Type="number" Mode="In" />
+        </Function>
+        <Function Name="CREATE_ORDENPLATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="NUMORDEN" Type="number" Mode="In" />
+          <Parameter Name="IDPLATO" Type="number" Mode="In" />
+          <Parameter Name="CANTIDAD" Type="number" Mode="In" />
+        </Function>
         <Function Name="CREATE_PROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="RUTEMPRE" Type="number" Mode="In" />
           <Parameter Name="NOMB" Type="varchar2" Mode="In" />
@@ -525,6 +556,7 @@
         <Function Name="LISTAINVENTARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTALOCALES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAMESAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
+        <Function Name="LISTA_ORDEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAPLATOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTAPROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
         <Function Name="LISTARESERVAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB" />
@@ -600,7 +632,8 @@
           <EntitySet Name="LOCAL" EntityType="Self.LOCAL" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="MESA" EntityType="Self.MESA" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="ORDEN" EntityType="Self.ORDEN" Schema="DIGIEATDB" store:Type="Tables" />
-          <EntitySet Name="ORDEN_DETALLES" EntityType="Self.ORDEN_DETALLES" Schema="DIGIEATDB" store:Type="Tables" />
+          <EntitySet Name="ORDEN_BEBIDA" EntityType="Self.ORDEN_BEBIDA" Schema="DIGIEATDB" store:Type="Tables" />
+          <EntitySet Name="ORDEN_PLATO" EntityType="Self.ORDEN_PLATO" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="PLATO_COCINA" EntityType="Self.PLATO_COCINA" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="DIGIEATDB" store:Type="Tables" />
           <EntitySet Name="RECETA" EntityType="Self.RECETA" Schema="DIGIEATDB" store:Type="Tables" />
@@ -643,25 +676,29 @@
             <End Role="LOCAL" EntitySet="LOCAL" />
             <End Role="MESA" EntitySet="MESA" />
           </AssociationSet>
-          <AssociationSet Name="ORDEN_DETALLES_BEBIDA_BAR_FK" Association="Self.ORDEN_DETALLES_BEBIDA_BAR_FK">
+          <AssociationSet Name="OPLATOS_IDBEBIDA_FK" Association="Self.OPLATOS_IDBEBIDA_FK">
             <End Role="BEBIDA_BAR" EntitySet="BEBIDA_BAR" />
-            <End Role="ORDEN_DETALLES" EntitySet="ORDEN_DETALLES" />
+            <End Role="ORDEN_BEBIDA" EntitySet="ORDEN_BEBIDA" />
           </AssociationSet>
-          <AssociationSet Name="ORDEN_DETALLES_ORDEN_FK" Association="Self.ORDEN_DETALLES_ORDEN_FK">
+          <AssociationSet Name="OPLATOS_NUM_ORDEN_FK" Association="Self.OPLATOS_NUM_ORDEN_FK">
             <End Role="ORDEN" EntitySet="ORDEN" />
-            <End Role="ORDEN_DETALLES" EntitySet="ORDEN_DETALLES" />
-          </AssociationSet>
-          <AssociationSet Name="ORDEN_DETALLES_PLATO_COCINA_FK" Association="Self.ORDEN_DETALLES_PLATO_COCINA_FK">
-            <End Role="PLATO_COCINA" EntitySet="PLATO_COCINA" />
-            <End Role="ORDEN_DETALLES" EntitySet="ORDEN_DETALLES" />
+            <End Role="ORDEN_BEBIDA" EntitySet="ORDEN_BEBIDA" />
           </AssociationSet>
           <AssociationSet Name="ORDEN_ESTADO_ORDEN_FK" Association="Self.ORDEN_ESTADO_ORDEN_FK">
             <End Role="ESTADO_ORDEN" EntitySet="ESTADO_ORDEN" />
             <End Role="ORDEN" EntitySet="ORDEN" />
           </AssociationSet>
+          <AssociationSet Name="ORDEN_IDPLATO_FK" Association="Self.ORDEN_IDPLATO_FK">
+            <End Role="PLATO_COCINA" EntitySet="PLATO_COCINA" />
+            <End Role="ORDEN_PLATO" EntitySet="ORDEN_PLATO" />
+          </AssociationSet>
           <AssociationSet Name="ORDEN_MESA_FK" Association="Self.ORDEN_MESA_FK">
             <End Role="MESA" EntitySet="MESA" />
             <End Role="ORDEN" EntitySet="ORDEN" />
+          </AssociationSet>
+          <AssociationSet Name="ORDEN_NUM_ORDEN_FK" Association="Self.ORDEN_NUM_ORDEN_FK">
+            <End Role="ORDEN" EntitySet="ORDEN" />
+            <End Role="ORDEN_PLATO" EntitySet="ORDEN_PLATO" />
           </AssociationSet>
           <AssociationSet Name="RECETA_BEBIDA_BAR_FK" Association="Self.RECETA_BEBIDA_BAR_FK">
             <End Role="BEBIDA_BAR" EntitySet="BEBIDA_BAR" />
@@ -698,10 +735,10 @@
           </Key>
           <Property Name="ID_BEBIDA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOM_BEBIDA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ORDEN_DETALLES" Relationship="Self.ORDEN_DETALLES_BEBIDA_BAR_FK" FromRole="BEBIDA_BAR" ToRole="ORDEN_DETALLES" />
           <NavigationProperty Name="RECETA" Relationship="Self.RECETA_BEBIDA_BAR_FK" FromRole="BEBIDA_BAR" ToRole="RECETA" />
           <Property Name="VALOR" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ORDEN_BEBIDA" Relationship="Model.OPLATOS_IDBEBIDA_FK" FromRole="BEBIDA_BAR" ToRole="ORDEN_BEBIDA" />
         </EntityType>
         <EntityType Name="BODEGA">
           <Key>
@@ -711,23 +748,6 @@
           <Property Name="UBICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RECETA" Relationship="Self.RECETA_BODEGA_FK" FromRole="BODEGA" ToRole="RECETA" />
           <NavigationProperty Name="INGREDIENTE" Relationship="Model.INGREDIENTES_BODEGA_FK" FromRole="BODEGA" ToRole="INGREDIENTE" />
-        </EntityType>
-        <EntityType Name="CAJA_FACTURA">
-          <Key>
-            <PropertyRef Name="NUM_FACTURA" />
-            <PropertyRef Name="ORDEN_NUM_ORDEN" />
-          </Key>
-          <Property Name="NUM_FACTURA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="FECHA_FACTURA" Type="DateTime" />
-          <Property Name="EMISOR" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="FORMA_PAGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="METODO_PAGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="BASE" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="IVA" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="TOTAL" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="ORDEN_NUM_ORDEN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="ORDEN" Relationship="Self.CAJA_FACTURA_ORDEN_FK" FromRole="CAJA_FACTURA" ToRole="ORDEN" />
         </EntityType>
         <EntityType Name="CLIENTE">
           <Key>
@@ -806,22 +826,11 @@
           <Property Name="MESA_NUM_MESA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="FECHA_ORDEN" Type="DateTime" />
           <Property Name="ESTADO_ORDEN_ID_ESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="CAJA_FACTURA" Relationship="Self.CAJA_FACTURA_ORDEN_FK" FromRole="ORDEN" ToRole="CAJA_FACTURA" />
           <NavigationProperty Name="ESTADO_ORDEN" Relationship="Self.ORDEN_ESTADO_ORDEN_FK" FromRole="ORDEN" ToRole="ESTADO_ORDEN" />
           <NavigationProperty Name="MESA" Relationship="Self.ORDEN_MESA_FK" FromRole="ORDEN" ToRole="MESA" />
-          <NavigationProperty Name="ORDEN_DETALLES" Relationship="Self.ORDEN_DETALLES_ORDEN_FK" FromRole="ORDEN" ToRole="ORDEN_DETALLES" />
-        </EntityType>
-        <EntityType Name="ORDEN_DETALLES">
-          <Key>
-            <PropertyRef Name="ID_DETALLES" />
-          </Key>
-          <Property Name="ID_DETALLES" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="ORDEN_NUM_ORDEN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="BEBIDA_BAR_ID_BEBIDA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="PLATO_COCINA_ID_PLATO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="BEBIDA_BAR" Relationship="Self.ORDEN_DETALLES_BEBIDA_BAR_FK" FromRole="ORDEN_DETALLES" ToRole="BEBIDA_BAR" />
-          <NavigationProperty Name="ORDEN" Relationship="Self.ORDEN_DETALLES_ORDEN_FK" FromRole="ORDEN_DETALLES" ToRole="ORDEN" />
-          <NavigationProperty Name="PLATO_COCINA" Relationship="Self.ORDEN_DETALLES_PLATO_COCINA_FK" FromRole="ORDEN_DETALLES" ToRole="PLATO_COCINA" />
+          <NavigationProperty Name="ORDEN_BEBIDA" Relationship="Model.OPLATOS_NUM_ORDEN_FK" FromRole="ORDEN" ToRole="ORDEN_BEBIDA" />
+          <NavigationProperty Name="ORDEN_PLATO" Relationship="Model.ORDEN_NUM_ORDEN_FK" FromRole="ORDEN" ToRole="ORDEN_PLATO" />
+          <NavigationProperty Name="CAJA_FACTURA" Relationship="Model.CAJA_FACTURA_ORDEN_FK" FromRole="ORDEN" ToRole="CAJA_FACTURA" />
         </EntityType>
         <EntityType Name="PLATO_COCINA">
           <Key>
@@ -829,10 +838,10 @@
           </Key>
           <Property Name="ID_PLATO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOM_PLATO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ORDEN_DETALLES" Relationship="Self.ORDEN_DETALLES_PLATO_COCINA_FK" FromRole="PLATO_COCINA" ToRole="ORDEN_DETALLES" />
           <NavigationProperty Name="RECETA" Relationship="Self.RECETA_PLATO_COCINA_FK" FromRole="PLATO_COCINA" ToRole="RECETA" />
           <Property Name="VALOR" Type="Decimal" Precision="30" Scale="0" />
           <Property Name="IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ORDEN_PLATO" Relationship="Model.ORDEN_IDPLATO_FK" FromRole="PLATO_COCINA" ToRole="ORDEN_PLATO" />
         </EntityType>
         <EntityType Name="PROVEEDOR">
           <Key>
@@ -892,18 +901,6 @@
           <Property Name="NOM_CARGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="EMPLEADO" Relationship="Self.EMPLEADO_TIPO_EMPLEADO_FK" FromRole="TIPO_EMPLEADO" ToRole="EMPLEADO" />
         </EntityType>
-        <Association Name="ORDEN_DETALLES_BEBIDA_BAR_FK">
-          <End Role="BEBIDA_BAR" Type="Self.BEBIDA_BAR" Multiplicity="1" />
-          <End Role="ORDEN_DETALLES" Type="Self.ORDEN_DETALLES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BEBIDA_BAR">
-              <PropertyRef Name="ID_BEBIDA" />
-            </Principal>
-            <Dependent Role="ORDEN_DETALLES">
-              <PropertyRef Name="BEBIDA_BAR_ID_BEBIDA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RECETA_BEBIDA_BAR_FK">
           <End Role="BEBIDA_BAR" Type="Self.BEBIDA_BAR" Multiplicity="1" />
           <End Role="RECETA" Type="Self.RECETA" Multiplicity="*" />
@@ -925,18 +922,6 @@
             </Principal>
             <Dependent Role="RECETA">
               <PropertyRef Name="BODEGA_NUM_BODEGA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CAJA_FACTURA_ORDEN_FK">
-          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="1" />
-          <End Role="CAJA_FACTURA" Type="Self.CAJA_FACTURA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORDEN">
-              <PropertyRef Name="NUM_ORDEN" />
-            </Principal>
-            <Dependent Role="CAJA_FACTURA">
-              <PropertyRef Name="ORDEN_NUM_ORDEN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1012,30 +997,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ORDEN_DETALLES_ORDEN_FK">
-          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="1" />
-          <End Role="ORDEN_DETALLES" Type="Self.ORDEN_DETALLES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORDEN">
-              <PropertyRef Name="NUM_ORDEN" />
-            </Principal>
-            <Dependent Role="ORDEN_DETALLES">
-              <PropertyRef Name="ORDEN_NUM_ORDEN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ORDEN_DETALLES_PLATO_COCINA_FK">
-          <End Role="PLATO_COCINA" Type="Self.PLATO_COCINA" Multiplicity="1" />
-          <End Role="ORDEN_DETALLES" Type="Self.ORDEN_DETALLES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PLATO_COCINA">
-              <PropertyRef Name="ID_PLATO" />
-            </Principal>
-            <Dependent Role="ORDEN_DETALLES">
-              <PropertyRef Name="PLATO_COCINA_ID_PLATO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RECETA_PLATO_COCINA_FK">
           <End Role="PLATO_COCINA" Type="Self.PLATO_COCINA" Multiplicity="1" />
           <End Role="RECETA" Type="Self.RECETA" Multiplicity="*" />
@@ -1063,24 +1024,18 @@
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BEBIDA_BAR" EntityType="Self.BEBIDA_BAR" />
           <EntitySet Name="BODEGA" EntityType="Self.BODEGA" />
-          <EntitySet Name="CAJA_FACTURA" EntityType="Self.CAJA_FACTURA" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
           <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
           <EntitySet Name="ESTADO_ORDEN" EntityType="Self.ESTADO_ORDEN" />
           <EntitySet Name="LOCAL" EntityType="Self.LOCAL" />
           <EntitySet Name="MESA" EntityType="Self.MESA" />
           <EntitySet Name="ORDEN" EntityType="Self.ORDEN" />
-          <EntitySet Name="ORDEN_DETALLES" EntityType="Self.ORDEN_DETALLES" />
           <EntitySet Name="PLATO_COCINA" EntityType="Self.PLATO_COCINA" />
           <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
           <EntitySet Name="RECETA" EntityType="Self.RECETA" />
           <EntitySet Name="RECETA_INGREDIENTE" EntityType="Self.RECETA_INGREDIENTE" />
           <EntitySet Name="RESERVA" EntityType="Self.RESERVA" />
           <EntitySet Name="TIPO_EMPLEADO" EntityType="Self.TIPO_EMPLEADO" />
-          <AssociationSet Name="ORDEN_DETALLES_BEBIDA_BAR_FK" Association="Self.ORDEN_DETALLES_BEBIDA_BAR_FK">
-            <End Role="BEBIDA_BAR" EntitySet="BEBIDA_BAR" />
-            <End Role="ORDEN_DETALLES" EntitySet="ORDEN_DETALLES" />
-          </AssociationSet>
           <AssociationSet Name="RECETA_BEBIDA_BAR_FK" Association="Self.RECETA_BEBIDA_BAR_FK">
             <End Role="BEBIDA_BAR" EntitySet="BEBIDA_BAR" />
             <End Role="RECETA" EntitySet="RECETA" />
@@ -1088,10 +1043,6 @@
           <AssociationSet Name="RECETA_BODEGA_FK" Association="Self.RECETA_BODEGA_FK">
             <End Role="BODEGA" EntitySet="BODEGA" />
             <End Role="RECETA" EntitySet="RECETA" />
-          </AssociationSet>
-          <AssociationSet Name="CAJA_FACTURA_ORDEN_FK" Association="Self.CAJA_FACTURA_ORDEN_FK">
-            <End Role="ORDEN" EntitySet="ORDEN" />
-            <End Role="CAJA_FACTURA" EntitySet="CAJA_FACTURA" />
           </AssociationSet>
           <AssociationSet Name="CLIENTE_MESA_FK" Association="Self.CLIENTE_MESA_FK">
             <End Role="MESA" EntitySet="MESA" />
@@ -1116,14 +1067,6 @@
           <AssociationSet Name="ORDEN_MESA_FK" Association="Self.ORDEN_MESA_FK">
             <End Role="MESA" EntitySet="MESA" />
             <End Role="ORDEN" EntitySet="ORDEN" />
-          </AssociationSet>
-          <AssociationSet Name="ORDEN_DETALLES_ORDEN_FK" Association="Self.ORDEN_DETALLES_ORDEN_FK">
-            <End Role="ORDEN" EntitySet="ORDEN" />
-            <End Role="ORDEN_DETALLES" EntitySet="ORDEN_DETALLES" />
-          </AssociationSet>
-          <AssociationSet Name="ORDEN_DETALLES_PLATO_COCINA_FK" Association="Self.ORDEN_DETALLES_PLATO_COCINA_FK">
-            <End Role="PLATO_COCINA" EntitySet="PLATO_COCINA" />
-            <End Role="ORDEN_DETALLES" EntitySet="ORDEN_DETALLES" />
           </AssociationSet>
           <AssociationSet Name="RECETA_PLATO_COCINA_FK" Association="Self.RECETA_PLATO_COCINA_FK">
             <End Role="PLATO_COCINA" EntitySet="PLATO_COCINA" />
@@ -1284,13 +1227,13 @@
             <Parameter Name="SITIOWEB" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DELETE_BODEGA">
-            <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
+          <Parameter Name="NUMBODEGA" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="DELETE_INGREDIENTE">
-            <Parameter Name="NUMM" Mode="In" Type="Decimal" />
+          <Parameter Name="NUMM" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="DELETE_PROVEEDOR">
-            <Parameter Name="RUTVAR" Mode="In" Type="Decimal" />
+          <Parameter Name="RUTVAR" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="LISTABODEGA" />
           <FunctionImport Name="LISTAINVENTARIO" />
@@ -1318,6 +1261,41 @@
             <Parameter Name="VARCORREO" Mode="In" Type="String" />
             <Parameter Name="ROLNUM" Mode="Out" Type="Decimal" />
           </FunctionImport>
+          <EntitySet Name="ORDEN_BEBIDA" EntityType="Model.ORDEN_BEBIDA" />
+          <EntitySet Name="ORDEN_PLATO" EntityType="Model.ORDEN_PLATO" />
+          <AssociationSet Name="OPLATOS_IDBEBIDA_FK" Association="Model.OPLATOS_IDBEBIDA_FK">
+            <End Role="BEBIDA_BAR" EntitySet="BEBIDA_BAR" />
+            <End Role="ORDEN_BEBIDA" EntitySet="ORDEN_BEBIDA" />
+          </AssociationSet>
+          <AssociationSet Name="OPLATOS_NUM_ORDEN_FK" Association="Model.OPLATOS_NUM_ORDEN_FK">
+            <End Role="ORDEN" EntitySet="ORDEN" />
+            <End Role="ORDEN_BEBIDA" EntitySet="ORDEN_BEBIDA" />
+          </AssociationSet>
+          <AssociationSet Name="ORDEN_NUM_ORDEN_FK" Association="Model.ORDEN_NUM_ORDEN_FK">
+            <End Role="ORDEN" EntitySet="ORDEN" />
+            <End Role="ORDEN_PLATO" EntitySet="ORDEN_PLATO" />
+          </AssociationSet>
+          <AssociationSet Name="ORDEN_IDPLATO_FK" Association="Model.ORDEN_IDPLATO_FK">
+            <End Role="PLATO_COCINA" EntitySet="PLATO_COCINA" />
+            <End Role="ORDEN_PLATO" EntitySet="ORDEN_PLATO" />
+          </AssociationSet>
+          <FunctionImport Name="CREATE_ORDEN">
+            <Parameter Name="NUMORDEN" Mode="In" Type="Decimal" />
+            <Parameter Name="MESANUM" Mode="In" Type="Decimal" />
+            <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="ESTADOORDEN" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="CREATE_ORDENPLATO">
+            <Parameter Name="NUMORDEN" Mode="In" Type="Decimal" />
+            <Parameter Name="IDPLATO" Mode="In" Type="Decimal" />
+            <Parameter Name="CANTIDAD" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="LISTA_ORDEN" />
+          <EntitySet Name="CAJA_FACTURA" EntityType="Model.CAJA_FACTURA" />
+          <AssociationSet Name="CAJA_FACTURA_ORDEN_FK" Association="Model.CAJA_FACTURA_ORDEN_FK">
+            <End Role="ORDEN" EntitySet="ORDEN" />
+            <End Role="CAJA_FACTURA" EntitySet="CAJA_FACTURA" />
+          </AssociationSet>
 
         </EntityContainer>
         <Association Name="RESERVA_CLIENTE_FK">
@@ -1421,6 +1399,104 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ORDEN_BEBIDA">
+          <Key>
+            <PropertyRef Name="NUM_ORDEN" />
+            <PropertyRef Name="ID_BEBIDA" />
+          </Key>
+          <Property Name="NUM_ORDEN" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ID_BEBIDA" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="BEBIDA_BAR" Relationship="Model.OPLATOS_IDBEBIDA_FK" FromRole="ORDEN_BEBIDA" ToRole="BEBIDA_BAR" />
+          <NavigationProperty Name="ORDEN" Relationship="Model.OPLATOS_NUM_ORDEN_FK" FromRole="ORDEN_BEBIDA" ToRole="ORDEN" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="ORDEN_PLATO">
+          <Key>
+            <PropertyRef Name="NUM_ORDEN" />
+            <PropertyRef Name="ID_PLATO" />
+          </Key>
+          <Property Name="NUM_ORDEN" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ID_PLATO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="ORDEN" Relationship="Model.ORDEN_NUM_ORDEN_FK" FromRole="ORDEN_PLATO" ToRole="ORDEN" />
+          <NavigationProperty Name="PLATO_COCINA" Relationship="Model.ORDEN_IDPLATO_FK" FromRole="ORDEN_PLATO" ToRole="PLATO_COCINA" />
+        </EntityType>
+        <Association Name="OPLATOS_IDBEBIDA_FK">
+          <End Type="Model.BEBIDA_BAR" Role="BEBIDA_BAR" Multiplicity="1" />
+          <End Type="Model.ORDEN_BEBIDA" Role="ORDEN_BEBIDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BEBIDA_BAR">
+              <PropertyRef Name="ID_BEBIDA" />
+            </Principal>
+            <Dependent Role="ORDEN_BEBIDA">
+              <PropertyRef Name="ID_BEBIDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OPLATOS_NUM_ORDEN_FK">
+          <End Type="Model.ORDEN" Role="ORDEN" Multiplicity="1" />
+          <End Type="Model.ORDEN_BEBIDA" Role="ORDEN_BEBIDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN">
+              <PropertyRef Name="NUM_ORDEN" />
+            </Principal>
+            <Dependent Role="ORDEN_BEBIDA">
+              <PropertyRef Name="NUM_ORDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDEN_NUM_ORDEN_FK">
+          <End Type="Model.ORDEN" Role="ORDEN" Multiplicity="1" />
+          <End Type="Model.ORDEN_PLATO" Role="ORDEN_PLATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN">
+              <PropertyRef Name="NUM_ORDEN" />
+            </Principal>
+            <Dependent Role="ORDEN_PLATO">
+              <PropertyRef Name="NUM_ORDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDEN_IDPLATO_FK">
+          <End Type="Model.PLATO_COCINA" Role="PLATO_COCINA" Multiplicity="1" />
+          <End Type="Model.ORDEN_PLATO" Role="ORDEN_PLATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLATO_COCINA">
+              <PropertyRef Name="ID_PLATO" />
+            </Principal>
+            <Dependent Role="ORDEN_PLATO">
+              <PropertyRef Name="ID_PLATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CAJA_FACTURA">
+          <Key>
+            <PropertyRef Name="NUM_FACTURA" />
+          </Key>
+          <Property Name="NUM_FACTURA" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="FECHA_FACTURA" Type="DateTime" />
+          <Property Name="EMISOR" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FORMA_PAGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="METODO_PAGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="BASE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="IVA" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TOTAL" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ORDEN_NUM_ORDEN" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="ORDEN" Relationship="Model.CAJA_FACTURA_ORDEN_FK" FromRole="CAJA_FACTURA" ToRole="ORDEN" />
+        </EntityType>
+        <Association Name="CAJA_FACTURA_ORDEN_FK">
+          <End Type="Model.ORDEN" Role="ORDEN" Multiplicity="0..1" />
+          <End Type="Model.CAJA_FACTURA" Role="CAJA_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN">
+              <PropertyRef Name="NUM_ORDEN" />
+            </Principal>
+            <Dependent Role="CAJA_FACTURA">
+              <PropertyRef Name="ORDEN_NUM_ORDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1442,22 +1518,6 @@
               <MappingFragment StoreEntitySet="BODEGA">
                 <ScalarProperty Name="NUM_BODEGA" ColumnName="NUM_BODEGA" />
                 <ScalarProperty Name="UBICACION" ColumnName="UBICACION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CAJA_FACTURA">
-            <EntityTypeMapping TypeName="Model.CAJA_FACTURA">
-              <MappingFragment StoreEntitySet="CAJA_FACTURA">
-                <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
-                <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
-                <ScalarProperty Name="EMISOR" ColumnName="EMISOR" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="FORMA_PAGO" ColumnName="FORMA_PAGO" />
-                <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
-                <ScalarProperty Name="BASE" ColumnName="BASE" />
-                <ScalarProperty Name="IVA" ColumnName="IVA" />
-                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
-                <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1528,16 +1588,6 @@
                 <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
                 <ScalarProperty Name="FECHA_ORDEN" ColumnName="FECHA_ORDEN" />
                 <ScalarProperty Name="ESTADO_ORDEN_ID_ESTADO" ColumnName="ESTADO_ORDEN_ID_ESTADO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ORDEN_DETALLES">
-            <EntityTypeMapping TypeName="Model.ORDEN_DETALLES">
-              <MappingFragment StoreEntitySet="ORDEN_DETALLES">
-                <ScalarProperty Name="ID_DETALLES" ColumnName="ID_DETALLES" />
-                <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
-                <ScalarProperty Name="BEBIDA_BAR_ID_BEBIDA" ColumnName="BEBIDA_BAR_ID_BEBIDA" />
-                <ScalarProperty Name="PLATO_COCINA_ID_PLATO" ColumnName="PLATO_COCINA_ID_PLATO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1669,6 +1719,43 @@
           <FunctionImportMapping FunctionImportName="MODIFICAR_INGREDIENTE" FunctionName="Model.Store.MODIFICAR_INGREDIENTE" />
           <FunctionImportMapping FunctionImportName="MODIFICAR_PROVEEDOR" FunctionName="Model.Store.MODIFICAR_PROVEEDOR" />
           <FunctionImportMapping FunctionImportName="ROL" FunctionName="Model.Store.ROL" />
+          <EntitySetMapping Name="ORDEN_BEBIDA">
+            <EntityTypeMapping TypeName="Model.ORDEN_BEBIDA">
+              <MappingFragment StoreEntitySet="ORDEN_BEBIDA">
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="ID_BEBIDA" ColumnName="ID_BEBIDA" />
+                <ScalarProperty Name="NUM_ORDEN" ColumnName="NUM_ORDEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDEN_PLATO">
+            <EntityTypeMapping TypeName="Model.ORDEN_PLATO">
+              <MappingFragment StoreEntitySet="ORDEN_PLATO">
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="ID_PLATO" ColumnName="ID_PLATO" />
+                <ScalarProperty Name="NUM_ORDEN" ColumnName="NUM_ORDEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CREATE_ORDEN" FunctionName="Model.Store.CREATE_ORDEN" />
+          <FunctionImportMapping FunctionImportName="CREATE_ORDENPLATO" FunctionName="Model.Store.CREATE_ORDENPLATO" />
+          <FunctionImportMapping FunctionImportName="LISTA_ORDEN" FunctionName="Model.Store.LISTA_ORDEN" />
+          <EntitySetMapping Name="CAJA_FACTURA">
+            <EntityTypeMapping TypeName="Model.CAJA_FACTURA">
+              <MappingFragment StoreEntitySet="CAJA_FACTURA">
+                <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="BASE" ColumnName="BASE" />
+                <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
+                <ScalarProperty Name="FORMA_PAGO" ColumnName="FORMA_PAGO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="EMISOR" ColumnName="EMISOR" />
+                <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
+                <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
 
           
 

@@ -16,8 +16,8 @@ namespace DigiEat.DALC
     {
         public PLATO_COCINA()
         {
-            this.ORDEN_DETALLES = new HashSet<ORDEN_DETALLES>();
             this.RECETA = new HashSet<RECETA>();
+            this.ORDEN_PLATO = new HashSet<ORDEN_PLATO>();
         }
     
         public decimal ID_PLATO { get; set; }
@@ -25,7 +25,7 @@ namespace DigiEat.DALC
         public Nullable<decimal> VALOR { get; set; }
         public byte[] IMAGEN { get; set; }
     
-        public virtual ICollection<ORDEN_DETALLES> ORDEN_DETALLES { get; set; }
         public virtual ICollection<RECETA> RECETA { get; set; }
+        public virtual ICollection<ORDEN_PLATO> ORDEN_PLATO { get; set; }
     }
 }

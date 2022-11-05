@@ -19,22 +19,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CAJA_FACTURA">
-      <EntityTypeMapping TypeName="Model.CAJA_FACTURA">
-        <MappingFragment StoreEntitySet="CAJA_FACTURA">
-          <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
-          <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
-          <ScalarProperty Name="EMISOR" ColumnName="EMISOR" />
-          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-          <ScalarProperty Name="FORMA_PAGO" ColumnName="FORMA_PAGO" />
-          <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
-          <ScalarProperty Name="BASE" ColumnName="BASE" />
-          <ScalarProperty Name="IVA" ColumnName="IVA" />
-          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
-          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CLIENTE">
       <EntityTypeMapping TypeName="Model.CLIENTE">
         <MappingFragment StoreEntitySet="CLIENTE">
@@ -102,16 +86,6 @@
           <ScalarProperty Name="MESA_NUM_MESA" ColumnName="MESA_NUM_MESA" />
           <ScalarProperty Name="FECHA_ORDEN" ColumnName="FECHA_ORDEN" />
           <ScalarProperty Name="ESTADO_ORDEN_ID_ESTADO" ColumnName="ESTADO_ORDEN_ID_ESTADO" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORDEN_DETALLES">
-      <EntityTypeMapping TypeName="Model.ORDEN_DETALLES">
-        <MappingFragment StoreEntitySet="ORDEN_DETALLES">
-          <ScalarProperty Name="ID_DETALLES" ColumnName="ID_DETALLES" />
-          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
-          <ScalarProperty Name="BEBIDA_BAR_ID_BEBIDA" ColumnName="BEBIDA_BAR_ID_BEBIDA" />
-          <ScalarProperty Name="PLATO_COCINA_ID_PLATO" ColumnName="PLATO_COCINA_ID_PLATO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -242,5 +216,42 @@
     <FunctionImportMapping FunctionImportName="MODIFICAR_INGREDIENTE" FunctionName="Model.Store.MODIFICAR_INGREDIENTE" />
     <FunctionImportMapping FunctionImportName="MODIFICAR_PROVEEDOR" FunctionName="Model.Store.MODIFICAR_PROVEEDOR" />
     <FunctionImportMapping FunctionImportName="ROL" FunctionName="Model.Store.ROL" />
+    <EntitySetMapping Name="ORDEN_BEBIDA">
+      <EntityTypeMapping TypeName="Model.ORDEN_BEBIDA">
+        <MappingFragment StoreEntitySet="ORDEN_BEBIDA">
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="ID_BEBIDA" ColumnName="ID_BEBIDA" />
+          <ScalarProperty Name="NUM_ORDEN" ColumnName="NUM_ORDEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDEN_PLATO">
+      <EntityTypeMapping TypeName="Model.ORDEN_PLATO">
+        <MappingFragment StoreEntitySet="ORDEN_PLATO">
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="ID_PLATO" ColumnName="ID_PLATO" />
+          <ScalarProperty Name="NUM_ORDEN" ColumnName="NUM_ORDEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CREATE_ORDEN" FunctionName="Model.Store.CREATE_ORDEN" />
+    <FunctionImportMapping FunctionImportName="CREATE_ORDENPLATO" FunctionName="Model.Store.CREATE_ORDENPLATO" />
+    <FunctionImportMapping FunctionImportName="LISTA_ORDEN" FunctionName="Model.Store.LISTA_ORDEN" />
+    <EntitySetMapping Name="CAJA_FACTURA">
+      <EntityTypeMapping TypeName="Model.CAJA_FACTURA">
+        <MappingFragment StoreEntitySet="CAJA_FACTURA">
+          <ScalarProperty Name="ORDEN_NUM_ORDEN" ColumnName="ORDEN_NUM_ORDEN" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+          <ScalarProperty Name="BASE" ColumnName="BASE" />
+          <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
+          <ScalarProperty Name="FORMA_PAGO" ColumnName="FORMA_PAGO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="EMISOR" ColumnName="EMISOR" />
+          <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
+          <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

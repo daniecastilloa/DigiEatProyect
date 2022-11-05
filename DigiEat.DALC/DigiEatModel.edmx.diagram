@@ -4,35 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3193d4c6b1b34c4187a7597fb0ed9db2" Name="Diagram1" ZoomLevel="97">
+      <Diagram DiagramId="3193d4c6b1b34c4187a7597fb0ed9db2" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="Model.BEBIDA_BAR" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.BODEGA" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CAJA_FACTURA" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.EMPLEADO" Width="1.5" PointX="3.75" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ESTADO_ORDEN" Width="1.5" PointX="1.5" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.LOCAL" Width="1.5" PointX="1.5" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MESA" Width="1.5" PointX="1.5" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ORDEN" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ORDEN_DETALLES" Width="3.125" PointX="3.625" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PLATO_COCINA" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PROVEEDOR" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.RECETA" Width="1.5" PointX="7.125" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.RECETA_INGREDIENTE" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.RESERVA" Width="1.5" PointX="4.875" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.TIPO_EMPLEADO" Width="1.5" PointX="1.5" PointY="26.875" IsExpanded="true" />
-        <AssociationConnector Association="Model.ORDEN_DETALLES_BEBIDA_BAR_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RECETA_BEBIDA_BAR_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RECETA_BODEGA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.CAJA_FACTURA_ORDEN_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.CLIENTE_MESA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.EMPLEADO_LOCAL_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.EMPLEADO_TIPO_EMPLEADO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ORDEN_ESTADO_ORDEN_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.MESA_LOCAL_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ORDEN_MESA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ORDEN_DETALLES_ORDEN_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ORDEN_DETALLES_PLATO_COCINA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RECETA_PLATO_COCINA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RECETA_INGREDIENTE_RECETA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RESERVA_CLIENTE_FK" />
@@ -44,6 +38,14 @@
         <AssociationConnector Association="Model.INGREDIENTES_PROVEEDOR_FK1" />
         <AssociationConnector Association="Model.RECETA_INGREDIENTES_FK1" />
         <AssociationConnector Association="Model.INGREDIENTES_BODEGA_FK" />
+        <EntityTypeShape EntityType="Model.ORDEN_BEBIDA" Width="1.5" PointX="9" PointY="7" />
+        <EntityTypeShape EntityType="Model.ORDEN_PLATO" Width="1.5" PointX="6" PointY="8.375" />
+        <AssociationConnector Association="Model.OPLATOS_IDBEBIDA_FK" />
+        <AssociationConnector Association="Model.OPLATOS_NUM_ORDEN_FK" />
+        <AssociationConnector Association="Model.ORDEN_NUM_ORDEN_FK" />
+        <AssociationConnector Association="Model.ORDEN_IDPLATO_FK" />
+        <EntityTypeShape EntityType="Model.CAJA_FACTURA" Width="1.5" PointX="3" PointY="30" />
+        <AssociationConnector Association="Model.CAJA_FACTURA_ORDEN_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

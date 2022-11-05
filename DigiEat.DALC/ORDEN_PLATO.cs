@@ -12,14 +12,12 @@ namespace DigiEat.DALC
     using System;
     using System.Collections.Generic;
     
-    public partial class ORDEN_DETALLES
+    public partial class ORDEN_PLATO
     {
-        public decimal ID_DETALLES { get; set; }
-        public decimal ORDEN_NUM_ORDEN { get; set; }
-        public decimal BEBIDA_BAR_ID_BEBIDA { get; set; }
-        public decimal PLATO_COCINA_ID_PLATO { get; set; }
+        public decimal NUM_ORDEN { get; set; }
+        public decimal ID_PLATO { get; set; }
+        public Nullable<decimal> CANTIDAD { get; set; }
     
-        public virtual BEBIDA_BAR BEBIDA_BAR { get; set; }
         public virtual ORDEN ORDEN { get; set; }
         public virtual PLATO_COCINA PLATO_COCINA { get; set; }
     }
