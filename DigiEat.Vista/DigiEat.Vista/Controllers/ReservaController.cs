@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace DigiEat.Vista.Controllers
 {
+    [Authorize]
     public class ReservaController : Controller
     {
         // GET: Reserva

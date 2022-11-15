@@ -1,10 +1,9 @@
 ﻿@model Digieat.Negocio.Reserva
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Reservación";
 }
-
-<h2>Create</h2>
+<h2>Sección de la Creación de una Reserva</h2>
 @{
     var cantidad = new List<SelectListItem>() {
             new SelectListItem(){
@@ -51,32 +50,35 @@
  };
 
 }
+
 @using (Html.BeginForm())
 {
 
     //@Html.TextBoxFor(re => re.NUM_RESERVA)
     <br />
-    @Html.EditorFor(re => re.FECHA, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
-    @Html.ValidationMessageFor(re => re.FECHA, "", new { @type = "date", @class = "text-danger" })
+    @Html.LabelFor(model => model.FECHA, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(re => re.FECHA, new { htmlAttributes = new { @type = "date", @class = "form-control col-md-3" } })
+        @Html.ValidationMessageFor(re => re.FECHA, "", new { @type = "date", @class = "text-danger" })
+    </div>
     //@Html.TextBoxFor(re => re.FECHA)
     <br />
     // @Html.TextBoxFor(re => re.HORA)
     @Html.LabelFor(model => model.HORA, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.EditorFor(model => model.HORA, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.HORA, new { htmlAttributes = new { @class = "form-control col-md-3" } })
         @Html.ValidationMessageFor(model => model.HORA, "", new { @class = "text-danger" })
     </div>
     <br />
-    
-     @Html.LabelFor(model => model.CLIENTE_RUT, htmlAttributes: new { @class = "control-label col-md-2" })
-    <br />
-    @Html.TextBoxFor(re => re.CLIENTE_RUT)
+    @Html.LabelFor(model => model.CLIENTE_RUT, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+
+        @Html.TextBoxFor(re => re.CLIENTE_RUT, htmlAttributes: new { @class = "form-control col-md-3" })
+    </div>
     <br />
     // @Html.TextBoxFor(re => re.CANTIDAD_PERSONAS)
     @Html.LabelFor(model => model.CANTIDAD_PERSONAS, htmlAttributes: new { @class = "control-label col-md-2" })
     @Html.DropDownListFor(model => model.CANTIDAD_PERSONAS, cantidad)
 
-    <button>Guardar</button>
-
-
+    <button class="bg-success text-white">Crear una Reservación</button>
 }

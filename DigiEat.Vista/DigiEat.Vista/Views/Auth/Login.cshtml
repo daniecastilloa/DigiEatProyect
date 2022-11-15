@@ -2,6 +2,27 @@
 @{
     ViewBag.Title = "Login";
 }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/lib/login/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/font-awesome/css/fontawesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/login/css/main.css">
+    <!--===============================================================================================-->
+    
+</head>
+<br /><br />
 <style>
     .button {
         background-color: #4CAF50; /* Green */
@@ -28,22 +49,75 @@
             color: white;
         }
 </style>
-<div style="background-color:black" class=" text-white text-center">
-<h2 style="color: white">Ingresa tus credenciales</h2>
-@Html.ValidationSummary()
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="~/lib/login/images/img-01.png" alt="IMG">
+            </div>
+
+            <div class="login100-form validate-form">
+                <span class="login100-form-title">
+                    Inicia Sesión
+                </span>
+                @Html.ValidationSummary()
 
 
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(c=>c.correo, "Correo Electrónico")
-    @Html.TextBoxFor(c=>c.correo, new { type = "email" })
-    <br />
-    @Html.LabelFor(c=>c.contrasena, "Contraseña")
-    @Html.PasswordFor(c=>c.contrasena)
-    <br />
+                @using (Html.BeginForm())
+                {
+                    @Html.LabelFor(c => c.correo, htmlAttributes: new { @class = "wrap-input100 validate-input text-black bi bi-envelope-fill" })
+                    @Html.TextBoxFor(c => c.correo, new { type = "email", @class = "input100" })
+                    <br />
+                    @Html.LabelFor(c => c.contrasena, htmlAttributes: new { @class = "wrap-input100 validate-input text-black bi bi-lock-fill" })
+                    @Html.TextBoxFor(c => c.contrasena, new { type = "password", @class = "input100" })
+                    <br />
 
-    <button class="button button">Ingresar </button>
-}
+                    <button class="login100-form-btn">Ingresar </button>
+                }
 
-@TempData["mensaje"]
+                @TempData["mensaje"]
+            </div>
+
+
+            <!--<div class="text-center p-t-12">
+        <span class="txt1">
+            ¿Olvidó
+        </span>
+        <a class="txt2" href="#">
+            Correo / Contraseña?
+        </a>
     </div>
+
+    <div class="text-center p-t-136">
+        <a class="txt2" href="#">
+            Create your Account
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+        </a>
+    </div>-->
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--===============================================================================================-->
+<script src="~/lib/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/lib/login/vendor/bootstrap/js/popper.js"></script>
+<script src="~/lib/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/lib/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/lib/login/vendor/tilt/tilt.jquery.min.js"></script>
+<script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+</script>
+<!--===============================================================================================-->
+<script src="~/lib/login/js/main.js"></script>

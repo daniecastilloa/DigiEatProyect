@@ -29,7 +29,7 @@ namespace Digieat.Negocio
 		public decimal CLIENTE_RUT { get; set; }
 
 
-        [DisplayName("Ingrese la cantidad de personas")]
+        [DisplayName("Ingrese la Cantidad de Personas")]
         public decimal CANTIDAD_PERSONAS { get; set; }
 		public virtual Cliente Cliente { get; set; } // Se supone que con esto le indico qué usuario dio de baja la reserva
 

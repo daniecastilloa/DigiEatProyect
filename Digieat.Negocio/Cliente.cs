@@ -9,6 +9,8 @@ using DigiEat.DALC;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 using Digieat.Negocio;
+using System.ComponentModel;
+
 
 namespace Digieat.Negocio
 {
@@ -19,7 +21,9 @@ namespace Digieat.Negocio
         public string apellido_pat { get; set; }
         public string apellido_mat { get; set; }
         public decimal? telefono { get; set; }
+        [DisplayName("  Ingrese el Correo")]
         public string correo { get; set; }
+        [DisplayName("  Ingrese la Contraseña")]
         public string contrasena { get; set; }
 
 
