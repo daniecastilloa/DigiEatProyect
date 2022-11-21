@@ -57,6 +57,7 @@ namespace Digieat.Negocio
         //}
 
         OracleConnection ora = new OracleConnection("DATA SOURCE=localhost:1521/xe ; PASSWORD=1234; USER ID=DIGIEATDB");
+        
         public List<Cliente> ObtenerCliente()
         {
 
@@ -72,7 +73,23 @@ namespace Digieat.Negocio
                 estado_cuenta = (int)c.ESTADO_CUENTA,
 
             }).ToList();
+        }
 
+        public List<Cliente> ReadAll()
+        {
+            return this.db.CLIENTE.Select(c => new Cliente() {
+                rut_cliente = c.RUT,
+                nombre = c.NOMBRE,
+                apellido_mat = c.APELLIDO_MAT,
+                apellido_pat = c.APELLIDO_PAT,
+                telefono = (decimal)c.TELEFONO,
+                correo = c.CORREO,
+                contrasena = c.CONTRASENA,
+
+                estado_cuenta = (int)c.ESTADO_CUENTA,
+
+
+            }).ToList();
         }
 
         public bool Autenticar()

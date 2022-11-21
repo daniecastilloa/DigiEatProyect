@@ -2,6 +2,84 @@
 @{
     ViewBag.Title = "Index";
 }
+
+<!-- Header-->
+<header class="text-white">
+    <div class="container px-4 text-center"><br />
+        <h1 class="fw-bolder">Bienvenido al Restaurante Siglo XXI</h1>
+        <p class="lead">Plataforma Web</p>
+    </div>
+</header>
+<!--El Carrousel-->
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <div align="center"><img src="~/lib/img/mote.jpg" class="d-block w-75" alt="..."></div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="color:white;">First slide label</h5>
+                <p style="color:white;">Some representative placeholder content for the first slide.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <div align="center"><img src="~/lib/img/cazuela.jpg" class="d-block w-75" alt="..."></div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="color:white;">Second slide label</h5>
+                <p style="color:white;">Some representative placeholder content for the second slide.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div align="center"><img src="~/lib/img/pastel.jpg" class="d-block w-75" alt="..."></div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="color:white;">Third slide label</h5>
+                <p style="color:white;">Some representative placeholder content for the third slide.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!--Divisiones de Pestañas-->
+<div class="tabs">
+    <div class="tab-container">
+        <div id="tab3" class="tab">
+            <a href="#tab3">Pestaña 3</a>
+            <div class="tab-content">
+                <h2>Titulo 3</h2>
+                <p>Lorem ipsum ...</p>
+            </div>
+        </div>
+        <div id="tab2" class="tab">
+            <a href="#tab2">Pestaña 2</a>
+            <div class="tab-content">
+                <h2>Titulo 2</h2>
+                <p>Lorem ipsum ...</p>
+            </div>
+        </div>
+        <div id="tab1" class="tab">
+            <a href="#tab1">Pestaña 1</a>
+            <div class="tab-content">
+                <h2>Titulo 1</h2>
+                <p>Lorem ipsum ...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <style>
     /* funcionamiento básico del sistema de pestañas */
     .tab-content {
@@ -127,73 +205,3 @@
         z-index: 0;
     }
 </style>
-<!-- Header-->
-<header class="text-white">
-    <div class="container px-4 text-center">
-        <h1 class="fw-bolder">Bienvenido al Restaurante Siglo XXI</h1>
-        <p class="lead">Plataforma Web</p>
-    </div>
-</header>
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-            <div align="center"><img src="~/lib/img/mote.jpg" class="d-block w-75" alt="..."></div>
-            <div class="carousel-caption d-none d-md-block">
-                <h5 style="color:white;">First slide label</h5>
-                <p style="color:white;">Some representative placeholder content for the first slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-            <div align="center"><img src="~/lib/img/cazuela.jpg" class="d-block w-75" alt="..."></div>
-            <div class="carousel-caption d-none d-md-block">
-                <h5 style="color:white;">Second slide label</h5>
-                <p style="color:white;">Some representative placeholder content for the second slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div align="center"><img src="~/lib/img/pastel.jpg" class="d-block w-75" alt="..."></div>
-            <div class="carousel-caption d-none d-md-block">
-                <h5 style="color:white;">Third slide label</h5>
-                <p style="color:white;">Some representative placeholder content for the third slide.</p>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-<div class="tabs">
-    <div class="tab-container">
-        <div id="tab3" class="tab">
-            <a href="#tab3">Pestaña 3</a>
-            <div class="tab-content">
-                <h2>Titulo 3</h2>
-                <p>Lorem ipsum ...</p>
-            </div>
-        </div>
-        <div id="tab2" class="tab">
-            <a href="#tab2">Pestaña 2</a>
-            <div class="tab-content">
-                <h2>Titulo 2</h2>
-                <p>Lorem ipsum ...</p>
-            </div>
-        </div>
-        <div id="tab1" class="tab">
-            <a href="#tab1">Pestaña 1</a>
-            <div class="tab-content">
-                <h2>Titulo 1</h2>
-                <p>Lorem ipsum ...</p>
-            </div>
-        </div>
-    </div>
-</div>

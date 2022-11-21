@@ -3,34 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Digieat.Negocio;
 
 namespace DigiEat.Vista.Controllers
 {
-    [Authorize]
-    public class ClienteController : Controller
+    public class LaCartaController : Controller
     {
-        // GET: Cliente
+        // GET: LaCarta
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult LaCarta()
         {
-            ViewBag.clientes = new Cliente().ReadAll();
             return View();
         }
 
-        // GET: Cliente/Details/5
+        // GET: LaCarta/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Cliente/Create
+        // GET: LaCarta/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cliente/Create
+        // POST: LaCarta/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -38,7 +35,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("LaCarta");
             }
             catch
             {
@@ -46,13 +43,13 @@ namespace DigiEat.Vista.Controllers
             }
         }
 
-        // GET: Cliente/Edit/5
+        // GET: LaCarta/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Cliente/Edit/5
+        // POST: LaCarta/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -60,7 +57,7 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("LaCarta");
             }
             catch
             {
@@ -68,13 +65,13 @@ namespace DigiEat.Vista.Controllers
             }
         }
 
-        // GET: Cliente/Delete/5
+        // GET: LaCarta/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Cliente/Delete/5
+        // POST: LaCarta/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -82,14 +79,12 @@ namespace DigiEat.Vista.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("LaCarta");
             }
             catch
             {
                 return View();
             }
         }
-
-
     }
 }
