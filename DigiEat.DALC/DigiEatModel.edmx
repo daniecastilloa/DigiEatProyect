@@ -452,6 +452,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="BUSCAR_NOMBRE_CL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+          <Parameter Name="VARCORREO" Type="varchar2" Mode="In" />
+          <Parameter Name="NNOMBRE" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="CREATE_BODEGA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
           <Parameter Name="NUMBODEGA" Type="number" Mode="In" />
           <Parameter Name="UBICACION" Type="varchar2" Mode="In" />
@@ -1296,6 +1300,10 @@
             <End Role="ORDEN" EntitySet="ORDEN" />
             <End Role="CAJA_FACTURA" EntitySet="CAJA_FACTURA" />
           </AssociationSet>
+          <FunctionImport Name="BUSCAR_NOMBRE_CL">
+            <Parameter Name="VARCORREO" Mode="In" Type="String" />
+            <Parameter Name="NNOMBRE" Mode="Out" Type="String" />
+          </FunctionImport>
 
         </EntityContainer>
         <Association Name="RESERVA_CLIENTE_FK">
@@ -1756,6 +1764,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BUSCAR_NOMBRE_CL" FunctionName="Model.Store.BUSCAR_NOMBRE_CL" />
 
           
 

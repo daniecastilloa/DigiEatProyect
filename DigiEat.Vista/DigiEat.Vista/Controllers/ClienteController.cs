@@ -14,9 +14,14 @@ namespace DigiEat.Vista.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.clientes = new Cliente().ReadAll();
+            ViewBag.clientes = new Cliente().ObtenerCliente();
+            ViewBag.buscars = new Cliente().ObtenerNombre();
             return View();
         }
+
+        
+        
+        
 
         // GET: Cliente/Details/5
         public ActionResult Details(int id)

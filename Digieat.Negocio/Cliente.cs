@@ -28,7 +28,7 @@ namespace Digieat.Negocio
 
 
         [ForeignKey("Estado_cuenta")]
-        public int estado_cuenta { get; set; }
+        public decimal estado_cuenta { get; set; }
 
         [ForeignKey("Mesa")]
         public int mesa_num_mesa { get; set; }
@@ -57,11 +57,28 @@ namespace Digieat.Negocio
         //}
 
         OracleConnection ora = new OracleConnection("DATA SOURCE=localhost:1521/xe ; PASSWORD=1234; USER ID=DIGIEATDB");
-        
-        public List<Cliente> ObtenerCliente()
-        {
 
-            return this.db.CLIENTE.Select(c => new Cliente() {
+        //public List<Cliente> ObtenerCliente()
+        //{
+
+        //    return this.db.CLIENTE.Select(c => new Cliente() {
+        //        rut_cliente = c.RUT,
+        //        nombre = c.NOMBRE,
+        //        apellido_mat = c.APELLIDO_MAT,
+        //        apellido_pat = c.APELLIDO_PAT,
+        //        telefono = (decimal)c.TELEFONO,
+        //        correo = c.CORREO,
+        //        contrasena = c.CONTRASENA,
+
+        //        estado_cuenta = (int)c.ESTADO_CUENTA,
+
+        //    }).ToList();
+        //}
+
+        public List<Cliente> ReadAll()
+        {
+            return this.db.CLIENTE.Select(c => new Cliente()
+            {
                 rut_cliente = c.RUT,
                 nombre = c.NOMBRE,
                 apellido_mat = c.APELLIDO_MAT,
@@ -71,25 +88,63 @@ namespace Digieat.Negocio
                 contrasena = c.CONTRASENA,
 
                 estado_cuenta = (int)c.ESTADO_CUENTA,
+
 
             }).ToList();
         }
 
-        public List<Cliente> ReadAll()
+        public List<Cliente> ObtenerCliente()
         {
-            return this.db.CLIENTE.Select(c => new Cliente() {
-                rut_cliente = c.RUT,
-                nombre = c.NOMBRE,
-                apellido_mat = c.APELLIDO_MAT,
-                apellido_pat = c.APELLIDO_PAT,
-                telefono = (decimal)c.TELEFONO,
-                correo = c.CORREO,
-                contrasena = c.CONTRASENA,
+            List<Cliente> clientedatos = new List<Cliente>();
 
-                estado_cuenta = (int)c.ESTADO_CUENTA,
+            OracleCommand comando = new OracleCommand("LISTACLIENTES", ora);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.Add("listamesas", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
+            OracleDataAdapter adaptador = new OracleDataAdapter();
+            adaptador.SelectCommand = comando;
 
-            }).ToList();
+            ora.Open();
+            using (OracleDataReader reader = comando.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Cliente c = new Cliente();
+                    c.rut_cliente = reader.GetFieldValue<decimal>(0);
+                    c.nombre = reader.GetFieldValue<string>(1);
+                    c.apellido_pat = reader.GetFieldValue<string>(2);
+                    c.apellido_mat = reader.GetFieldValue<string>(3);
+                    c.telefono = reader.GetFieldValue<decimal>(4);
+                    c.correo = reader.GetFieldValue<string>(5);
+                    c.contrasena = reader.GetFieldValue<string>(6);
+                    //c.mesa_num_mesa = reader.GetFieldValue<decimal>(7);
+                    c.estado_cuenta = reader.GetFieldValue<decimal>(8);
+                    //c.nombre_estado = reader.GetFieldValue<string>(9);
+                    clientedatos.Add(c);
+                }
+            }
+            ora.Close();
+            return clientedatos;
+
+        }
+
+        public string ObtenerNombre()
+        {
+
+            string nombrecliente;
+            using (OracleCommand command = new OracleCommand("BUSCAR_NOMBRE_CL", ora))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("varcorreo", OracleDbType.Varchar2).Value = "carla.benitez@gmail.com";
+                command.Parameters.Add("nnombre", OracleDbType.Varchar2, 30);
+                command.Parameters["nnombre"].Direction = ParameterDirection.Output;
+                ora.Open();
+
+                command.ExecuteNonQuery();
+                nombrecliente = command.Parameters["nnombre"].Value.ToString();
+                ora.Close();
+            }
+            return nombrecliente;
         }
 
         public bool Autenticar()

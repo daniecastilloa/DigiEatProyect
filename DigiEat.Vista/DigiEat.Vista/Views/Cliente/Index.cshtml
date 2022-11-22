@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-
+@{var buscars = ViewBag.buscars; }
 <header class="text-white">
     <div class="container px-4 text-center">
-        <h1 class="fw-bolder">Bienvenido a la Interfaz del Cliente</h1>
+        <h1 class="fw-bolder">Hola, @buscars !</h1>
         <p class="lead">En proximas actualizaciones, podrás realizar reservas en este sitio</p>
     </div>
 </header>
@@ -15,7 +15,8 @@
     <img src="~/Images/happyguest.jpg">
 </div>
 
-@{ List<Cliente> clientes = (List<Cliente>)ViewBag.clientes;}
+
+@*@{ List<Cliente> clientes = (List<Cliente>)ViewBag.clientes;}
 
 <table class="text-white">
     <tr>
@@ -27,21 +28,21 @@
         <th>correo</th>
         <th>contraseña</th>
         <th>estado cuenta</th>
+        <th></th>
     </tr>
-    @if (Model != null)
+
+    @foreach (var cliente in clientes)
     {
-        foreach (var cliente in clientes)
-        {
-            <tr>
-                <td>@cliente.rut_cliente</td>
-                <td>@cliente.nombre</td>
-                <td>@cliente.apellido_pat</td>
-                <td>@cliente.apellido_mat</td>
-                <td>@cliente.telefono</td>
-                <td>@cliente.correo</td>
-                <td>@cliente.contrasena</td>
-                <td>@cliente.estado_cuenta</td>
-            </tr>
-        }
-    }
+        <tr>
+            <td>@cliente.rut_cliente</td>
+            <td>@cliente.nombre</td>
+            <td>@cliente.apellido_pat</td>
+            <td>@cliente.apellido_mat</td>
+            <td>@cliente.telefono</td>
+            <td>@cliente.correo</td>
+            <td>@cliente.contrasena</td>
+            <td>@cliente.estado_cuenta</td>
+        </tr>
+    }*@
+
 </table>

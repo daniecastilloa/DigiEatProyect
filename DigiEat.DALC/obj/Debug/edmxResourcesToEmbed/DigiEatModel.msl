@@ -253,5 +253,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="BUSCAR_NOMBRE_CL" FunctionName="Model.Store.BUSCAR_NOMBRE_CL" />
   </EntityContainerMapping>
 </Mapping>

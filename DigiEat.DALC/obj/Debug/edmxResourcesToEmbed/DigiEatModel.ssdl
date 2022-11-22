@@ -447,6 +447,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="BUSCAR_NOMBRE_CL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
+    <Parameter Name="VARCORREO" Type="varchar2" Mode="In" />
+    <Parameter Name="NNOMBRE" Type="varchar2" Mode="Out" />
+  </Function>
   <Function Name="CREATE_BODEGA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIGIEATDB">
     <Parameter Name="NUMBODEGA" Type="number" Mode="In" />
     <Parameter Name="UBICACION" Type="varchar2" Mode="In" />

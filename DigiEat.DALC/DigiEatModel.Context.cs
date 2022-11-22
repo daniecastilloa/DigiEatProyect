@@ -651,5 +651,14 @@ namespace DigiEat.DALC
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LISTA_ORDEN");
         }
+    
+        public virtual int BUSCAR_NOMBRE_CL(string vARCORREO, ObjectParameter nNOMBRE)
+        {
+            var vARCORREOParameter = vARCORREO != null ?
+                new ObjectParameter("VARCORREO", vARCORREO) :
+                new ObjectParameter("VARCORREO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BUSCAR_NOMBRE_CL", vARCORREOParameter, nNOMBRE);
+        }
     }
 }
