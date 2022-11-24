@@ -26,3 +26,17 @@ C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.C
 C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CopyComplete
 C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
 C:\DigiEatRepo\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.dll.config
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.dll
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\Digieat.Negocio.pdb
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.dll
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\EntityFramework.dll
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.pdb
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\DigiEat.DALC.dll.config
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\bin\Debug\EntityFramework.xml
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.AssemblyReference.cache
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CoreCompileInputs.cache
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.csproj.CopyComplete
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.dll
+D:\basededatos\Digieatnew\DigiEatProyect\Digieat.Negocio\obj\Debug\Digieat.Negocio.pdb

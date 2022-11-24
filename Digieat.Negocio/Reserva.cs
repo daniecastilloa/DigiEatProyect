@@ -85,7 +85,7 @@ namespace Digieat.Negocio
 				db.CREATE_RESERVA(this.NUM_RESERVA, this.FECHA, this.HORA, this.CLIENTE_RUT, this.CANTIDAD_PERSONAS);
 				return true;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				return false;
 			}

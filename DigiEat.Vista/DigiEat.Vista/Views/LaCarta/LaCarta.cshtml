@@ -1,4 +1,5 @@
-﻿@using Digieat.Negocio
+﻿
+@using Digieat.Negocio
 
 
 @{
@@ -8,25 +9,56 @@
 <!--Divisiones de Pestañas-->
 <div class="tabs">
     <div class="tab-container">
-        <div id="tab3" class="tab">
-            <a href="#tab3">Pestaña 3</a>
-            <div class="tab-content">
-                <h2>Titulo 3</h2>
-                <p>Lorem ipsum ...</p>
-            </div>
-        </div>
         <div id="tab2" class="tab">
-            <a href="#tab2">Pestaña 2</a>
+            <a href="#tab2">Bebidas</a>
             <div class="tab-content">
-                <h2>Titulo 2</h2>
-                <p>Lorem ipsum ...</p>
+                <h2>Bebida</h2>
+                @{ List<Bebida_Bar> bebidas = (List<Bebida_Bar>)ViewBag.Bebidas;}
+                <table class="text-white">
+                    <tr>
+
+                    </tr>
+
+                    @foreach (var bebida in bebidas)
+                    {
+                        {
+                            string imageBase64Data = Convert.ToBase64String(bebida.imagen);
+                            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                            ViewBag.ImageData = imageDataURL;
+                        }
+                        <tr>
+                            <td><img src="@ViewBag.ImageData" width="50" height="50" /></td>
+                            <td>@bebida.nom_bebida</td>
+                            <td>@bebida.valor</td>
+                        </tr>
+                    }
+
+                </table>
             </div>
         </div>
         <div id="tab1" class="tab">
-            <a href="#tab1">Pestaña 1</a>
+            <a href="#tab1">Platos</a>
             <div class="tab-content">
-                <h2>Titulo 1</h2>
-                <p>Lorem ipsum ...</p>
+                <h2>Plato</h2>
+                @{ List<Plato_Cocina> platos = (List<Plato_Cocina>)ViewBag.Platos;}
+            <table class="text-white">
+                <tr>
+                    
+                </tr>
+
+                @foreach (var plato in platos)
+                {
+                    {string imageBase64Data = Convert.ToBase64String(plato.imagen);
+                string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                ViewBag.ImageData = imageDataURL;}
+                    <tr>
+                        <td><img src="@ViewBag.ImageData" width="50" height="50" /></td>
+                        <td>@plato.nom_plato</td>
+                        <td>@plato.valor</td>
+                    </tr>
+                }
+
+            </table>
             </div>
         </div>
     </div>

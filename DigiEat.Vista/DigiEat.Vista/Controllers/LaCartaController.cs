@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digieat.Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,9 @@ namespace DigiEat.Vista.Controllers
         [HttpGet]
         public ActionResult LaCarta()
         {
+            ViewBag.Platos = new Plato_Cocina().ObtenerPlatos();
+            
+            ViewBag.Bebidas = new Bebida_Bar().ObtenerBebidas();
             return View();
         }
 
