@@ -14,6 +14,8 @@ namespace DigiEat.Vista.Controllers
        //Autentifacion artefacto
        public ActionResult Login()
         {
+            ViewBag.clientes = new Cliente().ObtenerCliente();
+            ViewBag.buscars = new Cliente().ObtenerNombre();
             return View();
         }
         
@@ -27,7 +29,7 @@ namespace DigiEat.Vista.Controllers
                 {
                     return Redirect(ReturnUrl);
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Cliente");
 
             }
             TempData["mensaje"] = "Credenciales incorrectas";
