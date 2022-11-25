@@ -10,7 +10,7 @@
 <div class="tabs">
     <div class="tab-container">
         <div id="tab2" class="tab">
-            <a href="#tab2">Bebidas</a>
+            <a href="#tab2">BEBIDAS</a>
             <div class="tab-content" style="background-color: #b20f3d">
                 <h2>¿Qué Bebestibles hay?</h2>
                 @{ List<Bebida_Bar> bebidas = (List<Bebida_Bar>)ViewBag.Bebidas;}
@@ -97,7 +97,7 @@
     }
     /* parámetros para configurar las pestañas */
     :root {
-        --tabs-border-color: #ABCDEF;
+        --tabs-border-color: #d9d0d0;
         --tabs-border-size: 3px;
         --tabs-text-color: white;
         --tabs-dark-color: #012345;
@@ -190,7 +190,8 @@
     }
 
     .tab > a {
-        background-color: var(--tabs-dark-color);
+        background-color: #222222;
+        font-weight: bold;
         padding: 10px;
         border: var(--tabs-border-size) solid var(--tabs-border-color);
         border-radius: 10px 10px 0 0;
@@ -198,12 +199,14 @@
     }
 
     .tab:target > a, .tab:last-of-type > a {
-        background-color: var(--tabs-lite-color);
+        background-color: #222222;
+        font-weight: bold;
         z-index: 200;
     }
 
     .tab:target ~ .tab:last-of-type > a {
-        background-color: var(--tabs-dark-color);
+        background-color: #222222;
+        font-weight: bold;
         z-index: 0;
     }
 </style>

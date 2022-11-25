@@ -51,7 +51,7 @@
 </style>
 
 <div class="limiter">
-    <div class="container-login100">
+    <div class="container-login100" style="background: linear-gradient(-130deg, #b20f3d, #222222);">
         <div class="wrap-login100">
             <div class="login100-pic js-tilt" data-tilt>
                 <img src="~/lib/login/images/img-01.png" alt="IMG">
@@ -67,10 +67,10 @@
                 @using (Html.BeginForm())
                 {
                     @Html.LabelFor(c => c.correo, htmlAttributes: new { @class = "wrap-input100 validate-input text-black bi bi-envelope-fill" })
-                    @Html.TextBoxFor(c => c.correo, new { type = "email", @class = "input100" })
+                    @Html.TextBoxFor(c => c.correo, new { type = "email", @class = "input100", @style="padding-left:10px;" })
                     <br />
                     @Html.LabelFor(c => c.contrasena, htmlAttributes: new { @class = "wrap-input100 validate-input text-black bi bi-lock-fill" })
-                    @Html.TextBoxFor(c => c.contrasena, new { type = "password", @class = "input100" })
+                    @Html.TextBoxFor(c => c.contrasena, new { type = "password", @class = "input100", @style = "padding-left:10px;" })
                     <br />
 
                     <button class="login100-form-btn">Ingresar </button>
