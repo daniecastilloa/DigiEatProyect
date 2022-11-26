@@ -32,16 +32,18 @@
                     </div>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                
+                
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                        <li class="nav-item">
-                            <a href="@Url.Action("", "", null)" class="nav-link">
-                                <i class="fa-solid fa-house"></i> INICIO
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("", "", null)" class="nav-link">
+                                    <i class="fa-solid fa-house"></i> INICIO
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="@Url.Action("", "Cliente", null)" class="nav-link">
                                     <i class="fa-solid fa-house-user"></i> PORTAL CLIENTE
@@ -61,7 +63,7 @@
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("Perfil", "Index","Cliente")" class="nav-link">
-                                        <i class="fa fa-user-circle"></i> PERFIL
+                                    <i class="fa fa-user-circle"></i> PERFIL
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -74,15 +76,15 @@
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("LaCarta", "LaCarta","")" class="nav-link">
-                                        <i class="fa-solid fa-utensils"></i> LA CARTA
-                                    </a>
+                                    <i class="fa-solid fa-utensils"></i> LA CARTA
+                                </a>
                             </li>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("Create", "Reserva", null)" class="nav-link">
-                                     <i class="fa-solid fa-calendar-days"></i> RESERVAR
+                                    <i class="fa-solid fa-calendar-days"></i> RESERVAR
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -98,7 +100,11 @@
                                 <a href="@Url.Action("Login", "Auth", null)" class="nav-link">
                                     <i class="fa fa-user-circle"></i> INGRESO CLIENTE
                                 </a>
-                                
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Create", "Registro", null)" class="nav-link">
+                                    <i class="bi bi-person-plus-fill"></i> REGÍSTRATE
+                                </a>
                             </li>
                         }
                     </ul>

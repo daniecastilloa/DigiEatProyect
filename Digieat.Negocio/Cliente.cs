@@ -81,12 +81,11 @@ namespace Digieat.Negocio
             {
                 rut_cliente = c.RUT,
                 nombre = c.NOMBRE,
-                apellido_mat = c.APELLIDO_MAT,
                 apellido_pat = c.APELLIDO_PAT,
+                apellido_mat = c.APELLIDO_MAT,
                 telefono = (decimal)c.TELEFONO,
                 correo = c.CORREO,
                 contrasena = c.CONTRASENA,
-
                 estado_cuenta = (int)c.ESTADO_CUENTA,
 
 
@@ -155,7 +154,20 @@ namespace Digieat.Negocio
 
         }
 
+        public bool AgregarCliente()
+        {
+            try
+            {
+                db.CREATE_CLIENTE(this.rut_cliente, this.nombre, this.apellido_pat, this.apellido_mat, this.telefono, this.correo, this.contrasena, 2,
+                    1);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
+        }
 
     }
 }

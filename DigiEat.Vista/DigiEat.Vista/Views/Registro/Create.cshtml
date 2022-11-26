@@ -1,0 +1,63 @@
+﻿@model Digieat.Negocio.Cliente
+@{
+    ViewBag.Title = "Create";
+}
+<div class="limiter">
+    <div class="table-active col-md-8 rounded-5 container" style="background-image: linear-gradient(#b20f3d, #222222); padding-top:2rem; padding-bottom: 1.5rem;">
+        <div class="wrap-login100">
+            <span class="text-white font-weight-bold" style="font-family: Poppins-Bold; font-size: 30px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 45px;">
+                REGÍSTRATE EN NUESTRO SITIO WEB
+            </span>
+            @using (Html.BeginForm())
+            {
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.rut_cliente, "RUT:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.rut_cliente, new { type = "text", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.nombre, "NOMBRE:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.nombre, new { type = "text", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.apellido_pat, "APELLIDO PATERNO:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.apellido_pat, new { type = "text", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.apellido_mat, "APELLIDO MATERNO:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.apellido_mat, new { type = "text", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.telefono, "TELÉFONO:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.telefono, new { type = "text", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.correo, "CORREO:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.correo, new { type = "email", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.contrasena, "CONTRASEÑA:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.contrasena, new { type = "password", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                @*<div class="col-md-12">
+                    @Html.LabelFor(c => c.estado_cuenta, "ESTADO DE LA CUENTA:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.estado_cuenta, new { type = "text", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.LabelFor(c => c.mesa_num_mesa, "NÚMERO DE MESA:", htmlAttributes: new { @class = "control-label col-md-5 font-weight-bold" })
+                    @Html.TextBoxFor(c => c.mesa_num_mesa, new { type = "text", @class = "rounded-4 col-md-6", @style = "padding-left:10px;" })
+                </div><br />*@
+            <div class="container text-center">
+                <button class="bg-success font-weight-bold text-white"><i class="bi bi-person-plus-fill"></i> REGISTRARSE</button>
+            </div>
+            }
+        </div>
+    </div>
+</div>

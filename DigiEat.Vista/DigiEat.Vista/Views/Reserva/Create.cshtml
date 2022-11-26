@@ -3,9 +3,12 @@
 @{
     ViewBag.Title = "Reservación";
 }
-<h2>Sección de la Creación de una Reserva</h2>
+
 <center>
-    <div class="table-active col-md-8 rounded-5" style="background-image: linear-gradient(#b20f3d, #222222); ">
+    <div class="table-active col-md-8 rounded-5 container" style="background-image: linear-gradient(#b20f3d, #222222); padding-top:2rem; padding-bottom: 1rem;">
+        <span class="text-white font-weight-bold" style="font-family: Poppins-Bold; font-size: 30px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 20px;">
+            RESERVA UNA MESA EN NUESTRO LOCAL
+        </span>
 
         @{
             var cantidad = new List<SelectListItem>() {
@@ -82,9 +85,9 @@
             // @Html.TextBoxFor(re => re.CANTIDAD_PERSONAS)
 
             @Html.LabelFor(model => model.CANTIDAD_PERSONAS, htmlAttributes: new { @class = "control-label col-md-4 font-weight-bold" })
-            @Html.DropDownListFor(model => model.CANTIDAD_PERSONAS, cantidad, htmlAttributes: new {@class ="col-md-2" })
+            @Html.DropDownListFor(model => model.CANTIDAD_PERSONAS, cantidad, htmlAttributes: new { @class = "col-md-2" })
             <hr />
-            <button class="bg-success text-white text-center font-weight-bold" style="padding-bottom:0.5rem; padding-left:0.5rem; padding-right:0.5rem; padding-top:0.3rem; margin-bottom:0.5rem;">Crear una Reservación</button>
+            <button class="bg-success text-white text-center font-weight-bold" style="padding-bottom:0.5rem; padding-left:0.5rem; padding-right:0.5rem; padding-top:0.3rem; margin-bottom:0.5rem;"><i class="fa-solid fa-calendar-days"></i> Crear una Reservación</button>
         }
     </div>
 </center>
