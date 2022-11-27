@@ -3,4 +3,14 @@
 @{
     ViewBag.Title = "Registro";
 }
-@TempData["mensajito"]
+
+<div class="limiter">
+    <div class="table-active col-md-8 rounded-5 container" style="background-image: linear-gradient(#b20f3d, #222222); padding-top:2rem; padding-bottom: 1.5rem;">
+        <div class="wrap-login100">
+            <span class="text-white font-weight-bold" style="font-family: Poppins-Bold; font-size: 45px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 35px;">
+                @TempData["mensajito"]
+            </span>
+            <span class="font-weight-bold" style="font-family: Poppins-Bold; font-size: 30px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 25px;"><a href="@Url.Action("Login", "Auth", null)"><i class="fa fa-user-circle"></i> Volver al Inicio de Sesión</a></span>
+        </div>
+    </div>
+</div>

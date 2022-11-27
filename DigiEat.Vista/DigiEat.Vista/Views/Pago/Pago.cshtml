@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Pago";
+}
+@*<head>
+    <script>
+          //creamos la variable ventana_secundaria que contendrá una referencia al popup que vamos a abrir
+          //la creamos como variable global para poder acceder a ella desde las distintas funciones
+          var ventana_secundaria
+
+          function abrirVentana(){
+              //guardo la referencia de la ventana para poder utilizarla luego
+              ventana_secundaria = window.open("Pago","miventana","width=900,height=600,menubar=no")
+          }
+
+          function cerrarVentana(){
+              //la referencia de la ventana es el objeto window del popup. Lo utilizo para acceder al método close
+              this.window.close()
+        }
+        function closeCurrentWindow() {
+            window.close();
+        }
+    </script>
+</head>*@
+
+
+<div class="limiter">
+    <div class="table-active col-md-8 rounded-5 container" style="background-image: linear-gradient(#b20f3d, #222222); padding-top:2rem; padding-bottom: 1.5rem;">
+        <div class="wrap-login100">
+            <span class="text-white font-weight-bold" style="font-family: Poppins-Bold; font-size: 30px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 15px;">
+                EL PAGO HA SIDO REALIZADO CON ÉXITO
+            </span>
+            <span class="text-white font-weight-bold" style="font-family: Poppins-Bold; font-size: 30px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 15px;">
+                Gracias por su compra en
+            </span>
+            <span class="text-white font-weight-bold" style="font-family: Poppins-Bold; font-size: 30px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 15px;">
+                <img src="~/Images/sigloxxilogoBlanco.png" height="150" width="300" alt="" />
+            </span>
+            <span class="text-white font-weight-bold" style="font-family: Poppins-Bold; font-size: 20px; color: #333333; line-height: 1.2; text-align: center; width: 100%; display: block; padding-bottom: 45px;">
+                Esperamos que vuelva pronto!
+            </span>
+            <span class="font-weight-bold" style="display:block; text-align:center; font-size:40px; color:yellow"><i class="fa-sharp fa-solid fa-circle-xmark"></i> Favor de Cerrar Ventana para continuar</span>
+        </div>
+    </div>
+</div>
+
+@*<form>
+    <input type=button value="Abrir ventana secundaria" onclick="abrirVentana()">
+    <br>
+    <br>
+    <input type=button value="Cerrar ventana secundaria" onclick="closeCurrentWindow()">
+</form>*@

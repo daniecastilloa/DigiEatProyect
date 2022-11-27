@@ -121,7 +121,39 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\880b866c-d5c6-4d0b-b24d-0af920378b03.jpg" />
+    <Content Include="Images\bar.png" />
+    <Content Include="Images\Bear_Beer.PNG" />
+    <Content Include="Images\Bols Cassis.PNG" />
+    <Content Include="Images\Bulldog.PNG" />
+    <Content Include="Images\cazuela_de_vacuno.png" />
+    <Content Include="Images\chef.png" />
+    <Content Include="Images\chorrillana-comida.png" />
+    <Content Include="Images\client.png" />
+    <Content Include="Images\coca-cola-3lt-500x500.png" />
+    <Content Include="Images\Combo.png" />
+    <Content Include="Images\combosopaipillaempanada.png" />
+    <Content Include="Images\cross.png" />
+    <Content Include="Images\customer.png" />
+    <Content Include="Images\empanadas.png" />
+    <Content Include="Images\Fentimans.PNG" />
+    <Content Include="Images\food-placeholder.png" />
+    <Content Include="Images\hand-swipe.gif" />
     <Content Include="Images\happyguest.jpg" />
+    <Content Include="Images\icon.ico" />
+    <Content Include="Images\img_arrow.png" />
+    <Content Include="Images\JackDanielsWhisky.PNG" />
+    <Content Include="Images\locos-comida.png" />
+    <Content Include="Images\logoRed.png" />
+    <Content Include="Images\Logov2.png" />
+    <Content Include="Images\platillos-chilenos-pastel-de-jaiba-P-1280x720.png" />
+    <Content Include="Images\room-service.png" />
+    <Content Include="Images\Rossini.PNG" />
+    <Content Include="Images\sigloxxilogo.png" />
+    <Content Include="Images\sigloxxilogoBlanco %281%29.png" />
+    <Content Include="Images\sigloxxilogoBlanco.png" />
+    <Content Include="Images\touchgesture.gif" />
+    <Content Include="Images\vegetables-on-wooden-background-herbs-803071.jpg" />
     <Content Include="lib\font-awesome\css\all.css" />
     <Content Include="lib\font-awesome\css\all.min.css" />
     <Content Include="lib\font-awesome\css\brands.css" />
@@ -231,6 +263,7 @@
     <Compile Include="Controllers\EmpleadoLController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LaCartaController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -484,6 +517,7 @@
     <Content Include="Views\LaCarta\LaCarta.cshtml" />
     <Content Include="Views\Registro\Registro.cshtml" />
     <Content Include="Views\Registro\Create.cshtml" />
+    <Content Include="Views\Pago\Pago.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
